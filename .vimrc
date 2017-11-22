@@ -27,6 +27,7 @@ nnoremap <space>u :UndotreeToggle<CR>
 nnoremap <space>b :Tagbar<CR>
 nnoremap <space>g :Gstatus<CR>
 nnoremap <space>p :Git push<CR>
+nnoremap <space>l :Git pull<CR>
 nnoremap <space>r :QuickRun<CR>
 nnoremap <space>t :tabnew<CR>
 nnoremap <space>w :q<CR>
