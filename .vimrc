@@ -38,8 +38,8 @@ nnoremap <space>j <C-w><Down>
 nnoremap <space>k <C-w><Up>
 nnoremap <C-h> :vertical resize -1<CR>
 nnoremap <C-l> :vertical resize +1<CR>
-nnoremap <C-j> :res -1<CR>
-nnoremap <C-k> :res +1<CR>
+nnoremap <C-j> :res +1<CR>
+nnoremap <C-k> :res -1<CR>
 
 
 "--------------- Vim PluginInstall ----------------"
