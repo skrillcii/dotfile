@@ -32,6 +32,10 @@ sudo update-grub
 # Archti
 #ssh morikuni@192.168.11.13
 
+# Ogasa Allegro
+#http://183.181.4.144/git/allegro_hand_ros_catkin_fork.git
+#user:handteam 
+#pass:shigeki2
 
 ##################################
 # Functions of script starts here#
