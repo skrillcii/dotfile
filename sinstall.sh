@@ -125,6 +125,13 @@ java_8_install()
 }
 
 
+vim_markdown_preview_dependencies()
+{
+    sudo apt-get install -y xdotool
+    pip install grip
+}
+
+
 YouCompleteMe_install()
 {
     sudo apt-get install -y build-essential cmake python-dev python3-dev
@@ -172,6 +179,10 @@ skrillcii_dotfile()
 
 pyenv_install()
 {
+    sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+    libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+    xz-utils tk-dev libffi-dev
+
     curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | zsh
 
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
