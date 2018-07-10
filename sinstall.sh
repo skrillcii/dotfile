@@ -6,19 +6,19 @@
 
 kernel_configurations()
 {
-# Edit /etc/default/grub
-sudo gedit /etc/default/grub
+    # Edit /etc/default/grub
+    sudo gedit /etc/default/grub
 
-# Change GRUB_CMDLINE_LINUX_DEFAULT
-# splash: show splash
-# quiet: hide bootup test
-GRUB_CMDLINE_LINUX_DEFAULT="quite splash"
-GRUB_CMDLINE_LINUX_DEFAULT="splash"
-GRUB_CMDLINE_LINUX_DEFAULT="quite"
-GRUB_CMDLINE_LINUX_DEFAULT=""
+    # Change GRUB_CMDLINE_LINUX_DEFAULT
+    # splash: show splash
+    # quiet: hide bootup test
+    GRUB_CMDLINE_LINUX_DEFAULT="quite splash"
+    GRUB_CMDLINE_LINUX_DEFAULT="splash"
+    GRUB_CMDLINE_LINUX_DEFAULT="quite"
+    GRUB_CMDLINE_LINUX_DEFAULT=""
 
-# After configuration, run update
-sudo update-grub
+    # After configuration, run update
+    sudo update-grub
 }
 
 
@@ -125,25 +125,9 @@ tmux_plugin_manager()
 }
 
 
-zsh_prezto_install()
+oh_my_zsh_install()
 {
-    # Install zsh:
-    sudo apt-get install zsh -y
-
-    # Start zsh:
-    zsh
-
-    # Source prezto:
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
-    # Create a new zsh configuration by copying the zsh configuration files provided:
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md; do
-      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
-
-    # Set zsh as the default shell
-    chsh -s /bin/zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
 
@@ -239,7 +223,7 @@ echo "Start custom installation"
 #vim_plugin_manager
 #tmux_build_from_source
 #tmux_plugin_manager
-#zsh_prezto_install
+#oh_my_zsh_install
 #powerline_font_install
 #numix_theme
 

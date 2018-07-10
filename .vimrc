@@ -20,6 +20,11 @@ set encoding=utf-8
 set backspace=indent,eol,start
 set list
 set listchars=tab:>\ ,trail:-,eol:$,extends:>,precedes:<
+set pastetoggle=<F3>
+
+"let vim_markdown_preview_toggle=1"
+"let vim_markdown_preview_hotkey='<C-m>'"
+"let vim_markdown_preview_browser='Google Chrome'"
 
 nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
@@ -60,6 +65,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
+"Plug 'JamshedVesuna/vim-markdown-preview'"
 call plug#end()
 colorscheme molokai
 
