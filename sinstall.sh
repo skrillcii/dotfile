@@ -22,33 +22,9 @@ kernel_configurations()
 }
 
 
-######################
-# Graphic PC address #
-######################
-
-# Seigyo
-#ssh morikuni@192.168.50.4
-
-# Archti
-#ssh morikuni@192.168.11.13
-
-
 ##################################
 # Functions of script starts here#
 ##################################
-
-install_google_chrome()
-{
-    # Add Key:
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-
-    # Set repository:
-    echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-
-    # Install package:
-    sudo apt-get update 
-    sudo apt-get install google-chrome-stable -y
-}
 
 
 vim_build_from_source()
@@ -127,7 +103,33 @@ tmux_plugin_manager()
 
 oh_my_zsh_install()
 {
+    sudo apt-get install -y zsh
+
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
+
+nodejs_npm_install()
+{
+    sudo apt-get install -y python-software-properties
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+}
+
+
+java_8_install()
+{
+    sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update
+    sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
+}
+
+
+YouCompleteMe_install()
+{
+    sudo apt-get install -y build-essential cmake python-dev python3-dev
+    cd ~/.vim/plugged/YouCompleteMe
+    ./install.py --clang-completer --js-completer --java-completer
 }
 
 
@@ -218,7 +220,6 @@ cuda_driver()
 
 echo "Start custom installation"
 #kernel_configurations
-#install_google_chrome
 #vim_build_from_source
 #vim_plugin_manager
 #tmux_build_from_source
