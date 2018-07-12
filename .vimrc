@@ -22,7 +22,6 @@ set list
 set listchars=tab:>\ ,trail:-,eol:$,extends:>,precedes:<
 set pastetoggle=<F3>
 
-let vim_markdown_preview_toggle=0
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=1
