@@ -236,6 +236,10 @@ echo "Start custom installation"
 #tmux_build_from_source
 #tmux_plugin_manager
 #oh_my_zsh_install
+#nodejs_npm_install
+#java_8_install
+#vim_markdown_preview_dependencies
+#YouCompleteMe_install
 #powerline_font_install
 #numix_theme
 
