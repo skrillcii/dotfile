@@ -24,7 +24,7 @@ set pastetoggle=<F3>
 
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
-let vim_markdown_preview_temp_file=1
+let vim_markdown_preview_temp_file=0
 
 nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
@@ -133,24 +133,4 @@ else
     let g:airline_right_sep		  = ''
     let g:airline_right_alt_sep	  = ''
 endif " }}}
-
-
-"------- allows cursor change in tmux mode --------"
-if has("mac")
-    if exists('$TMUX')
-        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    else
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    endif
-
-elseif has("unix")
-    if has("autocmd")
-        au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-        au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-        au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    endif
-endif
-
 
