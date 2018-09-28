@@ -3,6 +3,10 @@
 #########################
 # Kernel Configurations #
 #########################
+ubuntu_multi_monitor()
+{
+    xset -dpms
+}
 
 kernel_configurations()
 {
