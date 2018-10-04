@@ -169,7 +169,7 @@ set $middle_monitor "LVDS1"
 set $left_monitor "DVI-I-1-3"
 
 # load setting
-exec xrandr –-output $right_monitor –-right-of middle_monitor -–auto --output left_monitor --left-of middle_monitor --auto
+exec --no-startup-id xrandr –-output $right_monitor –-right-of middle_monitor -–auto --output left_monitor --left-of middle_monitor --auto
 
 # assign workspaces to screens
 workspace 1 output LVDS1
