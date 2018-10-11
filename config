@@ -165,7 +165,7 @@ exec --no-startup-id "feh --bg-scale /usr/share/backgrounds/Cielo_estrellado_by_
 bindsym --release $mod+x exec --no-startup-id import ~/Pictures/screenshot.png
 
 # screenlock function
-bindsym $mod+shift+x exec i3lock -t -i /usr/share/backgrounds/Cielo_estrellado_by_Eduardo_Diez_Viñuela.jpg
+bindsym $mod+shift+x exec i3lock -t -i /usr/share/backgrounds/Cielo_estrellado_by_Eduardo_Diez_Viñuela.png
 
 # Add multi monitors layout configurations
 #workspace 1 output HDMI-0
