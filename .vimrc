@@ -41,6 +41,7 @@ nnoremap <space>h <C-w><Left>
 nnoremap <space>l <C-w><Right>
 nnoremap <space>j <C-w><Down>
 nnoremap <space>k <C-w><Up>
+nnoremap <C-p> :CtrlPMRU<CR>
 nnoremap <C-h> :vertical resize -1<CR>
 nnoremap <C-l> :vertical resize +1<CR>
 nnoremap <C-j> :res +1<CR>
@@ -49,20 +50,20 @@ nnoremap <C-k> :res -1<CR>
 
 "--------------- Vim Easymotion ----------------"
 " Move to word
-map  f <Plug>(easymotion-bd-w)
-nmap f <Plug>(easymotion-overwin-w)
+"map  f <Plug>(easymotion-bd-w)
+"nmap f <Plug>(easymotion-overwin-w)
 
 " Move to line
 map  gl <Plug>(easymotion-bd-jk)
 nmap gl <Plug>(easymotion-overwin-line)
 
 " <Leader>f{char} to move to {char}
-map  g1 <Plug>(easymotion-bd-f)
-nmap g1 <Plug>(easymotion-overwin-f)
+"map  g1 <Plug>(easymotion-bd-f)
+"nmap g1 <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
-nmap g2 <Plug>(easymotion-overwin-f2)
-vmap g2 <Plug>(easymotion-bd-f2)
+nmap ff <Plug>(easymotion-overwin-f2)
+vmap ff <Plug>(easymotion-bd-f2)
 
 
 "--------------- Vim PluginInstall ----------------"
