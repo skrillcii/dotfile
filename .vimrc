@@ -47,6 +47,24 @@ nnoremap <C-j> :res +1<CR>
 nnoremap <C-k> :res -1<CR>
 
 
+"--------------- Vim Easymotion ----------------"
+" Move to word
+map  f <Plug>(easymotion-bd-w)
+nmap f <Plug>(easymotion-overwin-w)
+
+" Move to line
+map  gl <Plug>(easymotion-bd-jk)
+nmap gl <Plug>(easymotion-overwin-line)
+
+" <Leader>f{char} to move to {char}
+map  g1 <Plug>(easymotion-bd-f)
+nmap g1 <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap g2 <Plug>(easymotion-overwin-f2)
+vmap g2 <Plug>(easymotion-bd-f2)
+
+
 "--------------- Vim PluginInstall ----------------"
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
@@ -66,6 +84,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 colorscheme molokai
 
