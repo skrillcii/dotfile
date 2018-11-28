@@ -65,6 +65,10 @@ nmap gl <Plug>(easymotion-overwin-line)
 nmap ff <Plug>(easymotion-overwin-f2)
 vmap ff <Plug>(easymotion-bd-f2)
 
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
 
 "--------------- Vim PluginInstall ----------------"
 call plug#begin('~/.vim/plugged')
