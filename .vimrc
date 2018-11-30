@@ -69,6 +69,9 @@ vmap ff <Plug>(easymotion-bd-f2)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
+ " type `l` and match `l`&`L`
+ let g:EasyMotion_smartcase = 1
+
 
 "--------------- Vim PluginInstall ----------------"
 call plug#begin('~/.vim/plugged')
