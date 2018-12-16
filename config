@@ -164,13 +164,8 @@ exec --no-startup-id "feh --bg-scale /usr/share/backgrounds/Cielo_estrellado_by_
 # Take a screenshot upon pressing $mod+x (select an area)
 bindsym --release $mod+x exec --no-startup-id import ~/Pictures/screenshot.png
 
-<<<<<<< HEAD
-# screenlock function
-bindsym $mod+shift+x exec i3lock -t -i /usr/share/backgrounds/Cielo_estrellado_by_Eduardo_Diez_Viñuela.png
-=======
 # Screenlock function
 bindsym $mod+shift+x exec i3lock -t -i /usr/share/backgrounds/Cielo_estrellado_by_Eduardo_Diez_Viñuela.jpg
->>>>>>> 683b8d6c4f6ba1d623272778ddf7bb4ea2b00fc1
 
 # Move workspace to another output
 bindsym $mod+shift+m move workspace to output left
