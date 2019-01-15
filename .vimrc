@@ -35,6 +35,8 @@ nnoremap <space>p :Git push<CR>
 nnoremap <space>ll :Git pull<CR>
 nnoremap <space>r :QuickRun<CR>
 nnoremap <space>t :tabnew<CR>
+nnoremap <space>H :tabm -1<CR>
+nnoremap <space>L :tabm +1<CR>
 nnoremap <space>w :q<CR>
 nnoremap <space>s :w<CR>
 nnoremap <space>h <C-w><Left>
