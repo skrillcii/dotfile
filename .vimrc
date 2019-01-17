@@ -25,7 +25,9 @@ set pastetoggle=<F3>
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=0
+
 let g:livepreview_previewer = 'open -a Preview'
+autocmd Filetype tex setl updatetime=1
 
 nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
