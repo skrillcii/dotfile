@@ -25,6 +25,7 @@ set pastetoggle=<F3>
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=0
+let NERDTreeNodeDelimiter = "\t"
 
 nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
