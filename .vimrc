@@ -21,13 +21,15 @@ set backspace=indent,eol,start
 set list
 set listchars=tab:>\ ,trail:-,eol:$,extends:>,precedes:<
 set pastetoggle=<F3>
+set updatetime=1000
 
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=0
 
-let g:livepreview_previewer = 'open -a Preview'
 autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
+let g:livepreview_cursorhold_recompile = 0
 
 nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
@@ -99,6 +101,7 @@ Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'easymotion/vim-easymotion'
+Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
 call plug#end()
 colorscheme molokai
