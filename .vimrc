@@ -23,9 +23,11 @@ set listchars=tab:>\ ,trail:-,eol:$,extends:>,precedes:<
 set pastetoggle=<F3>
 set updatetime=1000
 
+let g:ctrlp_cmd = 'CtrlPMRU'
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=0
+let NERDTreeNodeDelimiter = "\t"
 
 autocmd Filetype tex setl updatetime=1
 let g:livepreview_previewer = 'open -a Preview'
