@@ -46,3 +46,6 @@ export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:${LD_LIBRARY_PATH}
 ##### fzf setting
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+
+##### setup default text editor
+export EDITOR=/usr/bin/vim
