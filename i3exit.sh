@@ -11,16 +11,16 @@ lock() {
 
 case "$1" in
     lock)
-        lock
+        i3lock -t -i /usr/share/backgrounds/clock_by_Bernhard_Hanakam.png
         ;;
     logout)
         i3-msg exit
         ;;
     suspend)
-        lock && systemctl suspend
+        i3lock -t -i /usr/share/backgrounds/clock_by_Bernhard_Hanakam.png && systemctl suspend
         ;;
     hibernate)
-        lock && systemctl hibernate
+        i3lock -t -i /usr/share/backgrounds/clock_by_Bernhard_Hanakam.png && systemctl hibernate
         ;;
     reboot)
         systemctl reboot
