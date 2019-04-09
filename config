@@ -4,9 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # i3 config file (v4)
-#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
@@ -17,7 +15,7 @@ font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -39,8 +37,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec dmenu_run
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -119,8 +116,10 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 #$bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec i3-msg exit
@@ -128,7 +127,6 @@ bindsym $mod+Shift+e exec i3-msg exit
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -148,7 +146,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -165,15 +162,34 @@ exec --no-startup-id "feh --bg-scale /usr/share/backgrounds/Cielo_estrellado_by_
 bindsym --release $mod+x exec --no-startup-id import ~/Pictures/screenshot.png
 
 # Screenlock function
-bindsym $mod+shift+x exec i3lock -t -i /usr/share/backgrounds/Cielo_estrellado_by_Eduardo_Diez_Viñuela.jpg
+# For a custom wallpaper, install Imagemagick and use its convert tool by running the following command:
+# convert -scale 2560x1440 source-image.jpg lockscreen.png
+bindsym $mod+shift+x exec i3lock -t -i /usr/share/backgrounds/clock_by_Bernhard_Hanakam.png
 
 # Move workspace to another output
 bindsym $mod+shift+m move workspace to output left
 
 # Add multi monitors layout configurations
-#workspace 1 output HDMI-0
-#workspace 2 output HDMI-1
+workspace 1 output HDMI-0
+workspace 2 output HDMI-1
 
 # Load specific applications onto specific workspaces
 exec --no-startup-id i3-msg "workspace 1; exec i3-sensible-terminal"
 exec --no-startup-id i3-msg "workspace 2; exec google-chrome-stable"
+
+# i3 system mode configuration
+# To use this binding, first create a symbolic link to /usr/local/bin for i3exit shell script
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
