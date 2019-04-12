@@ -113,6 +113,19 @@ oh_my_zsh_install()
 }
 
 
+ranger_install()
+{
+    sudo apt-get install -y ranger
+}
+
+
+fzf_install()
+{
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+}
+
+
 nodejs_npm_install()
 {
     sudo apt-get install -y python-software-properties
