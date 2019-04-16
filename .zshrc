@@ -31,8 +31,6 @@ else
     fi
 fi
 
-##### Zsh auto-suggestions setup
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ##### Pyenv path settings
 export PYENV_ROOT="$HOME/.pyenv"
