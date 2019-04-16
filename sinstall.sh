@@ -112,11 +112,6 @@ oh_my_zsh_install()
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
-zsh_autosuggestions()
-{
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-}
-
 ranger_install()
 {
     sudo apt-get install -y ranger
