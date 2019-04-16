@@ -175,9 +175,6 @@ workspace 2 output HDMI-1
 
 # Load specific applications onto specific workspaces
 exec --no-startup-id i3-msg "workspace 1; exec i3-sensible-terminal"
-<<<<<<< HEAD
-exec --no-startup-id i3-msg "workspace 1; exec google-chrome-stable"
-=======
 exec --no-startup-id i3-msg "workspace 2; exec google-chrome-stable"
 
 # i3 system mode configuration
