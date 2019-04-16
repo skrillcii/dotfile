@@ -1,5 +1,5 @@
-#
-##### OS system recognition Starts
+
+# OS system recognition Starts
 case `uname` in
     Darwin)
     function chpwd() {ls -a}
@@ -10,8 +10,7 @@ case `uname` in
         ;;
 esac
 
-
-##### Attaching tmux sessions Starts
+# Attaching tmux sessions Starts
 function chpwd() {ls -a}
 
 if [[ ! -n $TMUX ]]; then
@@ -31,21 +30,21 @@ else
     fi
 fi
 
-
-##### Pyenv path settings
+# Pyenv path settings
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# fzf setting
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+
+# setup default text editor
+export EDITOR=/usr/bin/vim
+
 # CUDA and cuDNN paths
 export PATH=/usr/local/cuda-9.0/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:${LD_LIBRARY_PATH}
 
-##### fzf setting
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-
-##### setup default text editor
-export EDITOR=/usr/bin/vim
