@@ -57,7 +57,7 @@ vim_build_from_source()
                 --enable-gui=gtk2 \
                 --enable-cscope \
                 --prefix=/usr/local
-    make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
+    make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
     # Install with checkinstall
     cd ~/vim

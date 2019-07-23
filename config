@@ -176,7 +176,6 @@ workspace 2 output HDMI-0
 # Load specific applications onto specific workspaces
 exec --no-startup-id i3-msg "workspace 1; exec google-chrome-stable"
 exec --no-startup-id i3-msg "workspace 2; exec i3-sensible-terminal"
-exec --no-startup-id i3-msg "workspace 2; exec spotify"
 
 # i3 system mode configuration
 # To use this binding, first create a symbolic link to /usr/local/bin for i3exit shell script
@@ -203,11 +202,13 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $audio-o
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $audio-output toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym $mod+Prior exec xbacklight -inc 20 # increase screen brightness
+bindsym $mod+Next exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+#bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
