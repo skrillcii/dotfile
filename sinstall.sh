@@ -57,7 +57,7 @@ vim_build_from_source()
                 --enable-gui=gtk2 \
                 --enable-cscope \
                 --prefix=/usr/local
-    make VIMRUNTIMEDIR=/usr/local/share/vim/vim80
+    make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
     # Install with checkinstall
     cd ~/vim
@@ -82,19 +82,20 @@ vim_plugin_manager()
 
 tmux_build_from_source()
 {
-    VERSION=2.5
     sudo apt-get -y remove tmux
     sudo apt-get -y install wget tar libevent-dev libncurses-dev
-    wget https://github.com/tmux/tmux/releases/download/2.5/tmux-2.5.tar.gz
-    tar xf tmux-2.5.tar.gz
-    rm -f tmux-2.5.tar.gz
-    cd tmux-2.5
+    wget https://github.com/tmux/tmux/releases/download/2.7/tmux-2.7.tar.gz
+    tar xf tmux-2.7.tar.gz
+    rm -f tmux-2.7.tar.gz
+    cd tmux-2.7
     ./configure
     make
-    sudo make install
+    sudo checkinstall
+
+    # Deprecated
     cd -
     sudo rm -rf /usr/local/src/tmux-*
-    sudo mv tmux-2.5 /usr/local/src
+    sudo mv tmux-2.7 /usr/local/src
 }
 
 
@@ -108,7 +109,6 @@ tmux_plugin_manager()
 oh_my_zsh_install()
 {
     sudo apt-get install -y zsh
-
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
@@ -152,7 +152,7 @@ YouCompleteMe_install()
 {
     sudo apt-get install -y build-essential cmake python-dev python3-dev
     cd ~/.vim/plugged/YouCompleteMe
-    ./install.py --clang-completer --js-completer --java-completer
+    /usr/bin/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
 }
 
 

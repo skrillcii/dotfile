@@ -23,15 +23,6 @@ set listchars=tab:>\ ,trail:-,eol:$,extends:>,precedes:<
 set pastetoggle=<F3>
 set updatetime=1000
 
-let g:ctrlp_cmd = 'CtrlPMRU'
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<space>m'
-let vim_markdown_preview_temp_file=0
-let NERDTreeNodeDelimiter = "\t"
-
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer = 'open -a Preview'
-let g:livepreview_cursorhold_recompile = 0
 
 nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
@@ -58,7 +49,7 @@ nnoremap <C-j> :res +1<CR>
 nnoremap <C-k> :res -1<CR>
 
 
-"--------------- Vim Easymotion ----------------"
+"--------------- Vim Easymotion
 " Move to word
 "map  f <Plug>(easymotion-bd-w)
 "nmap f <Plug>(easymotion-overwin-w)
@@ -83,7 +74,7 @@ omap / <Plug>(easymotion-tn)
  let g:EasyMotion_smartcase = 1
 
 
-"--------------- Vim PluginInstall ----------------"
+"--------------- Vim PluginInstall
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -109,7 +100,7 @@ call plug#end()
 colorscheme molokai
 
 
-"----------------- Permanent Undo History ---------------"
+"--------------- Permanent undo history
 if !isdirectory($HOME . '/.vim/undofiles')
   call mkdir($HOME . '/.vim/undofiles','p')
 endif
@@ -124,28 +115,42 @@ endif
 set backupdir=$HOME/.vim/backupfiles
 set backup
 
+"--------------- Undotree style
+if !exists('g:undotree_WindowLayout')
+    let g:undotree_WindowLayout = 3
+endif
 
-"----------------- Indentline settings ---------------"
+"--------------- Indentline settings
 let g:indentLine_setColors = 1
 let g:indentLine_char = '¦'
 
-
-"----------------- GitGutter settings ---------------"
+"--------------- GitGutter settings
 set updatetime=250
 
-
-"----------------- QuickRun settings -----------------"
+"--------------- QuickRun settings
 let g:quickrun_config={'*': {'split': ''}}
 set splitbelow
 
-
-"----------------- CtrlP settings -----------------"
+"--------------- CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_cmd = 'CtrlPMRU'
 
+"--------------- Vim markdown preview settings
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<space>m'
+let vim_markdown_preview_temp_file=0
 
-"----------- Vim airline theme settings -----------"
+"--------------- Nerdtree settings
+let NERDTreeNodeDelimiter = "\t"
+
+"--------------- Livetexpreviewer settings
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
+let g:livepreview_cursorhold_recompile = 0
+
+"--------------- Vim airline theme settings
 let g:airline_theme='molokai'
 
 " let g:airline_powerline_fonts=1
