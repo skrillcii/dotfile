@@ -11,10 +11,11 @@ lock() {
 
 case "$1" in
     lock)
-        i3lock -t -i /usr/share/backgrounds/clock_by_Bernhard_Hanakam.png
+        i3lock -t -i ~/Pictures/screenlock/screenlock.png
         ;;
     logout)
-        i3-msg exit
+        #i3-msg exit
+        exec dm-tool switch-to-greeter
         ;;
     suspend)
         i3lock -t -i /usr/share/backgrounds/clock_by_Bernhard_Hanakam.png && systemctl suspend
