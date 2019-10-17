@@ -96,6 +96,7 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
+Plug 'sirtaj/vim-openscad'
 call plug#end()
 colorscheme molokai
 
