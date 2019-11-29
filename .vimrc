@@ -42,6 +42,8 @@ nnoremap <space>l <C-w><Right>
 nnoremap <space>j <C-w><Down>
 nnoremap <space>k <C-w><Up>
 nnoremap <space>, :LLPStartPreview<CR>
+nnoremap <space>e :mks! ~/.vim/sessions/ws.vim<CR>
+nnoremap <space>i :source ~/.vim/sessions/ws.vim<CR>
 nnoremap <C-p> :CtrlPMRU<CR>
 nnoremap <C-h> :vertical resize -1<CR>
 nnoremap <C-l> :vertical resize +1<CR>
