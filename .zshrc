@@ -3,8 +3,8 @@
 case `uname` in
     Darwin)
     function chpwd() {ls -a}
-    #alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-    #alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+    alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
     ;;
     Linux)
         ;;
@@ -31,12 +31,15 @@ else
 fi
 
 # setup default text editor
-export EDITOR=/usr/bin/vim       # apt built-in
-#export EDITOR=/usr/local/bin/vim # self-compiled
+#export EDITOR=/usr/bin/vim         # apt built-in
+export EDITOR=/usr/local/bin/vim  # self-compiled
 
 # fzf setting
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+
+# Japanese encoding setting
+export LC_CTYPE="C.UTF-8"
 
 # Python encoding
 export PYTHONIOENCODING=utf8
@@ -55,11 +58,6 @@ export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:${LD_LIBRARY_PATH}
 # ROS env path
 source /opt/ros/kinetic/setup.zsh
 
-# Zsh auto-suggestions setup
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # IBM Cloud auto-completion
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
-# Japanese encoding setting
-export LC_CTYPE="C.UTF-8"
