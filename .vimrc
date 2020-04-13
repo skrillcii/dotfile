@@ -100,6 +100,7 @@ Plug 'lervag/vimtex'
 Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'sirtaj/vim-openscad'
+Plug 'jpalardy/vim-slime'
 call plug#end()
 colorscheme molokai
 
