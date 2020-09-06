@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/morikuni/.oh-my-zsh"
+export ZSH="/home/skrillcii/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -131,8 +131,8 @@ else
 fi
 
 # setup default text editor
-#export EDITOR=/usr/bin/vim         # apt built-in
-export EDITOR=/usr/local/bin/vim  # self-compiled
+# export EDITOR=/usr/bin/vim         # apt built-in
+# export EDITOR=/usr/local/bin/vim  # self-compiled
 
 # fzf setting
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -152,12 +152,12 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # CUDA and cuDNN paths
-export PATH=/usr/local/cuda-9.0/bin:${PATH}
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:${LD_LIBRARY_PATH}
+# export PATH=/usr/local/cuda-9.0/bin:${PATH}
+# export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:${LD_LIBRARY_PATH}
 
 # ROS env path
-source /opt/ros/kinetic/setup.zsh
+# source /opt/ros/kinetic/setup.zsh
 
 # IBM Cloud auto-completion
-source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
+# source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
