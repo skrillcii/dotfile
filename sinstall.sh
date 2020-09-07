@@ -187,7 +187,6 @@ skrillcii_dotfile()
 
     # Create symbolic link:
     ln -s ~/dotfile/.vimrc ~/.vimrc
-    ln -s ~/dotfile/.gvimrc ~/.gvimrc
     ln -s ~/dotfile/.tmux.conf ~/.tmux.conf
     echo 'source $HOME/dotfile/.zshrc' >> ~/.zshrc
 }
