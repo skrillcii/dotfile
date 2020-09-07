@@ -156,7 +156,7 @@ bar {
 }
 
 # Desktop backgroun setting
-exec --no-startup-id "feh --bg-scale /usr/share/backgrounds/Cielo_estrellado_by_Eduardo_Diez_Viñuela.jpg"
+exec --no-startup-id "feh --bg-scale /usr/share/backgrounds/Halifax_Sunset_by_Vlad_Drobinin.jpg"
 
 # Take a screenshot upon pressing $mod+x (select an area)
 bindsym --release $mod+x exec --no-startup-id import ~/Pictures/screenshot.png
