@@ -65,6 +65,7 @@ ZSH_THEME="steeef"
 plugins=(
   git
   zsh-autosuggestions
+  zsh-syntax-highlighting
   docker docker-compose
 )
 
@@ -133,6 +134,9 @@ fi
 # setup default text editor
 # export EDITOR=/usr/bin/vim         # apt built-in
 # export EDITOR=/usr/local/bin/vim  # self-compiled
+
+# Oh-my-zsh auto suggestions hight style
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 
 # fzf setting
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
