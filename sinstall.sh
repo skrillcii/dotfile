@@ -110,6 +110,7 @@ oh_my_zsh_install()
 {
     sudo apt-get install -y zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 }
 
 ranger_install()
@@ -194,47 +195,24 @@ skrillcii_dotfile()
 
 pyenv_install()
 {
-    sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-    libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libffi-dev
-
-    curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | zsh
-
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-    echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
-    exec "$SHELL"
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 }
 
 
 cuda_driver()
 {
-    # Install dependencies
-    sudo apt-get install openjdk-8-jdk git python-dev python3-dev \
-            donepython-numpy python3-numpy python-six python3-six \
-            build-essential python-pip python3-pip python-virtualenv \
-            swig python-wheel python3-wheel libcurl3-dev libcupti-dev -y
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+    sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+    wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
+    sudo dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
+    sudo apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub
+    sudo apt-get update
+    sudo apt-get -y install cuda
 
-    # Install cuda
-    cd ~
-    wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run
-    wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
-    sudo sh cuda_8.0.61_375.26_linux.run --override --silent --toolkit
-    sudo sh cuda_9.0.176_384.81_linux.run --override --silent --toolkit
-
-    # Go to website download CudNN
-    tar -xzvf cudnn-8.0-linux-x64-v6.0.tgz
-    tar -xzvf cudnn-9.0-linux-x64-v7.0.tgz
-
-    sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-    sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
-    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-
-
-    echo 'export PATH=/usr/local/cuda-8.0/bin:${PATH}' >> ~/.zshrc
-    echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/' >> ~/.zshrc
-    echo 'export PATH=/usr/local/cuda-9.0/bin:${PATH}' >> ~/.zshrc
+    echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.zshrc
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/' >> ~/.zshrc
 }
 
