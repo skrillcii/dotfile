@@ -150,9 +150,16 @@ let vim_markdown_preview_temp_file=0
 "--------------- Nerdtree settings
 let NERDTreeNodeDelimiter = "\t"
 
+"--------------- Texvim settings
+let g:tex_flavor = 'latex'
+
 "--------------- Livetexpreviewer settings
 autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer = 'open -a Preview'
+" It is required to install tex engine
+" For ubuntu system run the following command
+" sudo apt-get install texlive-latex-extra
+" let g:livepreview_previewer = 'open -a Preview'
+let g:livepreview_previewer = 'open -a evince'
 let g:livepreview_cursorhold_recompile = 0
 
 "--------------- Vim airline theme settings
