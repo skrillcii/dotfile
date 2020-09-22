@@ -31,6 +31,41 @@ kernel_configurations()
 ##################################
 
 
+oh_my_zsh_install()
+{
+    sudo apt-get install -y zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+}
+
+
+tmux_build_from_source()
+{
+    sudo apt-get -y remove tmux
+    sudo apt-get -y install wget tar libevent-dev libncurses-dev checkinstall
+    wget https://github.com/tmux/tmux/releases/download/2.7/tmux-2.7.tar.gz
+    tar xf tmux-2.7.tar.gz
+    rm -f tmux-2.7.tar.gz
+    cd tmux-2.7
+    ./configure
+    make
+    sudo checkinstall
+
+    # Deprecated
+    cd -
+    sudo rm -rf /usr/local/src/tmux-*
+    sudo mv tmux-2.7 /usr/local/src
+}
+
+
+tmux_plugin_manager()
+{
+    # Source
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+
 vim_build_from_source()
 {
     # Add dependencies:
@@ -80,45 +115,16 @@ vim_plugin_manager()
 }
 
 
-tmux_build_from_source()
-{
-    sudo apt-get -y remove tmux
-    sudo apt-get -y install wget tar libevent-dev libncurses-dev
-    wget https://github.com/tmux/tmux/releases/download/2.7/tmux-2.7.tar.gz
-    tar xf tmux-2.7.tar.gz
-    rm -f tmux-2.7.tar.gz
-    cd tmux-2.7
-    ./configure
-    make
-    sudo checkinstall
-
-    # Deprecated
-    cd -
-    sudo rm -rf /usr/local/src/tmux-*
-    sudo mv tmux-2.7 /usr/local/src
-}
-
-
-tmux_plugin_manager()
-{
-    # Source
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-}
-
-
-oh_my_zsh_install()
-{
-    sudo apt-get install -y zsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-
-
-}
-
 ranger_install()
 {
     sudo apt-get install -y ranger
+}
+
+
+temperature_install()
+{
+    sudo apt-get install -y lm-sensors
+    sudo sensors-detect
 }
 
 
@@ -129,11 +135,31 @@ fzf_install()
 }
 
 
+skrillcii_dotfile()
+{
+    # Source skrillcii repo:
+    cd ~
+    git clone https://github.com/skrillcii/dotfile.git
+
+    # Create symbolic link:
+    ln -s ~/dotfile/.vimrc ~/.vimrc
+    ln -s ~/dotfile/.tmux.conf ~/.tmux.conf
+    echo 'source $HOME/dotfile/.zshrc' >> ~/.zshrc
+}
+
+
+pyenv_install()
+{
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+}
+
+
 nodejs_npm_install()
 {
-    sudo apt-get install -y python-software-properties
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+    sudo apt-get install -y npm
 }
 
 
@@ -180,28 +206,6 @@ numix_theme()
     sudo add-apt-repository ppa:numix/ppa
     sudo apt-get update
     sudo apt-get install unity-tweak-tool numix-gtk-theme numix-icon-theme-circle -y
-}
-
-
-skrillcii_dotfile()
-{
-    # Source skrillcii repo:
-    cd ~
-    git clone https://github.com/skrillcii/dotfile.git
-
-    # Create symbolic link:
-    ln -s ~/dotfile/.vimrc ~/.vimrc
-    ln -s ~/dotfile/.tmux.conf ~/.tmux.conf
-    echo 'source $HOME/dotfile/.zshrc' >> ~/.zshrc
-}
-
-
-pyenv_install()
-{
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 }
 
 
