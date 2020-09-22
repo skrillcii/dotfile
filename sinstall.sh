@@ -171,18 +171,24 @@ java_8_install()
 }
 
 
-vim_markdown_preview_dependencies()
-{
-    sudo apt-get install -y xdotool
-    pip install grip
-}
-
-
 YouCompleteMe_install()
 {
     sudo apt-get install -y build-essential cmake python-dev python3-dev
     cd ~/.vim/plugged/YouCompleteMe
     /usr/bin/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
+}
+
+
+Language_inputs_install()
+{
+    sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
+}
+
+
+vim_markdown_preview_dependencies()
+{
+    sudo apt-get install -y xdotool
+    pip install grip
 }
 
 
