@@ -30,6 +30,10 @@ kernel_configurations()
 # Functions of script starts here#
 ##################################
 
+general_install()
+{
+    sudo apt-get install -y zsh tmux vim curl vlc lightdm
+}
 
 oh_my_zsh_install()
 {
