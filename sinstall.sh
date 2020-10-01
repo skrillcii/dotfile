@@ -7,7 +7,7 @@
 
 general_install()
 {
-    sudo apt-get install -y zsh tmux vim curl vlc npm ranger lm-sensors lightdm
+    sudo apt-get install -y zsh tmux vim curl vlc npm ranger i3 lm-sensors lightdm
     sudo sensors-detect
 }
 
@@ -172,6 +172,8 @@ numix_theme()
 
 cuda_driver()
 {
+
+    # From package manager
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
     sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
     wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
@@ -182,6 +184,22 @@ cuda_driver()
 
     echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.zshrc
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/' >> ~/.zshrc
+
+    # From runfile
+    sudo apt-get purge nvidia*
+    sudo apt-get autoremove
+    sudo dpkg -l | grep nvidia
+    sudo apt-get purge ... # whatever nvidia packages left
+
+    sudo apt-get install build-essential gcc-multilib dkms
+    sudo echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist-nouveau.conf
+    sudo echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf
+    sudo update-initramfs -u
+    sudo systemctl stop lightdm
+
+    wget https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda_11.1.0_455.23.05_linux.run
+    chmod +x cuda_11.1.0_455.23.05_linux.run
+    sudo sh cuda_11.1.0_455.23.05_linux.run
 }
 
 
