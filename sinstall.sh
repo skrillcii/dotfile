@@ -1,30 +1,5 @@
 #!/bin/bash
 
-#########################
-# Kernel Configurations #
-#########################
-ubuntu_multi_monitor()
-{
-    xset -dpms
-}
-
-kernel_configurations()
-{
-    # Edit /etc/default/grub
-    sudo gedit /etc/default/grub
-
-    # Change GRUB_CMDLINE_LINUX_DEFAULT
-    # splash: show splash
-    # quiet: hide bootup test
-    GRUB_CMDLINE_LINUX_DEFAULT="quite splash"
-    GRUB_CMDLINE_LINUX_DEFAULT="splash"
-    GRUB_CMDLINE_LINUX_DEFAULT="quite"
-    GRUB_CMDLINE_LINUX_DEFAULT=""
-
-    # After configuration, run update
-    sudo update-grub
-}
-
 
 ##################################
 # Functions of script starts here#
@@ -32,7 +7,8 @@ kernel_configurations()
 
 general_install()
 {
-    sudo apt-get install -y zsh tmux vim curl vlc lightdm
+    sudo apt-get install -y zsh tmux vim curl vlc npm ranger lm-sensors lightdm
+    sudo sensors-detect
 }
 
 oh_my_zsh_install()
@@ -119,23 +95,19 @@ vim_plugin_manager()
 }
 
 
-ranger_install()
-{
-    sudo apt-get install -y ranger
-}
-
-
-temperature_install()
-{
-    sudo apt-get install -y lm-sensors
-    sudo sensors-detect
-}
-
-
 fzf_install()
 {
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
+}
+
+
+pyenv_install()
+{
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 }
 
 
@@ -152,21 +124,6 @@ skrillcii_dotfile()
 }
 
 
-pyenv_install()
-{
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-}
-
-
-nodejs_npm_install()
-{
-    sudo apt-get install -y npm
-}
-
-
 java_8_install()
 {
     sudo add-apt-repository ppa:webupd8team/java
@@ -180,12 +137,6 @@ YouCompleteMe_install()
     sudo apt-get install -y build-essential cmake python-dev python3-dev
     cd ~/.vim/plugged/YouCompleteMe
     /usr/bin/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
-}
-
-
-Language_inputs_install()
-{
-    sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
 }
 
 
