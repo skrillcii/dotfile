@@ -111,24 +111,25 @@ case `uname` in
         ;;
 esac
 
-# Attaching tmux sessions Starts
+# Alawyas list directory after cd
 function chpwd() {ls -a}
 
+# Attaching tmux sessions Starts
 if [[ ! -n $TMUX ]]; then
     tmux -2 attach || tmux -2 new-session
+fi
 
+# Turn mouse mode on/off depending on tmux version
+if [[ `tmux -V | cut -c 6-8` -lt 2.1 ]]
+then
+    tmux set -g mode-mouse on
+    tmux set -g mouse-resize-pane on
+    tmux set -g mouse-select-pane on
+    tmux set -g mouse-select-window on
+    clear
 else
-    if [[ `\tmux -V | cut -d" " -f2` -lt 2.1 ]]
-    then
-        tmux set -g mode-mouse on
-        tmux set -g mouse-resize-pane on
-        tmux set -g mouse-select-pane on
-        tmux set -g mouse-select-window on
-        clear
-    else
-        tmux set -g mouse on
-        clear
-    fi
+    tmux set -g mouse on
+    clear
 fi
 
 # setup default text editor
