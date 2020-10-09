@@ -132,22 +132,26 @@ else
     clear
 fi
 
-# setup default text editor
-# export EDITOR=/usr/bin/vim         # apt built-in
-# export EDITOR=/usr/local/bin/vim  # self-compiled
-
-# Oh-my-zsh auto suggestions hight style
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-
-# fzf setting
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-
 # Japanese encoding setting
 export LC_CTYPE="C.UTF-8"
 
 # Python encoding
 export PYTHONIOENCODING=utf8
+
+# Setup default text editor
+# export EDITOR=/usr/bin/vim         # apt built-in
+# export EDITOR=/usr/local/bin/vim  # self-compiled
+
+# Setup terminal color
+export TERM=xterm-256color
+
+# Oh-my-zsh auto suggestions hight style
+# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=40,bg=bold,underline"
+
+# fzf setting
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # Pyenv path settings
 export PYENV_ROOT="$HOME/.pyenv"
