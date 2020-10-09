@@ -1,3 +1,4 @@
-# Multi monitor configuration
+# Home multi monitor configuration
+# ln -s ~/dotfile/.xprofile ~/.xprofile
 xrandr --output HDMI-0 --mode 1920x1080 --primary --output HDMI-1 --mode 1360x768 --left-of HDMI-0
 

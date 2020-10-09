@@ -14,6 +14,7 @@ set mouse=a
 set t_Co=256
 set autoindent
 set expandtab
+set modeline
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4

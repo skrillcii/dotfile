@@ -7,7 +7,7 @@
 
 general_install()
 {
-    sudo apt-get install -y zsh tmux vim curl ranger i3 lm-sensors lightdm vlc npm exuberant-ctags
+    sudo apt-get install -y zsh tmux vim curl ranger xclip i3 lm-sensors lightdm vlc npm exuberant-ctags
     sudo sensors-detect
 }
 
@@ -20,6 +20,22 @@ oh_my_zsh_install()
 }
 
 
+tmux_plugin_manager()
+{
+    # Source
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+oh_my_tmux()
+{
+    git clone https://github.com/gpakosz/.tmux.git "$HOME/.oh-my-tmux/"
+    ln -s -f "$HOME/.oh-my-tmux/.tmux.conf" "$HOME/.tmux.conf"
+    ln -s -f "$HOME/.oh-my-tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
+    echo 'source ~/dotfile/.tmux.conf.local' >> "$HOME/.tmux.conf.local"
+}
+
+# Deprecated as on Ubuntu 20.04, tmux version 3.0a can be installed by
+# sudo apt-get install -y tmux
 tmux_build_from_source()
 {
     sudo apt-get -y remove tmux
@@ -36,13 +52,6 @@ tmux_build_from_source()
     cd -
     sudo rm -rf /usr/local/src/tmux-*
     sudo mv tmux-2.7 /usr/local/src
-}
-
-
-tmux_plugin_manager()
-{
-    # Source
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 
@@ -63,16 +72,16 @@ vim_build_from_source()
     git clone https://github.com/vim/vim.git
     cd vim
     ./configure --with-features=huge \
-                --enable-multibyte \
-                --enable-terminal \
-                --enable-rubyinterp=yes \
-                --enable-python3interp=yes \
-                --with-python3-config-dir=/usr/lib/python3.5/config \
-                --enable-perlinterp=yes \
-                --enable-gui=gtk2 \
-                --enable-cscope \
-                --prefix=/usr/local
-    make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
+        --enable-multibyte \
+        --enable-terminal \
+        --enable-rubyinterp=yes \
+        --enable-python3interp=yes \
+        --with-python3-config-dir=/usr/lib/python3.5/config \
+        --enable-perlinterp=yes \
+        --enable-gui=gtk2 \
+        --enable-cscope \
+        --prefix=/usr/local
+            make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
     # Install with checkinstall
     cd ~/vim
@@ -91,8 +100,8 @@ vim_plugin_manager()
 
     # Source vim-plug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    }
 
 
 fzf_install()
@@ -213,19 +222,4 @@ cuda_driver()
 ##################################
 
 echo "Start custom installation"
-#kernel_configurations
-#vim_build_from_source
-#vim_plugin_manager
-#tmux_build_from_source
-#tmux_plugin_manager
-#oh_my_zsh_install
-#nodejs_npm_install
-#java_8_install
-#vim_markdown_preview_dependencies
-#YouCompleteMe_install
-#powerline_font_install
-#numix_theme
 
-#skrillcii_dotfile
-#pyenv_install
-#cuda_driver
