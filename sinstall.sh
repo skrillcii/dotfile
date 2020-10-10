@@ -123,6 +123,8 @@ pyenv_install()
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 
     # Optional pip3 installations
+    env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.6
+    pyenv global 3.8.6
     pip3 install -U pip autopep8 flake8 jedi
 }
 
@@ -152,6 +154,11 @@ YouCompleteMe_install()
 {
     sudo apt-get install -y build-essential cmake python-dev python3-dev
     cd ~/.vim/plugged/YouCompleteMe
+
+    # If python is installed with pyenv with --enable-shared 
+    python3 install.py --clang-completer --cs-completer --js-completer --java-completer
+
+    # Use system python
     /usr/bin/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
 }
 

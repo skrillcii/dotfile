@@ -43,7 +43,7 @@ nnoremap <space>r :QuickRun<CR>
 nnoremap <space>t :tabnew<CR>
 nnoremap <space>H :tabm -1<CR>
 nnoremap <space>L :tabm +1<CR>
-nnoremap <space>w :q<CR>
+nnoremap <space>w :q<CR>:bd<CR>
 nnoremap <space>s :w<CR>
 nnoremap <space>h <C-w><Left>
 nnoremap <space>l <C-w><Right>
@@ -79,12 +79,13 @@ Plug 'thinca/vim-quickrun'
 
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-syntastic/syntastic'
 Plug 'davidhalter/jedi-vim'
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tmux-plugins/vim-tmux'
@@ -131,8 +132,33 @@ let g:indentLine_char = '¦'
 set updatetime=250
 
 "==================================
+" YouCompleteMe settings
+"==================================
+" let g:ycm_path_to_python_interpreter = '~/.pyenv/shims/python3'
+let g:ycm_auto_hover=''
+nnoremap <leader>D <plug>(YCMHover)
+
+"==================================
 " Jedi settings
 "==================================
+set completeopt-=preview
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#use_splits_not_buffers = 'left'
+let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = '1'
+let g:jedi#max_doc_height=20
+
+let g:jedi#completions_command = '<C-Space>'
+let g:jedi#goto_command = '<leader>d'
+let g:jedi#goto_assignments_command = '<leader>g'
+let g:jedi#goto_stubs_command = '<leader>s'
+let g:jedi#goto_definitions_command = ''
+let g:jedi#documentation_command = 'K'
+let g:jedi#usages_command = '<leader>n'
+let g:jedi#rename_command = '<leader>r'
 
 "==================================
 " CtrlP settings
@@ -149,7 +175,6 @@ let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=0
 
-
 "==================================
 " QuickRun settings
 "==================================
@@ -159,7 +184,7 @@ set splitbelow
 "==================================
 " Nerdtree settings
 "==================================
-let NERDTreeNodeDelimiter = "\t"
+let NERDTreeNodeDelimiter = '\t'
 
 "==================================
 " Autoformat settings
@@ -225,13 +250,18 @@ let g:airline_theme='gruvbox'
 " colorscheme molokai
 " let g:airline_theme='molokai'
 "
+" Tab line settings
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+
+" Powerline symbols settings
 let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" powerline symbols" {{{
 if has("gui_running")
     let g:airline#extensions#tabline#left_sep = ''
     let g:airline#extensions#tabline#left_alt_sep  = ''
@@ -260,7 +290,7 @@ else
     let g:airline_symbols.branch = ''
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = ''
-endif " }}}
+endif
 
 "==================================
 " Slime setting
