@@ -121,6 +121,9 @@ pyenv_install()
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+
+    # Optional pip3 installations
+    pip3 install -U pip autopep8 flake8 jedi
 }
 
 

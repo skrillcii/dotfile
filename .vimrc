@@ -25,6 +25,7 @@ set list
 set listchars=tab:>-,trail:-,eol:$,extends:>,precedes:<
 set pastetoggle=<F3>
 set updatetime=1000
+set termguicolors
 
 "==================================
 " Keybinding
@@ -61,7 +62,8 @@ nnoremap <C-k> :res -1<CR>
 " Vim PluginInstall
 "==================================
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -75,13 +77,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jpalardy/vim-slime'
 Plug 'thinca/vim-quickrun'
 
+Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-syntastic/syntastic'
+Plug 'davidhalter/jedi-vim'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tmux-plugins/vim-tmux'
 Plug 'JamshedVesuna/vim-markdown-preview'
@@ -90,8 +94,6 @@ Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'sirtaj/vim-openscad'
 call plug#end()
-colorscheme molokai
-
 
 "==================================
 " Permanent undo history
@@ -111,7 +113,7 @@ set backupdir=$HOME/.vim/backupfiles
 set backup
 
 "==================================
-" Undotree style
+" Undotree settings
 "==================================
 if !exists('g:undotree_WindowLayout')
     let g:undotree_WindowLayout = 3
@@ -127,6 +129,10 @@ let g:indentLine_char = '¦'
 " GitGutter settings
 "==================================
 set updatetime=250
+
+"==================================
+" Jedi settings
+"==================================
 
 "==================================
 " CtrlP settings
@@ -212,9 +218,15 @@ let g:livepreview_cursorhold_recompile = 0
 "==================================
 " Vim airline theme settings
 "==================================
-let g:airline_theme='molokai'
+colorscheme gruvbox
+set bg=dark
+let g:airline_theme='gruvbox'
 
-" let g:airline_powerline_fonts=1
+" colorscheme molokai
+" let g:airline_theme='molokai'
+"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -233,10 +245,21 @@ if has("gui_running")
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = ''
 else
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
+    " let g:airline_left_sep = ''
+    " let g:airline_left_alt_sep = ''
+    " let g:airline_right_sep = ''
+    " let g:airline_right_alt_sep = ''
+    let g:airline#extensions#tabline#left_sep = ''
+    let g:airline#extensions#tabline#left_alt_sep  = ''
+    let g:airline#extensions#tabline#right_sep = ''
+    let g:airline#extensions#tabline#right_alt_sep = ''
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ''
 endif " }}}
 
 "==================================
