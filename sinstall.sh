@@ -8,7 +8,8 @@
 general_install()
 {
     sudo apt-get install -y zsh tmux vim curl xclip i3 lm-sensors \
-                            lightdm vlc npm exuberant-ctags imagemagick redshift
+                            lightdm vlc npm exuberant-ctags imagemagick \
+                            htop glances redshift \
     sudo sensors-detect
 }
 
