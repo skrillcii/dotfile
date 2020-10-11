@@ -111,6 +111,14 @@ fzf_install()
 }
 
 
+nerd_font_install()
+{
+    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/
+    # Install font of your choice
+    ~/.nerd-font/install HeavyData SpaceMono 
+}
+
+
 pyenv_install()
 {
     # Dependencies

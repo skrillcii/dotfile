@@ -27,6 +27,9 @@ set pastetoggle=<F3>
 set updatetime=1000
 set termguicolors
 
+" Set <Leader> key
+let mapleader='\'
+
 "==================================
 " Keybinding
 "==================================
@@ -43,7 +46,7 @@ nnoremap <space>r :QuickRun<CR>
 nnoremap <space>t :tabnew<CR>
 nnoremap <space>H :tabm -1<CR>
 nnoremap <space>L :tabm +1<CR>
-nnoremap <space>w :q<CR>:bd<CR>
+nnoremap <space>w :q<CR>
 nnoremap <space>s :w<CR>
 nnoremap <space>h <C-w><Left>
 nnoremap <space>l <C-w><Right>
@@ -68,7 +71,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 
@@ -114,191 +120,6 @@ set backupdir=$HOME/.vim/backupfiles
 set backup
 
 "==================================
-" Undotree settings
-"==================================
-if !exists('g:undotree_WindowLayout')
-    let g:undotree_WindowLayout = 3
-endif
-
-"==================================
-" Indentline settings
-"==================================
-let g:indentLine_setColors = 1
-let g:indentLine_char = '¦'
-
-"==================================
-" GitGutter settings
-"==================================
-set updatetime=250
-
-"==================================
-" YouCompleteMe settings
-"==================================
-" let g:ycm_path_to_python_interpreter = '~/.pyenv/shims/python3'
-let g:ycm_auto_hover=''
-nnoremap <leader>D <plug>(YCMHover)
-
-"==================================
-" Jedi settings
-"==================================
-set completeopt-=preview
-let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#use_splits_not_buffers = 'left'
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = '1'
-let g:jedi#max_doc_height=20
-
-let g:jedi#completions_command = '<C-Space>'
-let g:jedi#goto_command = '<leader>d'
-let g:jedi#goto_assignments_command = '<leader>g'
-let g:jedi#goto_stubs_command = '<leader>s'
-let g:jedi#goto_definitions_command = ''
-let g:jedi#documentation_command = 'K'
-let g:jedi#usages_command = '<leader>n'
-let g:jedi#rename_command = '<leader>r'
-
-"==================================
-" CtrlP settings
-"==================================
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_cmd = 'CtrlPMRU'
-
-"==================================
-" Vim markdown preview settings
-"==================================
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<space>m'
-let vim_markdown_preview_temp_file=0
-
-"==================================
-" QuickRun settings
-"==================================
-let g:quickrun_config={'*': {'split': ''}}
-set splitbelow
-
-"==================================
-" Nerdtree settings
-"==================================
-let NERDTreeNodeDelimiter = '\t'
-
-"==================================
-" Autoformat settings
-"==================================
-let g:formatterpath = ''
-let g:autoformat_autoindent = 1
-let g:autoformat_retab = 1
-let g:autoformat_remove_trailing_spaces = 1
-
-" Disable autoformat functions for tex file
-autocmd FileType tex let b:autoformat_autoindent=0
-
-"==================================
-" Syntastic settings
-"==================================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-" Check for python3 syntax
-let g:syntastic_python_python_exec = 'python3'
-
-" Enable python and flake8 checker (will check for pep8 conversion as well)
-let g:syntastic_python_checkers=['python', 'flake8']
-
-" Syntastic tex checkers
-let g:syntastic_tex_checkers = ['lacheck', 'text/language_check']
-
-" Ignore syntax check of pep8
-let g:syntastic_python_flake8_args='--ignore=E501,E401,E402,E203,E221,F401,F403'
-
-" Python3 syntax logic check with pyflakes
-let g:syntastic_python_pyflakes_exe='python3 -m pyflakes'
-
-"==================================
-" Texvim settings
-"==================================
-let g:tex_flavor = 'latex'
-
-"==================================
-" Livetexpreviewer settings
-"==================================
-autocmd Filetype tex setl updatetime=1
-" It is required to install tex engine
-" For ubuntu system run the following command
-" sudo apt-get install texlive-latex-extra
-" let g:livepreview_previewer = 'open -a Preview'
-let g:livepreview_previewer = 'open -a evince'
-let g:livepreview_cursorhold_recompile = 0
-
-"==================================
-" Vim airline theme settings
-"==================================
-colorscheme gruvbox
-set bg=dark
-let g:airline_theme='gruvbox'
-
-" colorscheme molokai
-" let g:airline_theme='molokai'
-"
-" Tab line settings
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'default'
-
-" Powerline symbols settings
-let g:airline_powerline_fonts=1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-if has("gui_running")
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep  = ''
-    let g:airline#extensions#tabline#right_sep = ''
-    let g:airline#extensions#tabline#right_alt_sep = ''
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
-else
-    " let g:airline_left_sep = ''
-    " let g:airline_left_alt_sep = ''
-    " let g:airline_right_sep = ''
-    " let g:airline_right_alt_sep = ''
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep  = ''
-    let g:airline#extensions#tabline#right_sep = ''
-    let g:airline#extensions#tabline#right_alt_sep = ''
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
-endif
-
-"==================================
-" Slime setting
-"==================================
-let g:slime_target = "tmux"
-let g:slime_paste_file = "$HOME/.slime_paste"
-
-"==================================
 " Vim Easymotion
 "==================================
 " Move to word
@@ -322,5 +143,224 @@ map  <tab> <Plug>(easymotion-sn)
 omap <tab> <Plug>(easymotion-tn)
 
 " type `l` and match `l`&`L`
-let g:EasyMotion_smartcase = 1
+let g:EasyMotion_smartcase=1
 
+"==================================
+" Indentline settings
+"==================================
+let g:indentLine_setColors=1
+let g:indentLine_char='¦'
+
+"==================================
+" YouCompleteMe settings
+"==================================
+" let g:ycm_path_to_python_interpreter='~/.pyenv/shims/python3'
+let g:ycm_auto_hover=''
+nmap <leader>D <plug>(YCMHover)
+
+"==================================
+" Jedi settings
+"==================================
+set completeopt-=preview
+let g:jedi#auto_initialization=1
+let g:jedi#completions_enabled=0
+let g:jedi#auto_vim_configuration=0
+let g:jedi#use_tabs_not_buffers=1
+let g:jedi#use_splits_not_buffers='left'
+let g:jedi#popup_on_dot=0
+let g:jedi#show_call_signatures='1'
+let g:jedi#max_doc_height=20
+
+let g:jedi#completions_command='<C-Space>'
+let g:jedi#goto_command='<leader>d'
+let g:jedi#goto_assignments_command='<leader>g'
+let g:jedi#goto_stubs_command='<leader>s'
+let g:jedi#goto_definitions_command=''
+let g:jedi#documentation_command='K'
+let g:jedi#usages_command='<leader>n'
+let g:jedi#rename_command='<leader>r'
+
+"==================================
+" CtrlP settings
+"==================================
+let g:ctrlp_match_window='bottom,order:ttb'
+let g:ctrlp_switch_buffer=0
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_cmd='CtrlPMRU'
+
+"==================================
+" Undotree settings
+"==================================
+if !exists('g:undotree_WindowLayout')
+    let g:undotree_WindowLayout=3
+endif
+
+"==================================
+" QuickRun settings
+"==================================
+let g:quickrun_config={'*': {'split': ''}}
+set splitbelow
+
+"==================================
+" Slime setting
+"==================================
+let g:slime_target="tmux"
+let g:slime_paste_file="$HOME/.slime_paste"
+
+"==================================
+" GitGutter settings
+"==================================
+set updatetime=250
+let g:gitgutter_enabled=1
+let g:gitgutter_map_keys=0
+nmap gj <Plug>(GitGutterNextHunk)
+nmap gk <Plug>(GitGutterPrevHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+
+"==================================
+" Nerdtree settings
+"==================================
+let NERDTreeNodeDelimiter="|"
+let g:NERDTreeDirArrowExpandable='▸'
+let g:NERDTreeDirArrowCollapsible='▾'
+
+"==================================
+" Nerdtree git settings
+"==================================
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
+"==================================
+" Devicon settings
+"==================================
+" The amount of space to use after the glyph character (default ' ')
+let g:WebDevIconsNerdTreeAfterGlyphPadding='  '
+
+" The amount of space to use after the glyph character in vim-airline
+let g:WebDevIconsTabAirLineAfterGlyphPadding=''
+
+"==================================
+" Autoformat settings
+"==================================
+let g:formatterpath=''
+let g:autoformat_autoindent=1
+let g:autoformat_retab=1
+let g:autoformat_remove_trailing_spaces=1
+
+" Disable autoformat functions for tex file
+autocmd FileType tex let b:autoformat_autoindent=0
+
+"==================================
+" Syntastic settings
+"==================================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
+
+" Check for python3 syntax
+let g:syntastic_python_python_exec='python3'
+
+" Enable python and flake8 checker (will check for pep8 conversion as well)
+let g:syntastic_python_checkers=['python', 'flake8']
+
+" Syntastic tex checkers
+let g:syntastic_tex_checkers=['lacheck', 'text/language_check']
+
+" Ignore syntax check of pep8
+let g:syntastic_python_flake8_args='--ignore=E501,E401,E402,E203,E221,F401,F403'
+
+" Python3 syntax logic check with pyflakes
+let g:syntastic_python_pyflakes_exe='python3 -m pyflakes'
+
+"==================================
+" Vim markdown preview settings
+"==================================
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<space>m'
+let vim_markdown_preview_temp_file=0
+
+"==================================
+" Texvim settings
+"==================================
+let g:tex_flavor='latex'
+
+"==================================
+" Livetexpreviewer settings
+"==================================
+autocmd Filetype tex setl updatetime=1
+" It is required to install tex engine
+" For ubuntu system run the following command
+" sudo apt-get install texlive-latex-extra
+" let g:livepreview_previewer='open -a Preview'
+let g:livepreview_previewer='open -a evince'
+let g:livepreview_cursorhold_recompile=0
+
+"==================================
+" Vim airline theme settings
+"==================================
+colorscheme gruvbox
+set bg=dark
+let g:airline_theme='gruvbox'
+
+" colorscheme molokai
+" let g:airline_theme='molokai'
+
+" Tab line settings
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep=' '
+let g:airline#extensions#tabline#left_alt_sep='|'
+let g:airline#extensions#tabline#formatter='default'
+
+" Powerline symbols settings
+let g:airline_powerline_fonts=1
+if !exists('g:airline_symbols')
+    let g:airline_symbols={}
+endif
+
+if has("gui_running")
+    let g:airline#extensions#tabline#left_sep=''
+    let g:airline#extensions#tabline#left_alt_sep =''
+    let g:airline#extensions#tabline#right_sep=''
+    let g:airline#extensions#tabline#right_alt_sep=''
+    let g:airline_left_sep=''
+    let g:airline_left_alt_sep=''
+    let g:airline_right_sep=''
+    let g:airline_right_alt_sep=''
+    let g:airline_symbols.branch=''
+    let g:airline_symbols.readonly=''
+    let g:airline_symbols.linenr=''
+else
+    " let g:airline_left_sep=''
+    " let g:airline_left_alt_sep=''
+    " let g:airline_right_sep=''
+    " let g:airline_right_alt_sep=''
+    let g:airline#extensions#tabline#left_sep=''
+    let g:airline#extensions#tabline#left_alt_sep =''
+    let g:airline#extensions#tabline#right_sep=''
+    let g:airline#extensions#tabline#right_alt_sep=''
+    let g:airline_left_sep=''
+    let g:airline_left_alt_sep=''
+    let g:airline_right_sep=''
+    let g:airline_right_alt_sep=''
+    let g:airline_symbols.branch=''
+    let g:airline_symbols.readonly=''
+    let g:airline_symbols.linenr=''
+endif
