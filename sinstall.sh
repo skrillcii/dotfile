@@ -7,7 +7,7 @@
 
 general_install()
 {
-    sudo apt-get install -y zsh tmux vim curl ranger xclip i3 lm-sensors lightdm vlc npm exuberant-ctags
+    sudo apt-get install -y zsh tmux vim curl ranger xclip i3 lm-sensors lightdm vlc npm exuberant-ctags imagemagick
     sudo sensors-detect
 }
 

@@ -11,7 +11,7 @@ lock() {
 
 case "$1" in
     lock)
-        i3lock -t -i ~/Pictures/screenlock/screenlock.png
+        i3lock -t -i /usr/share/backgrounds/screenlock.png
         ;;
     logout)
         #i3-msg exit
