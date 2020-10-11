@@ -7,8 +7,20 @@
 
 general_install()
 {
-    sudo apt-get install -y zsh tmux vim curl ranger xclip i3 lm-sensors lightdm vlc npm exuberant-ctags imagemagick
+    sudo apt-get install -y zsh tmux vim curl xclip i3 lm-sensors \
+                            lightdm vlc npm exuberant-ctags imagemagick redshift
     sudo sensors-detect
+}
+
+ranger_install()
+{
+    sudo apt-get install -y ranger caca-utils w3m highlight atool poppler-utils mediainfo
+    ln -s -f "$HOME/dotfile/ranger/colorschemes" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfile/ranger/commands.py" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfile/ranger/commands_full.py" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfile/ranger/rc.conf" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfile/ranger/rifle.conf" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfile/ranger/scope.sh" "$HOME/.config/ranger/"
 }
 
 oh_my_zsh_install()
@@ -31,7 +43,7 @@ oh_my_tmux()
     git clone https://github.com/gpakosz/.tmux.git "$HOME/.oh-my-tmux/"
     ln -s -f "$HOME/.oh-my-tmux/.tmux.conf" "$HOME/.tmux.conf"
     ln -s -f "$HOME/.oh-my-tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
-    echo 'source ~/dotfile/.tmux.conf.local' >> "$HOME/.tmux.conf.local"
+    echo 'source ~/dotfile/tmux/tmux.conf.local' >> "$HOME/.tmux.conf.local"
 }
 
 # Deprecated as on Ubuntu 20.04, tmux version 3.0a can be installed by
@@ -144,9 +156,9 @@ skrillcii_dotfile()
     git clone https://github.com/skrillcii/dotfile.git
 
     # Create symbolic link:
-    ln -s ~/dotfile/.vimrc ~/.vimrc
-    ln -s ~/dotfile/.tmux.conf ~/.tmux.conf
-    echo 'source $HOME/dotfile/.zshrc' >> ~/.zshrc
+    ln -s -f ~/dotfile/vim/vimrc ~/.vimrc
+    ln -s -f ~/dotfile/tmux/tmux.conf ~/.tmux.conf
+    echo 'source $HOME/dotfile/zsh/zshrc' >> ~/.zshrc
 }
 
 
