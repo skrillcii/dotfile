@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 # To create symbolic link in /usr/local/bin, run the command below
 # sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
 

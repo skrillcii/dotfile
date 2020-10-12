@@ -1,5 +1,5 @@
-#!/bin/bash
-
+#!/usr/bin/bash
+#!/usr/bin/zsh
 
 ###################################
 # Functions of script starts here #
