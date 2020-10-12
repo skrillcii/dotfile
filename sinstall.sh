@@ -25,10 +25,21 @@ general_install() {
 
 i3_install() {
     # Package install i3
-    sudo apt-get install -y i3
+    sudo apt-get install -y i3 i3blocks
 
     # Package install extensions
     sudo apt-get install -y imagemagick feh
+
+    # Pip install extensions
+    pip3 install psutil netifaces
+
+    # Source extensions
+    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/
+    cd ~/awesome-terminal-fonts && ./install.sh
+    cd .. && rm -rf ~/awesome-terminal-fonts
+
+    git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/
+    mv ~/bumblebee-status ~/.config/i3
 
     # Create symbolic links
     ln -s -f ~/dotfile/i3/i3main.conf ~/.config/i3/config
