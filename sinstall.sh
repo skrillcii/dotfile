@@ -11,6 +11,9 @@ general_install() {
                             htop glances lm-sensors mesa-utils \
                             checkinstall \
 
+    # Package install fcitx input
+    sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
+
     # Package install lightdm
     sudo apt-get install -y lightdm
 
@@ -21,30 +24,6 @@ general_install() {
     ln -s -f ~/dotfile/vim/vimrc ~/.vimrc
     ln -s -f ~/dotfile/x/xprofile ~/.xprofile
     ln -s -f ~/dotfile/redshift/redshift.conf ~/.config/redshift.conf
-}
-
-i3_install() {
-    # Package install i3
-    sudo apt-get install -y i3 i3blocks
-
-    # Package install extensions
-    sudo apt-get install -y imagemagick feh playerctl
-
-    # Pip install extensions
-    pip3 install psutil netifaces
-
-    # Source extensions
-    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/
-    cd ~/awesome-terminal-fonts && ./install.sh
-    cd .. && rm -rf ~/awesome-terminal-fonts
-
-    git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/
-    mv ~/bumblebee-status ~/.config/i3
-
-    # Create symbolic links
-    ln -s -f ~/dotfile/i3/i3main.conf ~/.config/i3/config
-    ln -s -f ~/dotfile/i3/i3status.conf ~/.i3status.conf
-    sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
 }
 
 oh_my_zsh_install() {
@@ -210,6 +189,30 @@ powerline_font_install() {
     # Clean-up
     cd ..
     rm -rf fonts
+}
+
+i3_install() {
+    # Package install i3
+    sudo apt-get install -y i3 i3blocks
+
+    # Package install extensions
+    sudo apt-get install -y imagemagick feh playerctl
+
+    # Pip install extensions
+    pip3 install psutil netifaces
+
+    # Source extensions
+    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/
+    cd ~/awesome-terminal-fonts && ./install.sh
+    cd .. && rm -rf ~/awesome-terminal-fonts
+
+    git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/
+    mv ~/bumblebee-status ~/.config/i3
+
+    # Create symbolic links
+    ln -s -f ~/dotfile/i3/i3main.conf ~/.config/i3/config
+    ln -s -f ~/dotfile/i3/i3status.conf ~/.i3status.conf
+    sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
 }
 
 cuda_driver() {
