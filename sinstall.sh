@@ -28,7 +28,7 @@ i3_install() {
     sudo apt-get install -y i3 i3blocks
 
     # Package install extensions
-    sudo apt-get install -y imagemagick feh
+    sudo apt-get install -y imagemagick feh playerctl
 
     # Pip install extensions
     pip3 install psutil netifaces
