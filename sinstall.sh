@@ -58,7 +58,7 @@ oh_my_tmux() {
 }
 
 vim_build_from_source() {
-    # Add dependencies:
+    # Package install dependencies:
     sudo apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
                             libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
                             libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
@@ -159,7 +159,7 @@ java_8_install() {
 }
 
 YouCompleteMe_install() {
-    # Package install dependcies
+    # Package install dependencies:
     sudo apt-get install -y build-essential cmake python-dev python3-dev npm
     cd ~/.vim/plugged/YouCompleteMe
 
@@ -171,7 +171,7 @@ YouCompleteMe_install() {
 }
 
 vim_markdown_preview_dependencies() {
-    # Package install dependcies
+    # Package install dependencies:
     sudo apt-get install -y xdotool
 
     # Pip install grip
@@ -213,6 +213,24 @@ i3_install() {
     ln -s -f ~/dotfile/i3/i3main.conf ~/.config/i3/config
     ln -s -f ~/dotfile/i3/i3status.conf ~/.i3status.conf
     sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
+}
+
+moonlander(){
+    # Package install dependcies
+    sudo apt-get install -y libusb-dev
+
+    # Download wally binary 'gui' or 'cli'
+    wget https://configure.ergodox-ez.com/wally/linux 
+    wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
+
+    # Low-level device communication kernel scripts
+    sudo ln -s -f ~/dotfile/moonlander/50-oryx.rules /etc/udev/rules.d/
+    sudo ln -s -f ~/dotfile/moonlander/50-wally.rules /etc/udev/rules.d/
+
+    # Check if plugdev group exists and if user is in plugdev group, if not create and add
+    groups
+    sudo groupadd plugdev
+    sudo usermod -aG plugdev $USER
 }
 
 cuda_driver() {

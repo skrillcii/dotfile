@@ -114,6 +114,9 @@ esac
 # Alawyas list directory after cd
 function chpwd() {ls -a}
 
+# Alias for wally
+function wally() {~/dotfile/moonlander/wally-cli}
+
 # Attaching tmux sessions Starts
 if [[ ! -n $TMUX ]]; then
     tmux -2 attach || tmux -2 new-session
