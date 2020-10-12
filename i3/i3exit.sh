@@ -18,10 +18,10 @@ case "$1" in
         exec dm-tool switch-to-greeter
         ;;
     suspend)
-        i3lock -t -i /usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png && systemctl suspend
+        i3lock -t -i /usr/share/backgrounds/lockscreen.png && systemctl suspend
         ;;
     hibernate)
-        i3lock -t -i /usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png && systemctl hibernate
+        i3lock -t -i /usr/share/backgrounds/lockscreen.png && systemctl hibernate
         ;;
     reboot)
         systemctl reboot
