@@ -6,41 +6,34 @@
 ### CUSTOM CONTROL ###
 ######################
 
-# Resurrect options {
+# Resurrect options
 set -g @resurrect-capture-pane-contents 'no'
-# }
 
-# Reload config file {
+# Reload config file
 bind r source-file ~/.tmux.conf
-# }
 
-# Remap prefix from 'C-b' to 'C-a' {
+# Remap prefix from 'C-b' to 'C-a'
 unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
-# }
 
-# Split panes using | and - {
+# Split panes using | and -
 bind | split-window -h
 bind _ split-window -v
 unbind '"'
 unbind '%'
-# }
 
-# Set windows/panes synchronise {
+# Set windows/panes synchronise
 bind e setw synchronize-panes on
 bind E setw synchronize-panes off
-# }
 
-# Copy & paste from tmux terminal {
+# Copy & paste from tmux terminal
 bind-key -T copy-mode-vi v send-keys -X begin-selection
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -i -selection clipboard'
-# }
 
-# Swap window order {
+# Swap window order
 bind-key < swap-window -t 0
 bind-key > swap-window -t +1
-# }
 
 # Status left/right sections separators
 tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
@@ -64,6 +57,11 @@ tmux_conf_copy_to_os_clipboard=true
 ######################
 ### GRUVBOX SCHEME ###
 ######################
+
+# Source from https://github.com/egel/tmux-gruvbox
+# To make this theme work along with oh-my-tmux
+# following configuration is made to disable original theme set by oh-my-tmux
+tmux_conf_theme_pane_border='gruvbox'
 
 # COLORSCHEME: gruvbox dark
 set-option -g status "on"
@@ -100,7 +98,7 @@ set-window-option -g clock-mode-colour colour109 #blue
 # bell
 set-window-option -g window-status-bell-style bg=colour167,fg=colour235 # bg=red, fg=bg
 
-## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
+# theme settings mixed with colors (unfortunately, but there is no cleaner way)
 set-option -g status-justify "left"
 set-option -g status-left-style none
 set-option -g status-left-length "80"
@@ -121,14 +119,12 @@ set-window-option -g window-status-format "#[fg=colour237,bg=colour239,noitalics
 
 # Synatx is different from origianl tpm due to compatibility between tpm & oh-my-tmux
 # https://github.com/tmux-plugins/tpm/issues/141
-# List of plugins {
+# List of plugins
 set -g @tpm_plugins '           \
     tmux-plugins/tpm            \
     tmux-plugins/tmux-resurrect \
     egel/tmux-gruvbox           \
     '
-# }
 
-# Initialize TMUX plugin manager (keep this line at the end) {
+# Initialize TMUX plugin manager (keep this line at the end)
 run '~/.tmux/plugins/tpm/tpm'
-# }
