@@ -39,7 +39,7 @@ oh_my_zsh_install() {
     echo 'source $HOME/dotfile/zsh/zshrc' >> ~/.zshrc
 }
 
-tmux_plugin_manager() {
+tmux_plugin_manager_install() {
     # Package install tmux
     sudo apt-get install -y tmux
 
@@ -47,7 +47,7 @@ tmux_plugin_manager() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-oh_my_tmux() {
+oh_my_tmux_install() {
     # Source oh-my-tmux
     git clone https://github.com/gpakosz/.tmux.git "$HOME/.oh-my-tmux/"
 
@@ -91,7 +91,7 @@ vim_build_from_source() {
     sudo rm -rf ~/vim
 }
 
-vim_plugin_manager() {
+vim_plugin_manager_install() {
     # For tagbar vim plugin
     sudo apt-get install -y exuberant-ctags
 
@@ -215,11 +215,13 @@ i3_install() {
     sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
 }
 
-moonlander(){
+moonlander_install(){
     # Package install dependcies
+    # Currently, only cli dependency is listed here
     sudo apt-get install -y libusb-dev
 
-    # Download wally binary 'gui' or 'cli'
+    # Download wally binary version 'gui' or 'cli'
+    # Currently only wally-cli is used
     wget https://configure.ergodox-ez.com/wally/linux 
     wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
 
@@ -233,7 +235,7 @@ moonlander(){
     sudo usermod -aG plugdev $USER
 }
 
-cuda_driver() {
+cuda_driver_install() {
     # Install option 1:  Package install
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
     sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
