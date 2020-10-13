@@ -254,6 +254,17 @@ screenkey_() {
     cat files.txt | xargs sudo rm -rf
 }
 
+kazam_install() {
+    # Package install
+    sudo apt-get install -y kazam
+
+    # Keybindings
+    # Super key + CTRL + R = Start recording.
+    # Super key + CTRL + P = Pause recording, press again to resume.
+    # Super key + CTRL + F = Finish recording.
+    # Super key + CTRL + Q = Quit recording.
+}
+
 cuda_driver_install() {
     # Install option 1:  Package install
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin

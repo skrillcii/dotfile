@@ -117,6 +117,12 @@ function chpwd() {ls -a}
 # Alias for wally
 function wally() {~/dotfile/moonlander/wally-cli}
 
+# Alias for portable sreenkey
+alias screenkey='~/screenkey-1.2/screenkey'
+
+# Alias for sudo
+alias sudo='sudo '
+
 # Attaching tmux sessions Starts
 if [[ ! -n $TMUX ]]; then
     tmux -2 attach || tmux -2 new-session
