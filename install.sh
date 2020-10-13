@@ -249,6 +249,9 @@ screenkey_() {
     # Portable without installation (preferred way of using)
     sudo ./screenkey
 
+    # Or following if alias is set (configured in .zshrc)
+    sudo screenkey
+
     # Install or uninstall onto system
     sudo ./setup.py install --record files.txt
     cat files.txt | xargs sudo rm -rf
