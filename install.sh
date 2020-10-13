@@ -120,14 +120,6 @@ ranger_install() {
     ln -s -f "$HOME/dotfile/ranger/scope.sh" "$HOME/.config/ranger/"
 }
 
-nerd_font_install() {
-    # Source nerd-fonts
-    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/
-
-    # Install font of your choice
-    ~/.nerd-font/install HeavyData SpaceMono
-}
-
 pyenv_install() {
     # Dependencies
     sudo apt-get install -y --no-install-recommends 
@@ -191,6 +183,15 @@ powerline_font_install() {
     rm -rf fonts
 }
 
+nerd_font_install() {
+    # Source nerd-fonts
+    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/
+
+    # Install font of your choice
+    ~/.nerd-font/install HeavyData SpaceMono
+}
+
+
 i3_install() {
     # Package install i3
     sudo apt-get install -y i3 i3blocks
@@ -222,8 +223,8 @@ moonlander_install(){
 
     # Download wally binary version 'gui' or 'cli'
     # Currently only wally-cli is used
-    wget https://configure.ergodox-ez.com/wally/linux 
-    wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
+    cd ~ && wget https://configure.ergodox-ez.com/wally/linux 
+    cd ~ && wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
 
     # Low-level device communication kernel scripts
     sudo ln -s -f ~/dotfile/moonlander/50-oryx.rules /etc/udev/rules.d/
@@ -233,6 +234,24 @@ moonlander_install(){
     groups
     sudo groupadd plugdev
     sudo usermod -aG plugdev $USER
+}
+
+screenkey_() {
+    # Package install dependencies
+    sudo apt-get install -y python3-gi gir1.2-gtk-3.0 python3-cairo \
+                            python3-setuptools python3-distutils-extra \
+                            fonts-font-awesome slop gir1.2-appindicator3-0.1 \
+
+    # Source screenkey v1.2 from 'https://www.thregr.org/~wavexx/software/screenkey/'
+    cd ~ && wget https://www.thregr.org/~wavexx/software/screenkey/releases/screenkey-1.2.tar.gz
+    tar -xvf ./screenkey-1.2.tar.gz && cd ./screenkey-1.2.tar.gz 
+
+    # Portable without installation (preferred way of using)
+    sudo ./screenkey
+
+    # Install or uninstall onto system
+    sudo ./setup.py install --record files.txt
+    cat files.txt | xargs sudo rm -rf
 }
 
 cuda_driver_install() {
