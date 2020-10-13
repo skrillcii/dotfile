@@ -7,9 +7,9 @@
 
 general_install() {
     # Package install general
-    sudo apt-get install -y zsh tmux vim curl xclip vlc redshift \
+    sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
+                            checkinstall redshift \
                             htop glances lm-sensors mesa-utils \
-                            checkinstall \
 
     # Package install fcitx input
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
@@ -266,6 +266,14 @@ kazam_install() {
     # Super key + CTRL + P = Pause recording, press again to resume.
     # Super key + CTRL + F = Finish recording.
     # Super key + CTRL + Q = Quit recording.
+}
+
+ffmpeg() {
+    # Package install
+    sudo apt-get install -y ffmpeg
+
+    # Example usage for video compression
+    ffmpeg -i input.mp4 -vcodec libx265 -crf 28 output.mp4
 }
 
 cuda_driver_install() {
