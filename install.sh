@@ -273,7 +273,7 @@ ffmpeg() {
     sudo apt-get install -y ffmpeg
 
     # Example usage for video compression
-    ffmpeg -i input.mp4 -vcodec libx265 -crf 28 output.mp4
+    ffmpeg -i input.mp4 output.mp4
 }
 
 cuda_driver_install() {

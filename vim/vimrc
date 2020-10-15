@@ -33,7 +33,27 @@ let mapleader='\'
 "==================================
 " Keybinding
 "==================================
+"Basic setting
 nnoremap <ESC><ESC> :nohl<CR>
+nnoremap <space>w :q<CR>
+nnoremap <space>s :w<CR>
+
+" Tab navigation
+nnoremap <space>t :tabnew<CR>
+nnoremap <space>H :tabm -1<CR>
+nnoremap <space>L :tabm +1<CR>
+
+" Pane navigation
+nnoremap <space>h <C-w><Left>
+nnoremap <space>l <C-w><Right>
+nnoremap <space>j <C-w><Down>
+nnoremap <space>k <C-w><Up>
+nnoremap <C-h> :vertical resize -1<CR>
+nnoremap <C-l> :vertical resize +1<CR>
+nnoremap <C-j> :res +1<CR>
+nnoremap <C-k> :res -1<CR>
+
+" Plugin settings
 nnoremap <space>f :Autoformat<CR>
 nnoremap <space>c :SyntasticToggleMode<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
@@ -43,23 +63,10 @@ nnoremap <space>g :Gstatus<CR>
 nnoremap <space>p :Git push<CR>
 nnoremap <space>ll :Git pull<CR>
 nnoremap <space>r :QuickRun<CR>
-nnoremap <space>t :tabnew<CR>
-nnoremap <space>H :tabm -1<CR>
-nnoremap <space>L :tabm +1<CR>
-nnoremap <space>w :q<CR>
-nnoremap <space>s :w<CR>
-nnoremap <space>h <C-w><Left>
-nnoremap <space>l <C-w><Right>
-nnoremap <space>j <C-w><Down>
-nnoremap <space>k <C-w><Up>
 nnoremap <space>, :LLPStartPreview<CR>
 nnoremap <space>m :mks! ~/.vim/sessions/ws.vim<CR>
 nnoremap <space>i :source ~/.vim/sessions/ws.vim<CR>
 nnoremap <C-p> :CtrlPMRU<CR>
-nnoremap <C-h> :vertical resize -1<CR>
-nnoremap <C-l> :vertical resize +1<CR>
-nnoremap <C-j> :res +1<CR>
-nnoremap <C-k> :res -1<CR>
 
 "==================================
 " Vim PluginInstall
@@ -139,8 +146,8 @@ nmap ff <Plug>(easymotion-overwin-f2)
 vmap ff <Plug>(easymotion-bd-f2)
 
 " Gif config
-map  <tab> <Plug>(easymotion-sn)
-omap <tab> <Plug>(easymotion-tn)
+" map  <tab> <Plug>(easymotion-sn)
+" omap <tab> <Plug>(easymotion-tn)
 
 " type `l` and match `l`&`L`
 let g:EasyMotion_smartcase=1
