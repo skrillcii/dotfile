@@ -97,8 +97,8 @@ Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-syntastic/syntastic'
-Plug 'davidhalter/jedi-vim'
 Plug 'Valloric/YouCompleteMe'
+" Plug 'davidhalter/jedi-vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tmux-plugins/vim-tmux'
@@ -163,29 +163,34 @@ let g:indentLine_char='¦'
 "==================================
 " let g:ycm_path_to_python_interpreter='~/.pyenv/shims/python3'
 let g:ycm_auto_hover=''
-nmap <leader>D <plug>(YCMHover)
+nmap sh <plug>(YCMHover)
+nmap gd :YcmCompleter GoTo<CR>
+nmap gr :YcmCompleter GoToReferences<CR>
+nmap sd :YcmCompleter GetDoc<CR>
+nmap st :YcmCompleter GetType<CR>
+nmap rr :YcmCompleter RefactorRename<space>
 
 "==================================
 " Jedi settings
 "==================================
-set completeopt-=preview
-let g:jedi#auto_initialization=1
-let g:jedi#completions_enabled=0
-let g:jedi#auto_vim_configuration=0
-let g:jedi#use_tabs_not_buffers=1
-let g:jedi#use_splits_not_buffers='left'
-let g:jedi#popup_on_dot=0
-let g:jedi#show_call_signatures='1'
-let g:jedi#max_doc_height=20
-
-let g:jedi#completions_command='<C-Space>'
-let g:jedi#goto_command='<leader>d'
-let g:jedi#goto_assignments_command='<leader>g'
-let g:jedi#goto_stubs_command='<leader>s'
-let g:jedi#goto_definitions_command=''
-let g:jedi#documentation_command='K'
-let g:jedi#usages_command='<leader>n'
-let g:jedi#rename_command='<leader>r'
+" set completeopt-=preview
+" let g:jedi#auto_initialization=1
+" let g:jedi#completions_enabled=0
+" let g:jedi#auto_vim_configuration=0
+" let g:jedi#use_tabs_not_buffers=1
+" let g:jedi#use_splits_not_buffers='left'
+" let g:jedi#popup_on_dot=0
+" let g:jedi#show_call_signatures='1'
+" let g:jedi#max_doc_height=20
+" 
+" let g:jedi#completions_command='<C-Space>'
+" let g:jedi#goto_command='<leader>d'
+" let g:jedi#goto_assignments_command='<leader>g'
+" let g:jedi#goto_stubs_command='<leader>s'
+" let g:jedi#goto_definitions_command=''
+" let g:jedi#documentation_command='K'
+" let g:jedi#usages_command='<leader>n'
+" let g:jedi#rename_command='<leader>r'
 
 "==================================
 " CtrlP settings
