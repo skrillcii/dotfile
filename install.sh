@@ -191,6 +191,15 @@ nerd_font_install() {
     ~/.nerd-font/install HeavyData SpaceMono
 }
 
+zsh_gruvbox_theme_install() {
+    # Source gruvbox-theme
+    curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
+
+    # Export zshrc settings
+    ZSH_THEME="gruvbox"
+    SOLARIZED_THEME="dark"
+
+}
 
 i3_install() {
     # Package install i3
