@@ -198,7 +198,6 @@ zsh_gruvbox_theme_install() {
     # Export zshrc settings
     ZSH_THEME="gruvbox"
     SOLARIZED_THEME="dark"
-
 }
 
 i3_install() {
