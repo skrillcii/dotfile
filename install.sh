@@ -74,17 +74,20 @@ vim_build_from_source() {
     git clone https://github.com/vim/vim.git ~/
     cd vim
 
-    # Use '$which python3' to check for flag '--with-python3-config-dir'
+    # Use '$(python3-config --configdir)' to check for flag '--with-python3-config-dir'
+    # To check python path in vim ':python3 import sys; print(sys.path)'
+    make clean distclean
     ./configure --with-features=huge \
                 --enable-multibyte \
                 --enable-terminal \
                 --enable-rubyinterp=yes \
                 --enable-python3interp=yes \
-                --with-python3-config-dir=/usr/lib/python3.5/config \
+                --with-python3-config-dir=$(python3-config --configdir) \
                 --enable-perlinterp=yes \
                 --enable-gui=gtk3 \
                 --enable-cscope \
                 --prefix=/usr/local \
+                --enable-fail-if-missing \
     make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
     # Install with checkinstall
