@@ -317,13 +317,14 @@ let g:tex_flavor='latex'
 "==================================
 " Livetexpreviewer settings
 "==================================
-autocmd Filetype tex setl updatetime=1
+autocmd Filetype tex setl updatetime=1000
 " It is required to install tex engine
 " For ubuntu system run the following command
 " sudo apt-get install texlive-latex-extra
+
+" Select PDF review
 " let g:livepreview_previewer='open -a Preview'
-" let g:livepreview_previewer='evince'
-let g:livepreview_previewer='mupdf'
+let g:livepreview_previewer='open -a Skim'
 let g:livepreview_cursorhold_recompile=0
 
 "==================================

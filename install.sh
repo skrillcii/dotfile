@@ -12,7 +12,7 @@ general_install() {
                             htop glances lm-sensors mesa-utils \
 
     # For MacOs
-    brew install zsh tmux vim mupdf
+    brew install zsh tmux vim skim
 
     # Package install fcitx input
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
