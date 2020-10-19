@@ -9,7 +9,7 @@ set incsearch
 set cursorline
 set foldenable
 set foldmethod=syntax
-set clipboard=unnamedplus,unnamd
+set clipboard=unnamedplus,unnamed
 set mouse=a
 set t_Co=256
 set autoindent
