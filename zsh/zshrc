@@ -125,6 +125,9 @@ alias screenkey='~/screenkey-1.2/screenkey'
 # Alias for sudo
 alias sudo='sudo '
 
+# Alias for mupdf
+alias mupdf='mupdf-gl '
+
 # Attaching tmux sessions Starts
 if [[ ! -n $TMUX ]]; then
     tmux -2 attach || tmux -2 new-session

@@ -11,6 +11,9 @@ general_install() {
                             checkinstall redshift \
                             htop glances lm-sensors mesa-utils \
 
+    # For MacOs
+    brew install zsh tmux vim mupdf
+
     # Package install fcitx input
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
 
