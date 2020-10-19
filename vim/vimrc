@@ -322,7 +322,7 @@ autocmd Filetype tex setl updatetime=1
 " For ubuntu system run the following command
 " sudo apt-get install texlive-latex-extra
 " let g:livepreview_previewer='open -a Preview'
-let g:livepreview_previewer='open -a evince'
+let g:livepreview_previewer='evince'
 let g:livepreview_cursorhold_recompile=0
 
 "==================================
