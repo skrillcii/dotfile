@@ -172,7 +172,7 @@ vim_markdown_preview_dependencies() {
 
 powerline_font_install() {
     # Source powerline-fonts
-    git clone https://github.com/powerline/fonts.git --depth=1
+    git clone https://github.com/powerline/fonts.git --depth=1 ~/
 
     # Install
     cd fonts
@@ -188,7 +188,7 @@ nerd_font_install() {
     git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/
 
     # Install font of your choice
-    ~/.nerd-font/install HeavyData SpaceMono
+    ~/nerd-font/install.sh HeavyData SpaceMono
 }
 
 zsh_gruvbox_theme_install() {
