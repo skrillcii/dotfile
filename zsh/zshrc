@@ -105,16 +105,16 @@ source $ZSH/oh-my-zsh.sh
 # OS system recognition Starts
 case `uname` in
     Darwin)
-    function chpwd() {ls -a}
-    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-    alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
+        # Alawyas list directory after cd
+        function chpwd() {ls -a}
+
+        # Deprecated as macvim is no longer used, instead '$brew install vim' is used
+        # alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+        # alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
     ;;
     Linux)
-        ;;
+    ;;
 esac
-
-# Alawyas list directory after cd
-function chpwd() {ls -a}
 
 # Alias for wally
 function wally() {~/dotfile/moonlander/wally-cli}

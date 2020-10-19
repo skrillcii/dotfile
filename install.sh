@@ -70,6 +70,8 @@ vim_build_from_source() {
     # Source, configure and build
     git clone https://github.com/vim/vim.git ~/
     cd vim
+
+    # Use '$which python3' to check for flag '--with-python3-config-dir'
     ./configure --with-features=huge \
                 --enable-multibyte \
                 --enable-terminal \
