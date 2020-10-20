@@ -5,14 +5,17 @@
 # Functions of script starts here #
 ###################################
 
+general_macos_isntall(){
+    # For MacOs
+    brew install zsh tmux vim skim ctags
+    brew cask install chrome firefox spotify
+}
+
 general_install() {
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
                             checkinstall redshift \
                             htop glances lm-sensors mesa-utils \
-
-    # For MacOs
-    brew install zsh tmux vim skim
 
     # Package install fcitx input
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc

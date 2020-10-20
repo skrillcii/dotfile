@@ -64,6 +64,8 @@ nnoremap <space>p :Git push<CR>
 nnoremap <space>ll :Git pull<CR>
 nnoremap <space>r :QuickRun<CR>
 nnoremap <space>, :LLPStartPreview<CR>
+nnoremap <space>. :VimtexCompileSS<CR>
+nnoremap <space>/ :VimtexClean<CR>
 nnoremap <space>m :mks! ~/.vim/sessions/ws.vim<CR>
 nnoremap <space>i :source ~/.vim/sessions/ws.vim<CR>
 nnoremap <C-p> :CtrlPMRU<CR>
@@ -82,6 +84,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 
@@ -104,7 +107,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'lervag/vimtex'
-Plug 'vim-latex/vim-latex'
+" Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'sirtaj/vim-openscad'
 call plug#end()
@@ -310,9 +313,17 @@ let vim_markdown_preview_hotkey='<space>m'
 let vim_markdown_preview_temp_file=0
 
 "==================================
-" Texvim settings
+" Vimtex settings
 "==================================
 let g:tex_flavor='latex'
+" let g:vimtex_view_method='open -a Skim'
+" let g:vimtex_compiler_tectonic = {
+"     \ 'build_dir' : '',
+"     \ 'options' : [
+"     \   '--keep-logs',
+"     \   '--synctex'
+"     \ ],
+"     \}
 
 "==================================
 " Livetexpreviewer settings
@@ -323,6 +334,7 @@ autocmd Filetype tex setl updatetime=1000
 " sudo apt-get install texlive-latex-extra
 
 " Select PDF review
+" let g:livepreview_use_biber = 1
 " let g:livepreview_previewer='open -a Preview'
 let g:livepreview_previewer='open -a Skim'
 let g:livepreview_cursorhold_recompile=0
