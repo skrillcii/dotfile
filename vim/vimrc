@@ -64,10 +64,11 @@ nnoremap <space>p :Git push<CR>
 nnoremap <space>ll :Git pull<CR>
 nnoremap <space>r :QuickRun<CR>
 nnoremap <space>, :LLPStartPreview<CR>
+nnoremap <space>v :VimtexView<CR>
 nnoremap <space>. :VimtexCompileSS<CR>
 nnoremap <space>/ :VimtexClean<CR>
-nnoremap <space>m :mks! ~/.vim/sessions/ws.vim<CR>
-nnoremap <space>i :source ~/.vim/sessions/ws.vim<CR>
+nnoremap <space>wm :mks! ~/.vim/sessions/ws.vim<CR>
+nnoremap <space>ws :source ~/.vim/sessions/ws.vim<CR>
 nnoremap <C-p> :CtrlPMRU<CR>
 
 "==================================
