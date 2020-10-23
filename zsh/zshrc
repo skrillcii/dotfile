@@ -150,7 +150,7 @@ export LC_CTYPE="C.UTF-8"
 export PYTHONIOENCODING=utf8
 
 # Setup default text editor
-export EDITOR=/usr/bin/vim         # apt built-in
+export EDITOR=/usr/bin/vim          # apt built-in
 # export EDITOR=/usr/local/bin/vim  # self-compiled
 
 # Setup terminal color
@@ -173,13 +173,16 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
-# Cuda and cuDNN paths
+# Cuda and cuDNN paths (general)
 export PATH=/usr/local/cuda/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+
+# CUDA and cuDNN paths (specific)
+export PATH=/usr/local/cuda-10.1/bin:${PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH}
 
 # ROS env path
 # source /opt/ros/kinetic/setup.zsh
 
 # IBM Cloud auto-completion
 # source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
-
