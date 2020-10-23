@@ -113,6 +113,8 @@ case `uname` in
         # alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
     ;;
     Linux)
+        # Alawyas list directory after cd
+        function chpwd() {ls -a}
     ;;
 esac
 
