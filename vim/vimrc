@@ -150,8 +150,8 @@ nmap ff <Plug>(easymotion-overwin-f2)
 vmap ff <Plug>(easymotion-bd-f2)
 
 " Gif config
-" map  <tab> <Plug>(easymotion-sn)
-" omap <tab> <Plug>(easymotion-tn)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 " type `l` and match `l`&`L`
 let g:EasyMotion_smartcase=1
