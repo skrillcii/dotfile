@@ -161,6 +161,20 @@ java_8_install() {
     sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
 }
 
+apache_maven_install() {
+    # Source apache-maven
+    cd ~
+    wget https://ftp.riken.jp/net/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+
+    # Extract, move to system path, create symbolic link
+    tar -xvf apache-maven-3.6.3-bin.tar.gz
+    sudo mv apache-maven-3.6.3 /usr/local/apache-maven/apache-maven-3.6.3
+    sudo ln -s /usr/local/apache-maven/apache-maven.3.6.3 /usr/local/apache-maven/apache-maven
+
+    # Clean up
+    rm ~/apache-maven-3.6.3-bin.tar.gz
+}
+
 YouCompleteMe_install() {
     # Package install dependencies:
     sudo apt-get install -y build-essential cmake python-dev python3-dev npm
