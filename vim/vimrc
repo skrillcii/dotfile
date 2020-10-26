@@ -167,7 +167,7 @@ let g:indentLine_char='¦'
 "==================================
 " let g:ycm_path_to_python_interpreter='~/.pyenv/shims/python3'
 let g:ycm_auto_hover=''
-nmap sh <plug>(YCMHover)
+nmap sh <Plug>(YCMHover)
 nmap gd :YcmCompleter GoTo<CR>
 nmap gr :YcmCompleter GoToReferences<CR>
 nmap sd :YcmCompleter GetDoc<CR>
