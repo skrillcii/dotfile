@@ -8,8 +8,8 @@
 general_install() {
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
-                            checkinstall redshift \
-                            htop glances lm-sensors mesa-utils \
+        checkinstall redshift \
+        htop glances lm-sensors mesa-utils \
 
     # Package install fcitx
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
@@ -60,9 +60,9 @@ oh_my_tmux_install() {
 vim_build_from_source() {
     # Package install dependencies:
     sudo apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
-                            libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-                            libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-                            python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git \
+        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+        libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
+        python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git \
 
     # Remove old vim:
     sudo apt-get remove vim vim-runtime gvim
@@ -75,17 +75,17 @@ vim_build_from_source() {
     # To check python path in vim ':python3 import sys; print(sys.path)'
     make clean distclean
     ./configure --with-features=huge \
-                --enable-multibyte \
-                --enable-terminal \
-                --enable-rubyinterp=yes \
-                --enable-python3interp=yes \
-                --with-python3-config-dir=$(python3-config --configdir) \
-                --enable-perlinterp=yes \
-                --enable-gui=gtk3 \
-                --enable-cscope \
-                --prefix=/usr/local \
-                --enable-fail-if-missing \
-    make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
+        --enable-multibyte \
+        --enable-terminal \
+        --enable-rubyinterp=yes \
+        --enable-python3interp=yes \
+        --with-python3-config-dir=$(python3-config --configdir) \
+        --enable-perlinterp=yes \
+        --enable-gui=gtk3 \
+        --enable-cscope \
+        --prefix=/usr/local \
+        --enable-fail-if-missing \
+        make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
 
     # Install with checkinstall
     cd ~/vim
@@ -102,8 +102,8 @@ vim_plugin_manager_install() {
 
     # Source vim-plug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    }
 
 fzf_install() {
     # Source fzf
@@ -128,11 +128,11 @@ ranger_install() {
 
 pyenv_install() {
     # Dependencies
-    sudo apt-get install -y --no-install-recommends 
-                        make build-essential libssl-dev zlib1g-dev \
-                        libbz2-dev libreadline-dev libsqlite3-dev wget \
-                        curl llvm libncurses5-dev xz-utils tk-dev \
-                        libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+    sudo apt-get install -y --no-install-recommends
+    make build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev wget \
+        curl llvm libncurses5-dev xz-utils tk-dev \
+        libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 
     # Source pyenv
     git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
@@ -240,7 +240,7 @@ moonlander_install(){
 
     # Download wally binary version 'gui' or 'cli'
     # Currently only wally-cli is used
-    cd ~ && wget https://configure.ergodox-ez.com/wally/linux 
+    cd ~ && wget https://configure.ergodox-ez.com/wally/linux
     cd ~ && wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
 
     # Low-level device communication kernel scripts
@@ -256,12 +256,12 @@ moonlander_install(){
 screenkey_() {
     # Package install dependencies
     sudo apt-get install -y python3-gi gir1.2-gtk-3.0 python3-cairo \
-                            python3-setuptools python3-distutils-extra \
-                            fonts-font-awesome slop gir1.2-appindicator3-0.1 \
+        python3-setuptools python3-distutils-extra \
+        fonts-font-awesome slop gir1.2-appindicator3-0.1 \
 
     # Source screenkey v1.2 from 'https://www.thregr.org/~wavexx/software/screenkey/'
     cd ~ && wget https://www.thregr.org/~wavexx/software/screenkey/releases/screenkey-1.2.tar.gz
-    tar -xvf ./screenkey-1.2.tar.gz && cd ./screenkey-1.2.tar.gz 
+    tar -xvf ./screenkey-1.2.tar.gz && cd ./screenkey-1.2.tar.gz
 
     # Portable without installation (preferred way of using)
     sudo ./screenkey
@@ -335,9 +335,11 @@ echo "Start custom installation"
 # Deprecated installation scripts #
 ###################################
 #
+# ---------------------------------------------------------------------
 # Deprecated as on Ubuntu 20.04, tmux version 3.0a can be installed by
 # sudo apt-get install -y tmux
-# 
+# ---------------------------------------------------------------------
+#
 # tmux_build_from_source() {
 #     sudo apt-get -y remove tmux
 #     sudo apt-get -y install wget tar libevent-dev libncurses-dev checkinstall
@@ -354,8 +356,10 @@ echo "Start custom installation"
 #     sudo mv tmux-2.7 /usr/local/src
 # }
 #
+# ---------------------------------------------------------------------
 # Deprecated as on Ubuntu 20.04, java-11 can be installed by
 # sudo apt-get install -y default-jre default-jdk
+# ---------------------------------------------------------------------
 #
 # java_8_install() {
 #     # Package install java-8 by adding apt repository
@@ -364,25 +368,30 @@ echo "Start custom installation"
 #     sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
 # }
 #
+# ---------------------------------------------------------------------
 # Deprecated as on Ubuntu 20.04, maven-3.6.3 can be installed by
 # sudo apt-get install -y maven
+# ---------------------------------------------------------------------
 #
 # apache_maven_install() {
 #     # Source apache-maven
 #     cd ~
 #     wget https://ftp.riken.jp/net/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-# 
+#
 #     # Extract, move to system path, create symbolic link
 #     tar -xvf apache-maven-3.6.3-bin.tar.gz
 #     sudo mv apache-maven-3.6.3 /usr/local/apache-maven/apache-maven-3.6.3
 #     sudo ln -s /usr/local/apache-maven/apache-maven.3.6.3 /usr/local/apache-maven/apache-maven
-# 
+#
 #     # Clean up
 #     rm ~/apache-maven-3.6.3-bin.tar.gz
 # }
 #
+# ---------------------------------------------------------------------
 # Deprecated as started using i3wm.
-# Also, unity-tweak-tool is also replaced by gnome-tweak-tool after ubuntu 17.04
+# Unity-tweak-tool is replaced by gnome-tweak-tool after ubuntu 17.04
+# ---------------------------------------------------------------------
+#
 # numix_theme() {
 #     # Package install numix-theme by adding apt repository
 #     sudo add-apt-repository ppa:numix/ppa
