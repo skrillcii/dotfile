@@ -5,19 +5,13 @@
 # Functions of script starts here #
 ###################################
 
-general_macos_isntall(){
-    # For MacOs
-    brew install zsh tmux vim skim ctags
-    brew cask install google-chrome firefox spotify vlc
-}
-
 general_install() {
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
                             checkinstall redshift \
                             htop glances lm-sensors mesa-utils \
 
-    # Package install fcitx input
+    # Package install fcitx
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
 
     # Package install lightdm
@@ -50,7 +44,7 @@ tmux_plugin_manager_install() {
     sudo apt-get install -y tmux
 
     # Source tmux-plugin-manager
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 }
 
 oh_my_tmux_install() {
@@ -91,7 +85,7 @@ vim_build_from_source() {
                 --enable-cscope \
                 --prefix=/usr/local \
                 --enable-fail-if-missing \
-    make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
+    make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
 
     # Install with checkinstall
     cd ~/vim
@@ -113,7 +107,8 @@ vim_plugin_manager_install() {
 
 fzf_install() {
     # Source fzf
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+
     # Install fzf
     ~/.fzf/install
 }
@@ -140,7 +135,7 @@ pyenv_install() {
                         libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 
     # Source pyenv
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
 
     # Environment variables settings
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
@@ -154,25 +149,14 @@ pyenv_install() {
     pip3 install -U pip autopep8 flake8 jedi
 }
 
-java_8_install() {
-    # Package install java-8 by adding apt repository
-    sudo add-apt-repository ppa:webupd8team/java
-    sudo apt-get update
-    sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
+java_11_install() {
+    # Package install java-11
+    sudo apt-get install -y default-jre default-jdk
 }
 
 apache_maven_install() {
-    # Source apache-maven
-    cd ~
-    wget https://ftp.riken.jp/net/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-
-    # Extract, move to system path, create symbolic link
-    tar -xvf apache-maven-3.6.3-bin.tar.gz
-    sudo mv apache-maven-3.6.3 /usr/local/apache-maven/apache-maven-3.6.3
-    sudo ln -s /usr/local/apache-maven/apache-maven.3.6.3 /usr/local/apache-maven/apache-maven
-
-    # Clean up
-    rm ~/apache-maven-3.6.3-bin.tar.gz
+    # Package install maven-3.6.3
+    sudo apt-get install -y maven
 }
 
 YouCompleteMe_install() {
@@ -368,6 +352,33 @@ echo "Start custom installation"
 #     cd -
 #     sudo rm -rf /usr/local/src/tmux-*
 #     sudo mv tmux-2.7 /usr/local/src
+# }
+#
+# Deprecated as on Ubuntu 20.04, java-11 can be installed by
+# sudo apt-get install -y default-jre default-jdk
+#
+# java_8_install() {
+#     # Package install java-8 by adding apt repository
+#     sudo add-apt-repository ppa:webupd8team/java
+#     sudo apt-get update
+#     sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
+# }
+#
+# Deprecated as on Ubuntu 20.04, maven-3.6.3 can be installed by
+# sudo apt-get install -y maven
+#
+# apache_maven_install() {
+#     # Source apache-maven
+#     cd ~
+#     wget https://ftp.riken.jp/net/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+# 
+#     # Extract, move to system path, create symbolic link
+#     tar -xvf apache-maven-3.6.3-bin.tar.gz
+#     sudo mv apache-maven-3.6.3 /usr/local/apache-maven/apache-maven-3.6.3
+#     sudo ln -s /usr/local/apache-maven/apache-maven.3.6.3 /usr/local/apache-maven/apache-maven
+# 
+#     # Clean up
+#     rm ~/apache-maven-3.6.3-bin.tar.gz
 # }
 #
 # Deprecated as started using i3wm.
