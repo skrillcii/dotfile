@@ -8,8 +8,8 @@
 general_install() {
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
-        checkinstall redshift docker.io \
-        htop glances lm-sensors mesa-utils \
+                            checkinstall redshift docker.io \
+                            htop glances lm-sensors mesa-utils \
 
     # Package install fcitx
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
@@ -60,9 +60,9 @@ oh_my_tmux_install() {
 vim_build_from_source() {
     # Package install dependencies:
     sudo apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
-        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-        libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-        python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git \
+                            libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+                            libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
+                            python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git \
 
     # Remove old vim:
     sudo apt-get remove vim vim-runtime gvim
@@ -118,21 +118,27 @@ ranger_install() {
     sudo apt-get install -y ranger caca-utils w3m highlight atool poppler-utils mediainfo
 
     # Create symbolic links
-    ln -s -f "$HOME/dotfiles/ranger/colorschemes" "$HOME/.config/ranger/"
     ln -s -f "$HOME/dotfiles/ranger/commands.py" "$HOME/.config/ranger/"
     ln -s -f "$HOME/dotfiles/ranger/commands_full.py" "$HOME/.config/ranger/"
     ln -s -f "$HOME/dotfiles/ranger/rc.conf" "$HOME/.config/ranger/"
     ln -s -f "$HOME/dotfiles/ranger/rifle.conf" "$HOME/.config/ranger/"
     ln -s -f "$HOME/dotfiles/ranger/scope.sh" "$HOME/.config/ranger/"
+
+    # Other useful commands
+    # To list external drives/disks
+    lsblk
+    # To mount/unmount external drives/disks according to x, Y
+    udisksctl mount -b /dev/sdxY
+    udisksctl unmount -b /dev/sdxY
 }
 
 pyenv_install() {
     # Dependencies
-    sudo apt-get install -y --no-install-recommends
-    make build-essential libssl-dev zlib1g-dev \
-        libbz2-dev libreadline-dev libsqlite3-dev wget \
-        curl llvm libncurses5-dev xz-utils tk-dev \
-        libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+    sudo apt-get install -y --no-install-recommends \
+                            make build-essential libssl-dev zlib1g-dev \
+                            libbz2-dev libreadline-dev libsqlite3-dev wget \
+                            curl llvm libncurses5-dev xz-utils tk-dev \
+                            libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
 
     # Source pyenv
     git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
