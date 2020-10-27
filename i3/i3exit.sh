@@ -1,9 +1,9 @@
 #!/usr/bin/sh
 # To create symbolic link in /usr/local/bin, run the command below
-# sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
+# sudo ln -s -f "$HOME/dotfiles/i3/i3exit.sh /usr/local/bin/i3exit"
 
 # After creating the symbolic link, make this file executable by following command:
-# chmod +x "$HOME/dotfile/i3/i3exit.sh"
+# chmod +x "$HOME/dotfiles/i3/i3exit.sh"
 
 lock() {
     i3lock

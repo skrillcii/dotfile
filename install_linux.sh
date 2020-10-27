@@ -8,7 +8,7 @@
 general_install() {
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
-        checkinstall redshift \
+        checkinstall redshift docker.io \
         htop glances lm-sensors mesa-utils \
 
     # Package install fcitx
@@ -21,9 +21,9 @@ general_install() {
     sudo sensors-detect
 
     # Create symbolic links
-    ln -s -f ~/dotfile/vim/vimrc ~/.vimrc
-    ln -s -f ~/dotfile/x/xprofile ~/.xprofile
-    ln -s -f ~/dotfile/redshift/redshift.conf ~/.config/redshift.conf
+    ln -s -f ~/dotfiles/vim/vimrc ~/.vimrc
+    ln -s -f ~/dotfiles/x/xprofile ~/.xprofile
+    ln -s -f ~/dotfiles/redshift/redshift.conf ~/.config/redshift.conf
 }
 
 oh_my_zsh_install() {
@@ -36,7 +36,7 @@ oh_my_zsh_install() {
     # Source oh-my-zsh plugins
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    echo 'source $HOME/dotfile/zsh/zshrc' >> ~/.zshrc
+    echo 'source $HOME/dotfiles/zsh/zshrc' >> ~/.zshrc
 }
 
 tmux_plugin_manager_install() {
@@ -54,7 +54,7 @@ oh_my_tmux_install() {
     # Create symbolic links and source configurations
     ln -s -f "$HOME/.oh-my-tmux/.tmux.conf" "$HOME/.tmux.conf"
     ln -s -f "$HOME/.oh-my-tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
-    echo 'source ~/dotfile/tmux/tmux.conf.local' >> "$HOME/.tmux.conf.local"
+    echo 'source ~/dotfiles/tmux/tmux.conf.local' >> "$HOME/.tmux.conf.local"
 }
 
 vim_build_from_source() {
@@ -118,12 +118,12 @@ ranger_install() {
     sudo apt-get install -y ranger caca-utils w3m highlight atool poppler-utils mediainfo
 
     # Create symbolic links
-    ln -s -f "$HOME/dotfile/ranger/colorschemes" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfile/ranger/commands.py" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfile/ranger/commands_full.py" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfile/ranger/rc.conf" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfile/ranger/rifle.conf" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfile/ranger/scope.sh" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfiles/ranger/colorschemes" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfiles/ranger/commands.py" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfiles/ranger/commands_full.py" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfiles/ranger/rc.conf" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfiles/ranger/rifle.conf" "$HOME/.config/ranger/"
+    ln -s -f "$HOME/dotfiles/ranger/scope.sh" "$HOME/.config/ranger/"
 }
 
 pyenv_install() {
@@ -228,9 +228,9 @@ i3_install() {
     mv ~/bumblebee-status ~/.config/i3
 
     # Create symbolic links
-    ln -s -f ~/dotfile/i3/i3main.conf ~/.config/i3/config
-    ln -s -f ~/dotfile/i3/i3status.conf ~/.i3status.conf
-    sudo ln -s -f ~/dotfile/i3/i3exit.sh /usr/local/bin/i3exit
+    ln -s -f ~/dotfiles/i3/i3main.conf ~/.config/i3/config
+    ln -s -f ~/dotfiles/i3/i3status.conf ~/.i3status.conf
+    sudo ln -s -f ~/dotfiles/i3/i3exit.sh /usr/local/bin/i3exit
 }
 
 moonlander_install(){
@@ -244,8 +244,8 @@ moonlander_install(){
     cd ~ && wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
 
     # Low-level device communication kernel scripts
-    sudo ln -s -f ~/dotfile/moonlander/50-oryx.rules /etc/udev/rules.d/
-    sudo ln -s -f ~/dotfile/moonlander/50-wally.rules /etc/udev/rules.d/
+    sudo ln -s -f ~/dotfiles/moonlander/50-oryx.rules /etc/udev/rules.d/
+    sudo ln -s -f ~/dotfiles/moonlander/50-wally.rules /etc/udev/rules.d/
 
     # Check if plugdev group exists and if user is in plugdev group, if not create and add
     groups

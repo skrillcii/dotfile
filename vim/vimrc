@@ -10,6 +10,7 @@ set cursorline
 set foldenable
 set foldmethod=syntax
 set clipboard=unnamedplus,unnamed
+set conceallevel=0
 set mouse=a
 set t_Co=256
 set autoindent
@@ -106,7 +107,8 @@ Plug 'Valloric/YouCompleteMe'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tmux-plugins/vim-tmux'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'lervag/vimtex'
 " Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
@@ -309,9 +311,16 @@ let g:syntastic_python_pyflakes_exe='python3 -m pyflakes'
 "==================================
 " Vim markdown preview settings
 "==================================
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<space>m'
-let vim_markdown_preview_temp_file=0
+" let vim_markdown_preview_github=1
+" let vim_markdown_preview_hotkey='<space>m'
+" let vim_markdown_preview_temp_file=0
+
+"==================================
+" Nvim markdown preview settings
+"==================================
+nmap <M-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <space>m <Plug>MarkdownPreviewToggle
 
 "==================================
 " Vimtex settings
