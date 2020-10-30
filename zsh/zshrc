@@ -68,6 +68,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-completions
   docker docker-compose
 )
 
@@ -162,7 +163,11 @@ export TERM=xterm-256color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=grey,bg=bold,underline"
 
 # Oh-my-zsh syntax highlight
+typeset -gA ZSH_HIGHLIGHT_STYLES
 export ZSH_HIGHLIGHT_STYLES[comment]="fg=grey"
+
+# Oh-my-zsh completions
+autoload -U compinit && compinit
 
 # Fzf setting
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

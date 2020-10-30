@@ -5,7 +5,7 @@
 # Functions of script starts here #
 ###################################
 
-general_install() {
+desktop_env_install() {
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
                             checkinstall redshift docker.io \
@@ -49,7 +49,7 @@ tmux_plugin_manager_install() {
 
 oh_my_tmux_install() {
     # Source oh-my-tmux
-    git clone https://github.com/gpakosz/.tmux.git "$HOME/.oh-my-tmux/"
+    git clone https://github.com/gpakosz/.tmux.git "$HOME/.oh-my-tmux"
 
     # Create symbolic links and source configurations
     ln -s -f "$HOME/.oh-my-tmux/.tmux.conf" "$HOME/.tmux.conf"
@@ -103,7 +103,7 @@ vim_plugin_manager_install() {
     # Source vim-plug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    }
+}
 
 fzf_install() {
     # Source fzf

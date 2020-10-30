@@ -102,7 +102,7 @@ Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 " Plug 'davidhalter/jedi-vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -113,6 +113,7 @@ Plug 'lervag/vimtex'
 " Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'sirtaj/vim-openscad'
+Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
 "==================================
