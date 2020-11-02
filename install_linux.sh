@@ -177,6 +177,11 @@ YouCompleteMe_install() {
     /usr/bin/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
 }
 
+Coc_install() {
+    # Vim command
+    # :CocInstall coc-python coc-yaml coc-vimlsp coc-java coc-snippets coc-html coc-css coc-json
+}
+
 vim_markdown_preview_dependencies() {
     # Package install dependencies:
     sudo apt-get install -y xdotool

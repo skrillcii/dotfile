@@ -2,6 +2,7 @@
 " Basic settings
 "==================================
 set number
+set hidden
 set showcmd
 set wildmenu
 set hlsearch
@@ -11,6 +12,7 @@ set foldenable
 set foldmethod=syntax
 set clipboard=unnamedplus,unnamed
 set conceallevel=0
+set cmdheight=1
 set mouse=a
 set t_Co=256
 set autoindent
@@ -25,11 +27,78 @@ set backspace=indent,eol,start
 set list
 set listchars=tab:>-,trail:-,eol:$,extends:>,precedes:<
 set pastetoggle=<F3>
-set updatetime=1000
+set updatetime=300
 set termguicolors
 
 " Set <Leader> key
 let mapleader='\'
+
+"==================================
+" Coc settings
+"==================================
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> g[ <Plug>(coc-diagnostic-prev)
+nmap <silent> g] <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+" Currently not taking effect
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming. (currerntly having issue with pyenv)
+" nmap rr <Plug>(coc-rename)
+
+" Formatting selected code.
+" Not very effective, needs more tuning and testing
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+
+" augroup mygroup
+"   autocmd!
+"   " Setup formatexpr specified filetype(s).
+"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"   " Update signature help on jump placeholder.
+"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" augroup end
 
 "==================================
 " Keybinding
@@ -76,16 +145,15 @@ nnoremap <C-p> :CtrlPMRU<CR>
 " Vim PluginInstall
 "==================================
 call plug#begin('~/.vim/plugged')
-" Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
@@ -102,15 +170,11 @@ Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-syntastic/syntastic'
-" Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-" Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tmux-plugins/vim-tmux'
-" Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'lervag/vimtex'
-" Plug 'vim-latex/vim-latex'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'sirtaj/vim-openscad'
 Plug 'ekalinin/Dockerfile.vim'
@@ -136,17 +200,9 @@ set backup
 "==================================
 " Vim Easymotion
 "==================================
-" Move to word
-"map  f <Plug>(easymotion-bd-w)
-"nmap f <Plug>(easymotion-overwin-w)
-
 " Move to line
 map  gl <Plug>(easymotion-bd-jk)
 nmap gl <Plug>(easymotion-overwin-line)
-
-" <Leader>f{char} to move to {char}
-"map  g1 <Plug>(easymotion-bd-f)
-"nmap g1 <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
 nmap ff <Plug>(easymotion-overwin-f2)
@@ -164,40 +220,6 @@ let g:EasyMotion_smartcase=1
 "==================================
 let g:indentLine_setColors=1
 let g:indentLine_char='¦'
-
-"==================================
-" YouCompleteMe settings
-"==================================
-" let g:ycm_path_to_python_interpreter='~/.pyenv/shims/python3'
-let g:ycm_auto_hover=''
-nmap sh <Plug>(YCMHover)
-nmap gd :YcmCompleter GoTo<CR>
-nmap gr :YcmCompleter GoToReferences<CR>
-nmap sd :YcmCompleter GetDoc<CR>
-nmap st :YcmCompleter GetType<CR>
-nmap rr :YcmCompleter RefactorRename<space>
-
-"==================================
-" Jedi settings
-"==================================
-" set completeopt-=preview
-" let g:jedi#auto_initialization=1
-" let g:jedi#completions_enabled=0
-" let g:jedi#auto_vim_configuration=0
-" let g:jedi#use_tabs_not_buffers=1
-" let g:jedi#use_splits_not_buffers='left'
-" let g:jedi#popup_on_dot=0
-" let g:jedi#show_call_signatures='1'
-" let g:jedi#max_doc_height=20
-" 
-" let g:jedi#completions_command='<C-Space>'
-" let g:jedi#goto_command='<leader>d'
-" let g:jedi#goto_assignments_command='<leader>g'
-" let g:jedi#goto_stubs_command='<leader>s'
-" let g:jedi#goto_definitions_command=''
-" let g:jedi#documentation_command='K'
-" let g:jedi#usages_command='<leader>n'
-" let g:jedi#rename_command='<leader>r'
 
 "==================================
 " CtrlP settings
@@ -291,8 +313,8 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=1
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=0
 
 " Check for python3 syntax
 let g:syntastic_python_python_exec='python3'
@@ -308,13 +330,6 @@ let g:syntastic_python_flake8_args='--ignore=E501,E401,E402,E203,E221,F401,F403'
 
 " Python3 syntax logic check with pyflakes
 let g:syntastic_python_pyflakes_exe='python3 -m pyflakes'
-
-"==================================
-" Vim markdown preview settings
-"==================================
-" let vim_markdown_preview_github=1
-" let vim_markdown_preview_hotkey='<space>m'
-" let vim_markdown_preview_temp_file=0
 
 "==================================
 " Nvim markdown preview settings
@@ -357,9 +372,6 @@ colorscheme gruvbox
 set bg=dark
 let g:airline_theme='gruvbox'
 
-" colorscheme molokai
-" let g:airline_theme='molokai'
-
 " Tab line settings
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
@@ -375,32 +387,14 @@ if !exists('g:airline_symbols')
     let g:airline_symbols={}
 endif
 
-if has("gui_running")
-    let g:airline#extensions#tabline#left_sep=''
-    let g:airline#extensions#tabline#left_alt_sep =''
-    let g:airline#extensions#tabline#right_sep=''
-    let g:airline#extensions#tabline#right_alt_sep=''
-    let g:airline_left_sep=''
-    let g:airline_left_alt_sep=''
-    let g:airline_right_sep=''
-    let g:airline_right_alt_sep=''
-    let g:airline_symbols.branch=''
-    let g:airline_symbols.readonly=''
-    let g:airline_symbols.linenr=''
-else
-    " let g:airline_left_sep=''
-    " let g:airline_left_alt_sep=''
-    " let g:airline_right_sep=''
-    " let g:airline_right_alt_sep=''
-    let g:airline#extensions#tabline#left_sep=''
-    let g:airline#extensions#tabline#left_alt_sep =''
-    let g:airline#extensions#tabline#right_sep=''
-    let g:airline#extensions#tabline#right_alt_sep=''
-    let g:airline_left_sep=''
-    let g:airline_left_alt_sep=''
-    let g:airline_right_sep=''
-    let g:airline_right_alt_sep=''
-    let g:airline_symbols.branch=''
-    let g:airline_symbols.readonly=''
-    let g:airline_symbols.linenr=''
-endif
+let g:airline#extensions#tabline#left_sep=''
+let g:airline#extensions#tabline#left_alt_sep =''
+let g:airline#extensions#tabline#right_sep=''
+let g:airline#extensions#tabline#right_alt_sep=''
+let g:airline_left_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_sep=''
+let g:airline_right_alt_sep=''
+let g:airline_symbols.branch=''
+let g:airline_symbols.readonly=''
+let g:airline_symbols.linenr=''
