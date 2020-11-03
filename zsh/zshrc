@@ -123,7 +123,7 @@ esac
 function wally() {~/dotfiles/moonlander/wally-cli}
 
 # Alias for portable sreenkey
-alias screenkey='~/screenkey-1.2/screenkey'
+alias screenkey='~/.config/screenkey-1.2/screenkey'
 
 # Alias for sudo
 alias sudo='sudo '
