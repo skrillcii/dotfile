@@ -1,79 +1,140 @@
 #!/usr/bin/bash
-#!/usr/bin/zsh
 
-###################################
-# Functions of script starts here #
-###################################
 
-desktop_env_install() {
+##############
+# Fail Check #
+##############
+# REFERENCE: https://stackoverflow.com/questions/2870992/automatic-exit-from-bash-shell-script-on-error
+# -e exits on error, -u errors on undefined variables, and -o (for option) pipefail exits on command pipe failures. 
+# set -euxo pipefail
+
+
+#############
+# Functions #
+#############
+
+check_execution() {
+    if [ $? -eq 0 ]; then
+        echo -e "\033[34mexecution checked\e[0m"
+    else
+        echo -e "\033[31mexecution failed\e[0m"
+    fi
+
+    # Or pipe the following command to the execution output
+    # command && echo SUCCESS || echo FAIL
+}
+
+install_desktop_environment() {
+    echo -e "\n >>> General Installation Started..."
+
     # Package install general
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
                             checkinstall redshift docker.io \
                             htop glances lm-sensors mesa-utils \
+    check_execution
 
     # Package install fcitx
     sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
+    check_execution
 
     # Package install lightdm
+    # \\\\\\\\\\\\\\\\ #
+    # Needs automation #
+    # \\\\\\\\\\\\\\\\ #
     sudo apt-get install -y lightdm
+    check_execution
 
     # Initialize lm-sensors
+    # \\\\\\\\\\\\\\\\ #
+    # Needs automation #
+    # \\\\\\\\\\\\\\\\ #
     sudo sensors-detect
 
     # Create symbolic links
     ln -s -f ~/dotfiles/vim/vimrc ~/.vimrc
     ln -s -f ~/dotfiles/x/xprofile ~/.xprofile
     ln -s -f ~/dotfiles/redshift/redshift.conf ~/.config/redshift.conf
+    check_execution
+
+    echo -e " <<< General Installation Finished!"
 }
 
-oh_my_zsh_install() {
+install_oh_my_zsh() {
+    echo -e "\n >>> Oh-my-zsh Installation Started..."
+
     # Package install zsh
     sudo apt-get install -y zsh
+    check_execution
 
-    # Source oh-my-zsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    # Download oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+    check_execution
 
-    # Source oh-my-zsh plugins
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    echo 'source $HOME/dotfiles/zsh/zshrc' >> ~/.zshrc
+    # Download oh-my-zsh plugins
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-completions ~/plugins/zsh-completions
+    echo 'source ~/dotfiles/zsh/zshrc' >> ~/.zshrc
+    check_execution
+
+    echo -e " <<< Oh-my-zsh Installation Finished!"
 }
 
-tmux_plugin_manager_install() {
+install_tmux_plugin_manager() {
+    echo -e "\n >>> Tmux-plugin-manager Installation Started..."
+
     # Package install tmux
     sudo apt-get install -y tmux
+    check_execution
 
-    # Source tmux-plugin-manager
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+    # Download tmux-plugin-manager
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    check_execution
+
+    echo -e " <<< Tmux-plugin-manager Installation Finished!"
 }
 
-oh_my_tmux_install() {
-    # Source oh-my-tmux
-    git clone https://github.com/gpakosz/.tmux.git "$HOME/.oh-my-tmux"
+install_oh_my_tmux() {
+    echo -e "\n >>> Oh-my-tmux Installation Started..."
+
+    # Download oh-my-tmuxgt
+    git clone https://github.com/gpakosz/.tmux.git ~/.oh-my-tmux
+    check_execution
 
     # Create symbolic links and source configurations
-    ln -s -f "$HOME/.oh-my-tmux/.tmux.conf" "$HOME/.tmux.conf"
-    ln -s -f "$HOME/.oh-my-tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
-    echo 'source ~/dotfiles/tmux/tmux.conf.local' >> "$HOME/.tmux.conf.local"
+    echo -e 'creating symbolic links...'
+    ln -s -f ~/.oh-my-tmux/.tmux.conf ~/.tmux.conf
+    ln -s -f ~/.oh-my-tmux/.tmux.conf.local ~/.tmux.conf.local
+    echo 'source ~/dotfiles/tmux/tmux.conf.local' >> ~/.tmux.conf.local
+    check_execution
+
+    echo -e " <<< Oh-my-tmux Installation Finished!"
 }
 
-vim_build_from_source() {
+install_vim_build_from_source() {
+    echo -e "\n >>> Vim Installation Started..."
+
     # Package install dependencies:
     sudo apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
                             libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
                             libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
                             python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git \
+    check_execution
 
     # Remove old vim:
     sudo apt-get remove vim vim-runtime gvim
+    check_execution
 
     # Source, configure and build
     git clone https://github.com/vim/vim.git ~/
+    check_execution
     cd vim
 
     # Use '$(python3-config --configdir)' to check for flag '--with-python3-config-dir'
     # To check python path in vim ':python3 import sys; print(sys.path)'
     make clean distclean
+    check_execution
+
     ./configure --with-features=huge \
         --enable-multibyte \
         --enable-terminal \
@@ -85,166 +146,249 @@ vim_build_from_source() {
         --enable-cscope \
         --prefix=/usr/local \
         --enable-fail-if-missing \
-        make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
+    check_execution
+
+    make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
+    check_execution
 
     # Install with checkinstall
     cd ~/vim
     sudo checkinstall
+    check_execution
 
     # Remove directory
     cd ~
     sudo rm -rf ~/vim
+    check_execution
+
+    echo -e " <<< Vim Installation Finished!"
 }
 
-vim_plugin_manager_install() {
-    # For tagbar vim plugin
-    sudo apt-get install -y exuberant-ctags
+install_vim_plugin_manager() {
+    echo -e "\n >>> Vim-plugin-manager Installation Started..."
 
-    # Source vim-plug
+    # For tagbar vim plugin
+    sudo apt-get install -y vim exuberant-ctags
+    check_execution
+
+    # Download vim-plug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
-
-fzf_install() {
-    # Source fzf
-    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
-
-    # Install fzf
-    ~/.fzf/install
-}
-
-ranger_install() {
-    # Package install ranger and other utilities
-    sudo apt-get install -y ranger caca-utils w3m highlight atool poppler-utils mediainfo
+    check_execution
 
     # Create symbolic links
-    ln -s -f "$HOME/dotfiles/ranger/commands.py" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfiles/ranger/commands_full.py" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfiles/ranger/rc.conf" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfiles/ranger/rifle.conf" "$HOME/.config/ranger/"
-    ln -s -f "$HOME/dotfiles/ranger/scope.sh" "$HOME/.config/ranger/"
+    echo -e 'creating symbolic links...'
+    ln -s -f ~/dotfiles/vim/vimrc ~/.vimrc
+    check_execution
 
-    # Other useful commands
-    # To list external drives/disks
-    lsblk
-    # To mount/unmount external drives/disks according to x, Y
-    udisksctl mount -b /dev/sdxY
-    udisksctl unmount -b /dev/sdxY
+    # Install plugins
+    vim -E -s -u "~/.vimrc" +PlugInstall +qall
+    check_execution
+
+    echo -e " <<< Vim-plugin-manager Installation Finished!"
 }
 
-pyenv_install() {
+install_fzf() {
+    echo -e "\n >>> Fzf Installation Started..."
+
+    # Download fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    check_execution
+
+    # Install fzf
+    ~/.fzf/install --key-bindings --completion --no-update-rc
+    check_execution
+
+    echo -e " <<< Fzf Installation Finished!"
+}
+
+install_ranger() {
+    echo -e "\n >>> Ranger Installation Started..."
+
+    # Package install ranger and other utilities
+    sudo apt-get install -y ranger caca-utils w3m highlight atool poppler-utils mediainfo
+    check_execution
+
+    # Check if directory exists
+    echo -e 'creating custom theme directory...'
+    if [[ ! -e ~/.config/ranger ]] ; then
+        mkdir -p ~/.config/ranger
+    fi
+    check_execution
+
+    # Create symbolic links
+    echo -e 'creating symbolic links...'
+    ln -s -f ~/dotfiles/ranger/commands.py ~/.config/ranger/
+    ln -s -f ~/dotfiles/ranger/commands_full.py ~/.config/ranger/
+    ln -s -f ~/dotfiles/ranger/rc.conf ~/.config/ranger/
+    ln -s -f ~/dotfiles/ranger/rifle.conf ~/.config/ranger/
+    ln -s -f ~/dotfiles/ranger/scope.sh ~/.config/ranger/
+    check_execution
+
+    echo -e " <<< Ranger Installation Finished!"
+}
+
+install_pyenv() {
+    echo -e "\n >>> Pyenv Installation Started..."
+
     # Dependencies
     sudo apt-get install -y --no-install-recommends \
-                            make build-essential libssl-dev zlib1g-dev \
-                            libbz2-dev libreadline-dev libsqlite3-dev wget \
-                            curl llvm libncurses5-dev xz-utils tk-dev \
-                            libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+                            build-essential libssl-dev zlib1g-dev libbz2-dev \
+                            libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+                            xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+    check_execution
 
-    # Source pyenv
-    git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+    # Download pyenv
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    check_execution
 
     # Environment variables settings
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+    echo -e 'exporting environmental variabls...'
+    echo 'export PYENV_ROOT="~/.pyenv"' >> ~/.bashrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
+    check_execution
 
     # Install pyenv version with --enable-shared for YouCompleteMe compatability
     # Set up global version and install YouCompleteMe extensions
-    env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.6
-    pyenv global 3.8.6
-    pip3 install -U pip autopep8 flake8 jedi
+    # env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.6
+    env PYTHON_CONFIGURE_OPTS="--enable-shared" ~/.pyenv/bin/pyenv install 3.8.6
+    check_execution
+    ~/.pyenv/bin/pyenv global 3.8.6
+    check_execution
+    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8
+    check_execution
+
+    echo -e " <<< Pyenv Installation Finished!"
 }
 
-java_11_install() {
+install_java_11() {
+    echo -e "\n >>> Java-11 Installation Started..."
+
     # Package install java-11
-    sudo apt-get install -y default-jre default-jdk
+    sudo apt-get install -y default-jre default-jdk maven
+    check_execution
+
+    echo -e " <<< Java-11 Installation Finished!"
 }
 
-apache_maven_install() {
-    # Package install maven-3.6.3
-    sudo apt-get install -y maven
-}
+install_coc() {
+    echo -e "\n >>> Coc Installation Started..."
 
-YouCompleteMe_install() {
-    # Package install dependencies:
-    sudo apt-get install -y build-essential cmake python-dev python3-dev npm
-    cd ~/.vim/plugged/YouCompleteMe
+    # \\\\\\\\\\\\\\\\\ #
+    # Under Development #
+    # \\\\\\\\\\\\\\\\\ #
 
-    # If python is installed with pyenv with --enable-shared
-    python3 install.py --clang-completer --cs-completer --js-completer --java-completer
-
-    # Else use system python
-    /usr/bin/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
-}
-
-Coc_install() {
     # Vim command
-    # :CocInstall coc-python coc-yaml coc-vimlsp coc-java coc-snippets coc-html coc-css coc-json
+    # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
+    #             coc-snippets coc-html coc-css coc-json
+
+    echo -e " <<< Coc Installation Finished!"
 }
 
-vim_markdown_preview_dependencies() {
-    # Package install dependencies:
-    sudo apt-get install -y xdotool
+install_zsh_gruvbox_theme() {
+    echo -e "\n >>> Zsh-grubox-theme Installation Started..."
 
-    # Pip install grip
-    pip install grip
+    # Download gruvbox-theme
+    curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme \
+        > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
+    check_execution
+
+    # Export zshrc settings
+    # ZSH_THEME="gruvbox"
+    # SOLARIZED_THEME="dark"
+
+    echo -e " <<< Zsh-gruvbox-theme Installation Finished!"
 }
 
-powerline_font_install() {
+
+####################
+# Desktop Specific #
+####################
+
+install_powerline_font() {
+    echo -e "\n >>> Powerline-font Installation Started..."
+
     # Source powerline-fonts
     git clone https://github.com/powerline/fonts.git --depth=1 ~/
+    check_execution
 
     # Install
     cd fonts
     ./install.sh
+    check_execution
 
     # Clean-up
     cd ..
     rm -rf fonts
+    check_execution
+
+    echo -e " <<< Powerline-font Installation Finished!"
 }
 
-nerd_font_install() {
+install_nerd_font() {
+    echo -e "\n >>> Nerd-font Installation Started..."
+
     # Source nerd-fonts
     git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/
+    check_execution
 
     # Install font of your choice
     ~/nerd-font/install.sh HeavyData SpaceMono
+    check_execution
+
+    echo -e " <<< Nerd-font Installation Finished!"
 }
 
-zsh_gruvbox_theme_install() {
-    # Source gruvbox-theme
-    curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
 
-    # Export zshrc settings
-    ZSH_THEME="gruvbox"
-    SOLARIZED_THEME="dark"
-}
+install_i3wm() {
+    echo -e "\n >>> I3wn Installation Started..."
 
-i3_install() {
     # Package install i3
     sudo apt-get install -y i3 i3blocks
+    check_execution
 
     # Package install extensions
     sudo apt-get install -y imagemagick feh playerctl
+    check_execution
 
     # Pip install extensions
     pip3 install psutil netifaces
+    check_execution
 
     # Source extensions
     git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/
+    check_execution
+
     cd ~/awesome-terminal-fonts && ./install.sh
+    check_execution
+
     cd .. && rm -rf ~/awesome-terminal-fonts
+    check_execution
 
     git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/
+    check_execution
+
     mv ~/bumblebee-status ~/.config/i3
+    check_execution
 
     # Create symbolic links
     ln -s -f ~/dotfiles/i3/i3main.conf ~/.config/i3/config
     ln -s -f ~/dotfiles/i3/i3status.conf ~/.i3status.conf
     sudo ln -s -f ~/dotfiles/i3/i3exit.sh /usr/local/bin/i3exit
+    check_execution
+
+    echo -e " <<< I3wm Installation Finished!"
 }
 
-moonlander_install(){
+
+#############
+# Utilities #
+#############
+
+install_moonlander(){
+    echo -e "\n >>> Moonlander Installation Started..."
+
     # Package install dependcies
     # Currently, only cli dependency is listed here
     sudo apt-get install -y libusb-dev
@@ -262,13 +406,17 @@ moonlander_install(){
     groups
     sudo groupadd plugdev
     sudo usermod -aG plugdev $USER
+
+    echo -e " <<< Moonlander Installation Finished!"
 }
 
-screenkey_() {
+install_screenkey() {
+    echo -e "\n >>> Screenkey Installation Started..."
+
     # Package install dependencies
     sudo apt-get install -y python3-gi gir1.2-gtk-3.0 python3-cairo \
-        python3-setuptools python3-distutils-extra \
-        fonts-font-awesome slop gir1.2-appindicator3-0.1 \
+                            python3-setuptools python3-distutils-extra \
+                            fonts-font-awesome slop gir1.2-appindicator3-0.1 \
 
     # Source screenkey v1.2 from 'https://www.thregr.org/~wavexx/software/screenkey/'
     cd ~ && wget https://www.thregr.org/~wavexx/software/screenkey/releases/screenkey-1.2.tar.gz
@@ -283,9 +431,13 @@ screenkey_() {
     # Install or uninstall onto system
     sudo ./setup.py install --record files.txt
     cat files.txt | xargs sudo rm -rf
+
+    echo -e " <<< Screenkey Installation Finished!"
 }
 
-kazam_install() {
+install_kazam() {
+    echo -e "\n >>> Kazam Installation Started..."
+
     # Package install
     sudo apt-get install -y kazam
 
@@ -294,118 +446,55 @@ kazam_install() {
     # Super key + CTRL + P = Pause recording, press again to resume.
     # Super key + CTRL + F = Finish recording.
     # Super key + CTRL + Q = Quit recording.
+
+    echo -e " <<< Kazam Installation Finished!"
 }
 
-ffmpeg() {
+install_ffmpeg() {
+    echo -e "\n >>> Ffmpeg Installation Started..."
+
     # Package install
     sudo apt-get install -y ffmpeg
 
     # Example usage for video compression
-    ffmpeg -i input.mp4 output.mp4
-}
+    # ffmpeg -i input.mp4 output.mp4
 
-cuda_driver_install() {
-    # Install option 1:  Package install
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-    sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
-    wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
-    sudo dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
-    sudo apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub
-    sudo apt-get update
-    sudo apt-get -y install cuda
-
-    echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.zshrc
-    echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/' >> ~/.zshrc
-
-    # Install option 1:  Runfile install
-    sudo apt-get purge nvidia*
-    sudo apt-get autoremove
-    sudo dpkg -l | grep nvidia
-    sudo apt-get purge ... # whatever nvidia packages left shown from last command
-
-    sudo apt-get install build-essential gcc-multilib dkms
-    sudo echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist-nouveau.conf
-    sudo echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf
-    sudo update-initramfs -u
-    sudo systemctl stop lightdm
-
-    wget https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda_11.1.0_455.23.05_linux.run
-    chmod +x cuda_11.1.0_455.23.05_linux.run
-    sudo sh cuda_11.1.0_455.23.05_linux.run
+    echo -e " <<< Ffmpeg Installation Finished!"
 }
 
 
-###################################
-# Main body of script starts here #
-###################################
+########
+# Main #
+########
 
-echo "Start custom installation"
+echo -e "\n >>> Start Custom Installation..."
 
+# General setup
+sudo apt-get update
+install_desktop_environment
+install_oh_my_zsh
+install_tmux_plugin_manager
+install_oh_my_tmux
+install_vim_plugin_manager
+install_pyenv
+install_fzf
+install_ranger
+install_java_11
+install_coc
+install_zsh_gruvbox_theme
 
-###################################
-# Deprecated installation scripts #
-###################################
-#
-# ---------------------------------------------------------------------
-# Deprecated as on Ubuntu 20.04, tmux version 3.0a can be installed by
-# sudo apt-get install -y tmux
-# ---------------------------------------------------------------------
-#
-# tmux_build_from_source() {
-#     sudo apt-get -y remove tmux
-#     sudo apt-get -y install wget tar libevent-dev libncurses-dev checkinstall
-#     wget https://github.com/tmux/tmux/releases/download/2.7/tmux-2.7.tar.gz
-#     tar xf tmux-2.7.tar.gz
-#     rm -f tmux-2.7.tar.gz
-#     cd tmux-2.7
-#     ./configure
-#     make
-#     sudo checkinstall
-#
-#     cd -
-#     sudo rm -rf /usr/local/src/tmux-*
-#     sudo mv tmux-2.7 /usr/local/src
-# }
-#
-# ---------------------------------------------------------------------
-# Deprecated as on Ubuntu 20.04, java-11 can be installed by
-# sudo apt-get install -y default-jre default-jdk
-# ---------------------------------------------------------------------
-#
-# java_8_install() {
-#     # Package install java-8 by adding apt repository
-#     sudo add-apt-repository ppa:webupd8team/java
-#     sudo apt-get update
-#     sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
-# }
-#
-# ---------------------------------------------------------------------
-# Deprecated as on Ubuntu 20.04, maven-3.6.3 can be installed by
-# sudo apt-get install -y maven
-# ---------------------------------------------------------------------
-#
-# apache_maven_install() {
-#     # Source apache-maven
-#     cd ~
-#     wget https://ftp.riken.jp/net/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-#
-#     # Extract, move to system path, create symbolic link
-#     tar -xvf apache-maven-3.6.3-bin.tar.gz
-#     sudo mv apache-maven-3.6.3 /usr/local/apache-maven/apache-maven-3.6.3
-#     sudo ln -s /usr/local/apache-maven/apache-maven.3.6.3 /usr/local/apache-maven/apache-maven
-#
-#     # Clean up
-#     rm ~/apache-maven-3.6.3-bin.tar.gz
-# }
-#
-# ---------------------------------------------------------------------
-# Deprecated as started using i3wm.
-# Unity-tweak-tool is replaced by gnome-tweak-tool after ubuntu 17.04
-# ---------------------------------------------------------------------
-#
-# numix_theme() {
-#     # Package install numix-theme by adding apt repository
-#     sudo add-apt-repository ppa:numix/ppa
-#     sudo apt-get update
-#     sudo apt-get install -y unity-tweak-tool numix-gtk-theme numix-icon-theme-circle
-# }
+# Desktop specific
+install_powerline_font
+install_nerd_font
+install_i3wm
+
+# Utilities
+install_moonlander
+install_screenkey
+install_kazam
+install_ffmpeg
+
+echo -e "\n >>> Finished All Custom Installation!"
+
+# Reload shell
+$SHELL

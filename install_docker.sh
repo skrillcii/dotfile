@@ -203,23 +203,23 @@ install_java_11() {
     echo -e " <<< Java-11 Installation Finished!"
 }
 
-install_YouCompleteMe() {
-    echo -e "\n >>> YouCompleteMe Installation Started..."
+install_coc() {
+    echo -e "\n >>> Coc Installation Started..."
 
-    # Package install dependencies:
-    sudo apt-get install -y build-essential cmake python3-dev npm \
-                            default-jre default-jdk maven
-    check_execution
-    cd ~/.vim/plugged/YouCompleteMe
+    # \\\\\\\\\\\\\\\\\ #
+    # Under Development #
+    # \\\\\\\\\\\\\\\\\ #
 
-    # If python is installed with pyenv with --enable-shared
-    ~/.pyenv/shims/python3 install.py --clang-completer --cs-completer --js-completer --java-completer
-    check_execution
+    # Vim command
+    # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
+    #             coc-snippets coc-html coc-css coc-json
 
-    echo -e " <<< YouCompleteMe Installation Finished!"
+    echo -e " <<< Coc Installation Finished!"
 }
 
 install_zsh_gruvbox_theme() {
+    echo -e "\n >>> Zsh-grubox-theme Installation Started..."
+
     # Download gruvbox-theme
     curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme \
         > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
@@ -228,6 +228,8 @@ install_zsh_gruvbox_theme() {
     # Export zshrc settings
     # ZSH_THEME="gruvbox"
     # SOLARIZED_THEME="dark"
+
+    echo -e " <<< Zsh-gruvbox-theme Installation Finished!"
 }
 
 
@@ -247,7 +249,7 @@ install_pyenv
 install_fzf
 install_ranger
 install_java_11
-install_YouCompleteMe
+install_coc
 install_zsh_gruvbox_theme
 
 echo -e "\n >>> Finished All Custom Installation!"
