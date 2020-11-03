@@ -276,13 +276,14 @@ install_java_11() {
 install_coc() {
     echo -e "\n >>> Coc Installation Started..."
 
-    # \\\\\\\\\\\\\\\\\ #
-    # Under Development #
-    # \\\\\\\\\\\\\\\\\ #
-
+    # Package install dependcies
     sudo apt-get install -y nodejs npm
+    check_execution
 
-    # Vim command
+    # \\\\\\\\\\\\\\\\ #
+    # Needs automation #
+    # \\\\\\\\\\\\\\\\ #
+    # Vimplug install extensions
     # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
     #             coc-snippets coc-html coc-css coc-json
 
@@ -399,8 +400,10 @@ install_spotify(){
     # Reference: https://www.spotify.com/us/download/linux/
     curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+    check_execution
 
     sudo apt-get update && sudo apt-get install -y spotify-client
+    check_execution
 
     echo -e " <<< Spotify Installation Finished!"
 }
@@ -412,20 +415,31 @@ install_moonlander(){
     # Package install dependcies
     # Currently, only cli dependency is listed here
     sudo apt-get install -y libusb-dev
+    check_execution
 
     # Download wally binary version 'gui' or 'cli'
     # Currently only wally-cli is used
     cd ~ && wget https://configure.ergodox-ez.com/wally/linux
+    check_execution
     cd ~ && wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
+    check_execution
 
     # Low-level device communication kernel scripts
     sudo ln -s -f ~/dotfiles/moonlander/50-oryx.rules /etc/udev/rules.d/
     sudo ln -s -f ~/dotfiles/moonlander/50-wally.rules /etc/udev/rules.d/
+    check_execution
 
-    # Check if plugdev group exists and if user is in plugdev group, if not create and add
-    groups
-    sudo groupadd plugdev
-    sudo usermod -aG plugdev $USER
+    # # Check if plugdev group exists and if user is in plugdev group, if not create and add
+    if [ $(getent group 'plugdev') ]; then
+        echo "Group plugdev exists! Done!"
+    else
+        echo "Group plugdev does not exist!"
+        echo "Create plugdev group..."
+        sudo groupadd plugdev
+        sudo usermod -aG plugdev $USER
+        echo "Done!"
+    fi
+    check_execution
 
     echo -e " <<< Moonlander Installation Finished!"
 }
@@ -437,20 +451,23 @@ install_screenkey() {
     sudo apt-get install -y python3-gi gir1.2-gtk-3.0 python3-cairo \
                             python3-setuptools python3-distutils-extra \
                             fonts-font-awesome slop gir1.2-appindicator3-0.1 \
+    check_execution
 
     # Source screenkey v1.2 from 'https://www.thregr.org/~wavexx/software/screenkey/'
     cd ~ && wget https://www.thregr.org/~wavexx/software/screenkey/releases/screenkey-1.2.tar.gz
-    tar -xvf ./screenkey-1.2.tar.gz && cd ./screenkey-1.2.tar.gz
+    tar -xvf ~/screenkey-1.2.tar.gz
+    rm -rf ~/screenkey-1.2.tar.gz
+    check_execution
 
     # Portable without installation (preferred way of using)
-    sudo ./screenkey
+    # sudo ./screenkey
 
-    # Or following if alias is set (configured in .zshrc)
-    sudo screenkey
+    # Set alias (e.g configure in .zshrc)
+    # sudo screenkey
 
-    # Install or uninstall onto system
-    sudo ./setup.py install --record files.txt
-    cat files.txt | xargs sudo rm -rf
+    # Install & uninstall onto system
+    # sudo ~/screenkey-1.2/setup.py install --record files.txt
+    # cat files.txt | xargs sudo rm -rf
 
     echo -e " <<< Screenkey Installation Finished!"
 }
@@ -460,6 +477,7 @@ install_kazam() {
 
     # Package install
     sudo apt-get install -y kazam
+    check_execution
 
     # Keybindings
     # Super key + CTRL + R = Start recording.
@@ -475,6 +493,7 @@ install_ffmpeg() {
 
     # Package install
     sudo apt-get install -y ffmpeg
+    check_execution
 
     # Example usage for video compression
     # ffmpeg -i input.mp4 output.mp4
@@ -511,7 +530,7 @@ echo -e "\n >>> Start Custom Installation..."
 # Utilities
 # install_spotify
 # install_moonlander
-# install_screenkey
+install_screenkey
 # install_kazam
 # install_ffmpeg
 
