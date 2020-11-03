@@ -418,11 +418,11 @@ install_moonlander(){
     check_execution
 
     # Download wally binary version 'gui' or 'cli'
-    # Currently only wally-cli is used
-    cd ~ && wget https://configure.ergodox-ez.com/wally/linux
-    check_execution
-    cd ~ && wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
-    check_execution
+    # Currently only wally-cli is used and is already provided in dotfiles
+    # cd ~ && wget https://configure.ergodox-ez.com/wally/linux
+    # check_execution
+    # cd ~ && wget https://github.com/zsa/wally-cli/releases/download/2.0.0-linux/wally-cli
+    # check_execution
 
     # Low-level device communication kernel scripts
     sudo ln -s -f ~/dotfiles/moonlander/50-oryx.rules /etc/udev/rules.d/
