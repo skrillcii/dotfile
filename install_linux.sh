@@ -280,6 +280,8 @@ install_coc() {
     # Under Development #
     # \\\\\\\\\\\\\\\\\ #
 
+    sudo apt-get install -y nodejs npm
+
     # Vim command
     # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
     #             coc-snippets coc-html coc-css coc-json
