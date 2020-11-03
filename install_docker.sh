@@ -206,11 +206,14 @@ install_java_11() {
 install_coc() {
     echo -e "\n >>> Coc Installation Started..."
 
-    # \\\\\\\\\\\\\\\\\ #
-    # Under Development #
-    # \\\\\\\\\\\\\\\\\ #
+    # Package install dependcies
+    sudo apt-get install -y nodejs npm
+    check_execution
 
-    # Vim command
+    # \\\\\\\\\\\\\\\\ #
+    # Needs automation #
+    # \\\\\\\\\\\\\\\\ #
+    # Vimplug install extensions
     # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
     #             coc-snippets coc-html coc-css coc-json
 
