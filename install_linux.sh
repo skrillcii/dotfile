@@ -71,9 +71,9 @@ install_oh_my_zsh() {
     check_execution
 
     # Download oh-my-zsh plugins
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-completions ~/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
     echo 'source ~/dotfiles/zsh/zshrc' >> ~/.zshrc
     check_execution
 
@@ -126,7 +126,7 @@ install_vim_build_from_source() {
     check_execution
 
     # Source, configure and build
-    git clone https://github.com/vim/vim.git ~/
+    git clone https://github.com/vim/vim.git ~/vim
     check_execution
     cd vim
 
@@ -188,6 +188,40 @@ install_vim_plugin_manager() {
     echo -e " <<< Vim-plugin-manager Installation Finished!"
 }
 
+install_pyenv() {
+    echo -e "\n >>> Pyenv Installation Started..."
+
+    # Dependencies
+    sudo apt-get install -y --no-install-recommends \
+                            build-essential libssl-dev zlib1g-dev libbz2-dev \
+                            libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+                            xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+    check_execution
+
+    # Download pyenv
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    check_execution
+
+    # Environment variables settings
+    echo -e 'exporting environmental variabls...'
+    echo 'export PYENV_ROOT="~/.pyenv"' >> ~/.bashrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
+    check_execution
+
+    # Install pyenv version with --enable-shared for YouCompleteMe compatability
+    # Set up global version and install YouCompleteMe extensions
+    # env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.6
+    env PYTHON_CONFIGURE_OPTS="--enable-shared" ~/.pyenv/bin/pyenv install 3.8.6
+    check_execution
+    ~/.pyenv/bin/pyenv global 3.8.6
+    check_execution
+    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8
+    check_execution
+
+    echo -e " <<< Pyenv Installation Finished!"
+}
+
 install_fzf() {
     echo -e "\n >>> Fzf Installation Started..."
 
@@ -228,39 +262,6 @@ install_ranger() {
     echo -e " <<< Ranger Installation Finished!"
 }
 
-install_pyenv() {
-    echo -e "\n >>> Pyenv Installation Started..."
-
-    # Dependencies
-    sudo apt-get install -y --no-install-recommends \
-                            build-essential libssl-dev zlib1g-dev libbz2-dev \
-                            libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-                            xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
-    check_execution
-
-    # Download pyenv
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    check_execution
-
-    # Environment variables settings
-    echo -e 'exporting environmental variabls...'
-    echo 'export PYENV_ROOT="~/.pyenv"' >> ~/.bashrc
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
-    check_execution
-
-    # Install pyenv version with --enable-shared for YouCompleteMe compatability
-    # Set up global version and install YouCompleteMe extensions
-    # env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.8.6
-    env PYTHON_CONFIGURE_OPTS="--enable-shared" ~/.pyenv/bin/pyenv install 3.8.6
-    check_execution
-    ~/.pyenv/bin/pyenv global 3.8.6
-    check_execution
-    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8
-    check_execution
-
-    echo -e " <<< Pyenv Installation Finished!"
-}
 
 install_java_11() {
     echo -e "\n >>> Java-11 Installation Started..."
@@ -306,38 +307,41 @@ install_zsh_gruvbox_theme() {
 # Desktop Specific #
 ####################
 
-install_powerline_font() {
-    echo -e "\n >>> Powerline-font Installation Started..."
+install_powerline_fonts() {
+    echo -e "\n >>> Powerline-fonts Installation Started..."
 
     # Source powerline-fonts
-    git clone https://github.com/powerline/fonts.git --depth=1 ~/
+    git clone https://github.com/powerline/fonts.git --depth=1 ~/fonts
     check_execution
 
     # Install
-    cd fonts
+    cd ~/fonts
     ./install.sh
     check_execution
 
     # Clean-up
-    cd ..
-    rm -rf fonts
+    rm -rf ~/fonts
     check_execution
 
-    echo -e " <<< Powerline-font Installation Finished!"
+    echo -e " <<< Powerline-fonts Installation Finished!"
 }
 
-install_nerd_font() {
-    echo -e "\n >>> Nerd-font Installation Started..."
+install_nerd_fonts() {
+    echo -e "\n >>> Nerd-fonts Installation Started..."
 
     # Source nerd-fonts
-    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/
+    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git ~/nerd-fonts
     check_execution
 
     # Install font of your choice
-    ~/nerd-font/install.sh HeavyData SpaceMono
+    ~/nerd-fonts/install.sh HeavyData SpaceMono
     check_execution
 
-    echo -e " <<< Nerd-font Installation Finished!"
+    # Clean-up
+    rm -rf ~/near-fonts
+    check_execution
+
+    echo -e " <<< Nerd-fonts Installation Finished!"
 }
 
 
@@ -357,7 +361,7 @@ install_i3wm() {
     check_execution
 
     # Source extensions
-    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/
+    git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/awesome-terminal-fonts
     check_execution
 
     cd ~/awesome-terminal-fonts && ./install.sh
@@ -366,7 +370,7 @@ install_i3wm() {
     cd .. && rm -rf ~/awesome-terminal-fonts
     check_execution
 
-    git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/
+    git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/bumblebee-status
     check_execution
 
     mv ~/bumblebee-status ~/.config/i3
@@ -385,6 +389,20 @@ install_i3wm() {
 #############
 # Utilities #
 #############
+
+install_spotify(){
+    echo -e "\n >>> Spotify Installation Started..."
+
+    # From official release
+    # Reference: https://www.spotify.com/us/download/linux/
+    curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+    sudo apt-get update && sudo apt-get install -y spotify-client
+
+    echo -e " <<< Spotify Installation Finished!"
+}
+
 
 install_moonlander(){
     echo -e "\n >>> Moonlander Installation Started..."
@@ -470,31 +488,32 @@ install_ffmpeg() {
 echo -e "\n >>> Start Custom Installation..."
 
 # General setup
-sudo apt-get update
-install_desktop_environment
-install_oh_my_zsh
-install_tmux_plugin_manager
-install_oh_my_tmux
-install_vim_plugin_manager
-install_pyenv
-install_fzf
-install_ranger
-install_java_11
-install_coc
-install_zsh_gruvbox_theme
+# sudo apt-get update
+# install_desktop_environment
+# install_oh_my_zsh
+# install_tmux_plugin_manager
+# install_oh_my_tmux
+# install_vim_plugin_manager
+# install_pyenv
+# install_fzf
+# install_ranger
+# install_java_11
+# install_coc
+# install_zsh_gruvbox_theme
 
 # Desktop specific
-install_powerline_font
-install_nerd_font
-install_i3wm
+# install_powerline_fonts
+# install_nerd_fonts
+# install_i3wm
 
 # Utilities
-install_moonlander
-install_screenkey
-install_kazam
-install_ffmpeg
+# install_spotify
+# install_moonlander
+# install_screenkey
+# install_kazam
+# install_ffmpeg
 
 echo -e "\n >>> Finished All Custom Installation!"
 
 # Reload shell
-$SHELL
+# $SHELL

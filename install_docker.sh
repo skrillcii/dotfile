@@ -55,9 +55,9 @@ install_oh_my_zsh() {
     check_execution
 
     # Download oh-my-zsh plugins
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-completions ~/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
     echo 'source ~/dotfiles/zsh/zshrc' >> ~/.zshrc
     check_execution
 

@@ -66,8 +66,8 @@ SOLARIZED_THEME="dark"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-autosuggestions
   zsh-completions
   docker docker-compose
 )
