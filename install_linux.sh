@@ -363,6 +363,9 @@ install_i3wm() {
     pip3 install psutil netifaces
     check_execution
 
+    # Convert Ubuntu 20.04 default wallpaper from .jpg to .png
+    convert -scale 2560x1440 /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg /usr/share/backgrounds/lockscreen.png
+
     # Source extensions
     git clone https://github.com/gabrielelana/awesome-terminal-fonts.git ~/awesome-terminal-fonts
     check_execution
