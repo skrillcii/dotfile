@@ -509,31 +509,31 @@ install_ffmpeg() {
 
 echo -e "\n >>> Start Custom Installation..."
 
-# # General setup
-# sudo apt-get update
-# install_desktop_environment
-# install_oh_my_zsh
-# install_tmux_plugin_manager
-# install_oh_my_tmux
-# install_vim_plugin_manager
-# install_pyenv
-# install_fzf
-# install_ranger
-# install_java_11
-# install_coc
-# install_zsh_gruvbox_theme
+# General setup
+sudo apt-get update
+install_desktop_environment
+install_oh_my_zsh
+install_tmux_plugin_manager
+install_oh_my_tmux
+install_vim_plugin_manager
+install_pyenv
+install_fzf
+install_ranger
+install_java_11
+install_coc
+install_zsh_gruvbox_theme
 
-# # Desktop specific
-# install_powerline_fonts
-# install_nerd_fonts
-# install_i3wm
+# Desktop specific
+install_powerline_fonts
+install_nerd_fonts
+install_i3wm
 
-# # Utilities
-# install_spotify
-# install_moonlander
+# Utilities
+install_spotify
+install_moonlander
 install_screenkey
-# install_kazam
-# install_ffmpeg
+install_kazam
+install_ffmpeg
 
 echo -e "\n >>> Finished All Custom Installation!"
 
