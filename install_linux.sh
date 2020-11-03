@@ -379,10 +379,11 @@ install_i3wm() {
     git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/bumblebee-status
     check_execution
 
-    mv ~/bumblebee-status ~/.config/i3
+    mv ~/bumblebee-status ~/.config/i3/bumblebee-status
     check_execution
 
     # Create symbolic links
+    ln -s -f ~/.config/i3/bumblebee-status/bumblebee-status ~/.config/i3/bumblebee-status/bumblebee-status.py
     ln -s -f ~/dotfiles/i3/i3main.conf ~/.config/i3/config
     ln -s -f ~/dotfiles/i3/i3status.conf ~/.i3status.conf
     sudo ln -s -f ~/dotfiles/i3/i3exit.sh /usr/local/bin/i3exit
