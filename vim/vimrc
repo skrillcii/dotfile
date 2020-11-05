@@ -85,7 +85,7 @@ endfunction
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming. (currerntly having issue with pyenv)
-" nmap rr <Plug>(coc-rename)
+nmap rr <Plug>(coc-rename)
 
 " Formatting selected code.
 " Not very effective, needs more tuning and testing
