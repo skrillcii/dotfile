@@ -6,6 +6,16 @@ This README.md is a templete.
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foo.
 
+* Unordered list
+* Unordered list
+    * Unordered list
+    * Unordered list
+
+1. Ordered list
+1. Ordered list
+    1. Ordered list
+    1. Ordered list
+
 ```
 pip install foo
 ```
