@@ -287,6 +287,14 @@ install_coc() {
     # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
     #             coc-snippets coc-html coc-css coc-json
 
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
+    # If coc-java has issue with jdt #
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
+    # cd ~/.config/coc/extensions/coc-java-data
+    # wget https://download.eclipse.org/jdtls/milestones/0.57.0/jdt-language-server-0.57.0-202006172108.tar.gz
+    # tar -xvf jdt-language-server-0.57.0-202006172108.tar.gz ./server/
+    # ln -s -f ./server ~/.config/coc/extensions/coc-java-data/server
+
     echo -e " <<< Coc Installation Finished!"
 }
 
