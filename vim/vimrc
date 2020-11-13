@@ -167,6 +167,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
+Plug 'godlygeek/tabular'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
@@ -197,6 +198,14 @@ endif
 
 set backupdir=$HOME/.vim/backupfiles
 set backup
+
+"==================================
+" Tabular settings
+"==================================
+nmap t= :Tabularize /=<CR>
+vmap t= :Tabularize /=<CR>
+nmap t: :Tabularize /:<CR>
+vmap t: :Tabularize /:<CR>
 
 "==================================
 " Vim Easymotion
