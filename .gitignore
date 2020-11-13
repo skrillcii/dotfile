@@ -1,5 +1,13 @@
+# Macos meta files
 *.DS_Store
-*.swp
-*.swo
-*__pycache__
+
+# Development meta files
+*swo
+*swp
 *tags
+
+# Byte-compiled
+__pycache__/
+
+# Dataset
+MNIST/
