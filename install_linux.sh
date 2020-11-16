@@ -301,6 +301,11 @@ install_coc() {
 install_zsh_gruvbox_theme() {
     echo -e "\n >>> Zsh-grubox-theme Installation Started..."
 
+    # Check directory exists
+    if [[ ! -e ~/.oh-my-zsh/custom/themes ]] ; then
+        mkdir -p ~/.oh-my-zsh/custom/themes
+    fi
+
     # Download gruvbox-theme
     curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme \
         > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
@@ -387,6 +392,11 @@ install_i3wm() {
     git clone https://github.com/tobi-wan-kenobi/bumblebee-status.git ~/bumblebee-status
     check_execution
 
+    # Check directory exists
+    if [[ ! -e ~/.config/i3 ]] ; then
+        mkdir -p ~/.config/i3
+    fi
+
     mv ~/bumblebee-status ~/.config/i3/bumblebee-status
     check_execution
 
@@ -465,6 +475,9 @@ install_screenkey() {
                             fonts-font-awesome slop gir1.2-appindicator3-0.1 \
     check_execution
 
+    # Pip install dependencies
+    pip3 install vext vext.gi
+
     # Source screenkey v1.2 from 'https://www.thregr.org/~wavexx/software/screenkey/'
     cd ~ && wget https://www.thregr.org/~wavexx/software/screenkey/releases/screenkey-1.2.tar.gz
     tar -xvf ~/screenkey-1.2.tar.gz
@@ -520,9 +533,9 @@ install_ffmpeg() {
 ########
 
 echo -e "\n >>> Start Custom Installation..."
+sudo apt-get update
 
 # General setup
-sudo apt-get update
 install_desktop_environment
 install_oh_my_zsh
 install_tmux_plugin_manager
@@ -547,6 +560,7 @@ install_screenkey
 install_kazam
 install_ffmpeg
 
+sudo apt-get autoremove -y
 echo -e "\n >>> Finished All Custom Installation!"
 
 # Reload shell
