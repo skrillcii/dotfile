@@ -300,6 +300,7 @@ install_coc() {
 
     # Create symbolic links
     ln -s -f ~/dotfiles/coc/coc-settings.json ~/.vim/coc-settings.json
+    ln -s -f ~/dotfiles/coc/python.snippets ~/.config/coc/ultisnips/python.snippets
 
     echo -e " <<< Coc Installation Finished!"
 }
