@@ -2,7 +2,7 @@
 
 This README.md is a templete.
 
-## Installation
+## Prerequisite
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foo.
 
@@ -30,9 +30,5 @@ foo.method('fast') # returns 'fast'
 foo.method('cool') # returns 'cool'
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-Please make sure to update tests as appropriate.
-
-## License
+## References
 [URL](https://)
