@@ -132,6 +132,7 @@ nnoremap <ESC><ESC> :nohl<CR>
 nnoremap <space>w :bd<CR>
 nnoremap <space>q :q<CR>
 nnoremap <space>s :w<CR>
+nnoremap <space>ss :source ~/.vimrc<CR>
 
 " Tab navigation
 nnoremap <space>t :tabnew<CR>
@@ -149,7 +150,6 @@ nnoremap <C-j> :res +1<CR>
 nnoremap <C-k> :res -1<CR>
 
 " Plugin settings
-nnoremap <space>f :Autoformat<CR>
 nnoremap <space>f :Autoformat<CR>
 nnoremap <space>c :SyntasticToggleMode<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
