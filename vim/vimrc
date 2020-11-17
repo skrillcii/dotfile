@@ -53,7 +53,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+    return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -94,8 +94,8 @@ nmap rr <Plug>(coc-rename)
 
 " Formatting selected code.
 " Not very effective, needs more tuning and testing
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -122,7 +122,7 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Use <leader>x for convert visual selected code to snippet
-xmap <leader>x  <Plug>(coc-convert-snippet)
+xmap <leader>x <Plug>(coc-convert-snippet)
 
 "==================================
 " Keybinding
@@ -330,10 +330,50 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 " Devicon settings
 "==================================
 " The amount of space to use after the glyph character (default ' ')
-let g:WebDevIconsNerdTreeAfterGlyphPadding='  '
+let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 
 " The amount of space to use after the glyph character in vim-airline
 let g:WebDevIconsTabAirLineAfterGlyphPadding=''
+
+"==================================
+" Vim-startify settings
+"==================================
+" Display NerdTree bookmarks as separated list
+" Read ~/.NERDTreeBookmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+    let bookmarks = systemlist("cut -d' ' -f 2 ~/.NERDTreeBookmarks")
+    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    return map(bookmarks, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+        \]
+
+" Show modified and untracked git files
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
 
 "==================================
 " Json file formatting
@@ -350,6 +390,10 @@ let g:autoformat_remove_trailing_spaces=1
 
 " Disable autoformat functions for tex file
 autocmd FileType tex let b:autoformat_autoindent=0
+
+" Set python interpreter
+let g:python3_host_prog='~/.pyenv/shims/python3'
+let g:formatters_python=['autopep8']
 
 "==================================
 " Syntastic settings
@@ -447,43 +491,3 @@ let g:airline_right_alt_sep=''
 let g:airline_symbols.branch=''
 let g:airline_symbols.readonly=''
 let g:airline_symbols.linenr=''
-
-"==================================
-" Vim-startify settings
-"==================================
-" Display NerdTree bookmarks as separated list
-" Read ~/.NERDTreeBookmarks file and takes its second column
-function! s:nerdtreeBookmarks()
-    let bookmarks = systemlist("cut -d' ' -f 2 ~/.NERDTreeBookmarks")
-    let bookmarks = bookmarks[0:-2] " Slices an empty last line
-    return map(bookmarks, "{'line': v:val, 'path': v:val}")
-endfunction
-
-let g:startify_lists = [
-        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
-        \]
-
-" Show modified and untracked git files
-" returns all modified files of the current git repo
-" `2>/dev/null` makes the command fail quietly, so that when we are not
-" in a git repo, the list will be empty
-function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-" same as above, but show untracked files, honouring .gitignore
-function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
-        \ ]
