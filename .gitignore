@@ -5,6 +5,7 @@
 *swo
 *swp
 *tags
+.vim
 
 # Byte-compiled
 __pycache__/
