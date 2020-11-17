@@ -53,6 +53,7 @@ install_desktop_environment() {
     # Create symbolic links
     ln -s -f ~/dotfiles/vim/vimrc ~/.vimrc
     ln -s -f ~/dotfiles/x/xprofile ~/.xprofile
+    ln -s -f ~/dotfiles/pdb/pdbrc.py ~/.pdbrc.py
     ln -s -f ~/dotfiles/redshift/redshift.conf ~/.config/redshift.conf
     check_execution
 
@@ -280,12 +281,14 @@ install_coc() {
     sudo apt-get install -y nodejs npm
     check_execution
 
-    # \\\\\\\\\\\\\\\\ #
-    # Needs automation #
-    # \\\\\\\\\\\\\\\\ #
-    # Vimplug install extensions
-    # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
-    #             coc-snippets coc-html coc-css coc-json
+    # \\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Still need confirmation  #
+    # \\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Vimplug install & update extensions and quit
+    vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
+                             coc-json coc-xml coc-yaml \
+                             coc-vimlsp coc-yank coc-snippets | q'
+    vim -c 'CocUpdateSync|q'
 
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #
@@ -294,6 +297,9 @@ install_coc() {
     # wget https://download.eclipse.org/jdtls/milestones/0.57.0/jdt-language-server-0.57.0-202006172108.tar.gz
     # tar -xvf jdt-language-server-0.57.0-202006172108.tar.gz ./server/
     # ln -s -f ./server ~/.config/coc/extensions/coc-java-data/server
+
+    # Create symbolic links
+    ln -s -f ~/dotfiles/coc/coc-settings.json ~/.vim/coc-settings.json
 
     echo -e " <<< Coc Installation Finished!"
 }

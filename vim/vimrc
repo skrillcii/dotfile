@@ -37,6 +37,10 @@ let mapleader='\'
 "==================================
 " Coc settings
 "==================================
+" Install global extensions
+let g:coc_global_extensions=['coc-python', 'coc-java', 'coc-html', 'coc-css',
+                            \'coc-json', 'coc-xml', 'coc-yaml',
+                            \'coc-vimlsp', 'coc-yank', 'coc-snippets']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -83,23 +87,42 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 " Currently not taking effect
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming. (currerntly having issue with pyenv)
 nmap rr <Plug>(coc-rename)
 
 " Formatting selected code.
 " Not very effective, needs more tuning and testing
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder.
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Coc-snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 
 "==================================
 " Keybinding
@@ -126,6 +149,7 @@ nnoremap <C-k> :res -1<CR>
 
 " Plugin settings
 nnoremap <space>f :Autoformat<CR>
+nnoremap <space>f :Autoformat<CR>
 nnoremap <space>c :SyntasticToggleMode<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
 nnoremap <space>u :UndotreeToggle<CR>
@@ -141,6 +165,10 @@ nnoremap <space>/ :VimtexClean<CR>
 nnoremap <space>wm :mks! ~/.vim/sessions/ws.vim<CR>
 nnoremap <space>ws :source ~/.vim/sessions/ws.vim<CR>
 nnoremap <C-p> :CtrlPMRU<CR>
+
+" Coc settings
+nnoremap <space>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <space>e :<C-u>CocList extensions<CR>
 
 "==================================
 " Vim PluginInstall
@@ -171,6 +199,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
+" Plug 'SirVer/ultisnips'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -206,6 +235,8 @@ nmap t= :Tabularize /=<CR>
 vmap t= :Tabularize /=<CR>
 nmap t: :Tabularize /:<CR>
 vmap t: :Tabularize /:<CR>
+nmap t, :Tabularize /,<CR>
+vmap t, :Tabularize /,<CR>
 
 "==================================
 " Vim Easymotion
@@ -303,6 +334,11 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding='  '
 let g:WebDevIconsTabAirLineAfterGlyphPadding=''
 
 "==================================
+" Json file formatting
+"==================================
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+"==================================
 " Autoformat settings
 "==================================
 let g:formatterpath=''
@@ -387,6 +423,7 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
 let g:airline#extensions#tabline#left_alt_sep='|'
 let g:airline#extensions#tabline#formatter='default'
+let g:airline#extensions#tabline#show_splits = 1
 
 " To refresh tabline buffers
 autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
