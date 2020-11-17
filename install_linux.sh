@@ -260,6 +260,12 @@ install_ranger() {
     ln -s -f ~/dotfiles/ranger/scope.sh ~/.config/ranger/
     check_execution
 
+    # Mount disk command, use `lsblk` to list disks and partitions
+    # Then use `udisksctl` to mount the /dev/sdxY, assuming target disk is /dev/sdb1
+    # Run the following commands:
+    # $ lsblk
+    # $ udisksctl mount -b /dev/sdb1
+
     echo -e " <<< Ranger Installation Finished!"
 }
 
@@ -303,6 +309,26 @@ install_coc() {
     ln -s -f ~/dotfiles/coc/python.snippets ~/.config/coc/ultisnips/python.snippets
 
     echo -e " <<< Coc Installation Finished!"
+}
+
+install_komodo() {
+    echo -e "\n >>> Komodo Installation Started..."
+
+    cd ~ && mkdir komodo && cd komodo
+    wget http://downloads.activestate.com/Komodo/releases/11.1.0/remotedebugging/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86.tar.gz
+    tar -xvf ~/komodo/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86.tar.gz
+
+    # Create symbolic links
+    # First, create shorter reference path
+    # For version 8 or greater, then you will need to move the dbgp directory, which is
+    # inside pythonlib, to the same directory that contains the pydbgp executable.
+    # If you don't do this then you will get an error saying "No module named dbgp.client".
+    ln -s -f ~/komodo/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86 \
+            ~/komodo/dbgp
+    ln -s -f ~/komodo/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86/python3lib/dbgp \
+            ~/komodo/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86/dbgp
+
+    echo -e " <<< Komodo Installation Finished!"
 }
 
 install_zsh_gruvbox_theme() {
@@ -553,6 +579,7 @@ install_fzf
 install_ranger
 install_java_11
 install_coc
+install_komodo
 install_zsh_gruvbox_theme
 
 # Desktop specific

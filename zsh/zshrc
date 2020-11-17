@@ -199,3 +199,8 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH}
 # export M2_HOME=/usr/local/apache-maven/apache-maven
 # export M2=$M2_HOME/bin
 # export PATH=$M2:$PATH
+
+# Komodo environment variables
+# This does not work now, check it by
+# $ python3 -c "import dbgp; print(dbgp.__file__)"
+# export PYTHONPATH="~/komodo/dbgp/:${PYTHONPATH}"
