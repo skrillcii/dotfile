@@ -52,7 +52,7 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-    let col = col('.') - 1
+    let col=col('.') - 1
     return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
@@ -113,10 +113,10 @@ imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next='<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev='<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -165,6 +165,7 @@ nnoremap <space>. :VimtexCompileSS<CR>
 nnoremap <space>/ :VimtexClean<CR>
 nnoremap <space>wm :mks! ~/.vim/sessions/ws.vim<CR>
 nnoremap <space>ws :source ~/.vim/sessions/ws.vim<CR>
+nnoremap <space>o :Obsession<CR>
 nnoremap <C-p> :CtrlPMRU<CR>
 
 " Coc settings
@@ -313,7 +314,7 @@ let g:NERDTreeDirArrowCollapsible='▾'
 "==================================
 " Nerdtree git settings
 "==================================
-let g:NERDTreeGitStatusIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom={
             \ 'Modified'  :'✹',
             \ 'Staged'    :'✚',
             \ 'Untracked' :'✭',
@@ -325,7 +326,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ 'Clean'     :'✔︎',
             \ 'Unknown'   :'?',
             \ }
-let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusUseNerdFonts=1
 
 "==================================
 " Devicon settings
@@ -342,12 +343,12 @@ let g:WebDevIconsTabAirLineAfterGlyphPadding=''
 " Display NerdTree bookmarks as separated list
 " Read ~/.NERDTreeBookmarks file and takes its second column
 function! s:nerdtreeBookmarks()
-    let bookmarks = systemlist("cut -d' ' -f 2 ~/.NERDTreeBookmarks")
-    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    let bookmarks=systemlist("cut -d' ' -f 2 ~/.NERDTreeBookmarks")
+    let bookmarks=bookmarks[0:-2] " Slices an empty last line
     return map(bookmarks, "{'line': v:val, 'path': v:val}")
 endfunction
 
-let g:startify_lists = [
+let g:startify_lists=[
         \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
         \]
 
@@ -356,17 +357,17 @@ let g:startify_lists = [
 " `2>/dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty
 function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
+    let files=systemlist('git ls-files -m 2>/dev/null')
     return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    let files=systemlist('git ls-files -o --exclude-standard 2>/dev/null')
     return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
-let g:startify_lists = [
+let g:startify_lists=[
         \ { 'type': 'files',     'header': ['   MRU']            },
         \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
         \ { 'type': 'sessions',  'header': ['   Sessions']       },
@@ -404,7 +405,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map={ 'mode': 'passive' }
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
@@ -437,7 +438,7 @@ nmap <space>m <Plug>MarkdownPreviewToggle
 "==================================
 let g:tex_flavor='latex'
 " let g:vimtex_view_method='open -a Skim'
-" let g:vimtex_compiler_tectonic = {
+" let g:vimtex_compiler_tectonic={
 "     \ 'build_dir' : '',
 "     \ 'options' : [
 "     \   '--keep-logs',
@@ -454,7 +455,7 @@ autocmd Filetype tex setl updatetime=1000
 " sudo apt-get install texlive-latex-extra
 
 " Select PDF review
-" let g:livepreview_use_biber = 1
+" let g:livepreview_use_bibe=1
 " let g:livepreview_previewer='open -a Preview'
 let g:livepreview_previewer='open -a Skim'
 let g:livepreview_cursorhold_recompile=0
@@ -471,7 +472,8 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
 let g:airline#extensions#tabline#left_alt_sep='|'
 let g:airline#extensions#tabline#formatter='default'
-let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_splits=1
+let g:airline#extensions#obsession#indicator_text='$'
 
 " To refresh tabline buffers
 autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
