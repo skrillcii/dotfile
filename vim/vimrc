@@ -192,6 +192,7 @@ Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 Plug 'jpalardy/vim-slime'
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-obsession'
@@ -303,6 +304,18 @@ nmap gk <Plug>(GitGutterPrevHunk)
 nmap gs <Plug>(GitGutterStageHunk)
 nmap gu <plug>(GitGutterUndoHunk)
 nmap gp <plug>(GitGutterPreviewHunk)
+
+"==================================
+" Fugitive settings
+"==================================
+" Show commits for every source line
+nnoremap gb :Gblame<CR>
+
+"==================================
+" Fugitive settings
+"==================================
+" Open vimagit pane
+nnoremap gm :Magit<CR>
 
 "==================================
 " Nerdtree settings

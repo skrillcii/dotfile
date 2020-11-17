@@ -119,6 +119,18 @@ case `uname` in
     ;;
 esac
 
+# Vim with local obsession enable by default
+# Unless any arguments specified
+function vim() {
+    if test $# -gt 0; then
+        env vim "$@"
+    elif test -f Session.vim; then
+        env vim -S
+    else
+        env vim
+    fi
+}
+
 # Alias for wally
 function wally() {~/dotfiles/moonlander/wally-cli}
 
