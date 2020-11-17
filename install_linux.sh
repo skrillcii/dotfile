@@ -217,7 +217,7 @@ install_pyenv() {
     check_execution
     ~/.pyenv/bin/pyenv global 3.8.6
     check_execution
-    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8 ipdb pdbpp pudb
+    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8 yapf ipdb pdbpp
     check_execution
 
     echo -e " <<< Pyenv Installation Finished!"
