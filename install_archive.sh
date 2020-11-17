@@ -8,7 +8,7 @@
 install_cuda() {
     echo -e "\n >>> Cuda Installation Started..."
 
-    # Install option 1:  Package install
+    # Install option 1: Package install
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
     sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
     wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
@@ -20,7 +20,7 @@ install_cuda() {
     echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.zshrc
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/' >> ~/.zshrc
 
-    # Install option 1:  Runfile install
+    # Install option 2: Runfile install
     sudo apt-get purge nvidia*
     sudo apt-get autoremove
     sudo dpkg -l | grep nvidia
