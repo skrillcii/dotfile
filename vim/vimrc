@@ -193,6 +193,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jpalardy/vim-slime'
 Plug 'thinca/vim-quickrun'
+Plug 'tpope/vim-obsession'
 
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'

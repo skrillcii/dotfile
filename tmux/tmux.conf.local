@@ -7,7 +7,14 @@
 ######################
 
 # Resurrect options
-set -g @resurrect-capture-pane-contents 'no'
+set -g @resurrect-capture-pane-contents 'on'
+set -g @resurrect-strategy-vim 'session'
+
+# Continuum options
+set -g @continuum-restore 'on'
+set -g @continuum-save-interval '15'
+set -g @continuum-boot 'off'
+set -g @continuum-restore 'off'
 
 # replace C-b by C-a instead of using both prefixes
 unbind C-a
@@ -141,6 +148,7 @@ set-window-option -g window-status-format "#[fg=colour237,bg=colour239,noitalics
 set -g @tpm_plugins '           \
     tmux-plugins/tpm            \
     tmux-plugins/tmux-resurrect \
+    tmux-plugins/tmux-continuum \
     egel/tmux-gruvbox           \
     '
 set -g @tmux-gruvbox 'dark'
