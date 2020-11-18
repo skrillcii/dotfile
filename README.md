@@ -5,6 +5,7 @@ This README.md is a templete.
 ## Prerequisite
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foo.
+This is an inline code `$ which pip`.
 
 * Unordered list
 * Unordered list
