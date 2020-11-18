@@ -5,6 +5,7 @@
 *.swo
 *.swp
 *.vim
+*.vim/
 *tags
 
 # Byte-compiled
