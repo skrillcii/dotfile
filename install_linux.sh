@@ -328,6 +328,10 @@ install_komodo() {
     ln -s -f ~/komodo/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86/python3lib/dbgp \
             ~/komodo/Komodo-PythonRemoteDebugging-11.1.0-91033-linux-x86/dbgp
 
+    # Press F5 in vim to start watiing for connection, then to start a python script
+    # Note: the source code of pydbgp contant keywords 'async', modify it to 'async_' accordingly
+    python3 -S ~/komodo/dbgp/pydbgp -d localhost:9000 script.py
+
     echo -e " <<< Komodo Installation Finished!"
 }
 
