@@ -207,7 +207,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH}
 # IBM Cloud auto-completion
 # source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
-# Maven environment variables
+# Maven environment variables (used for Ubuntu 16.04)
 # export M2_HOME=/usr/local/apache-maven/apache-maven
 # export M2=$M2_HOME/bin
 # export PATH=$M2:$PATH
@@ -216,3 +216,4 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH}
 # This does not work now, check it by
 # $ python3 -c "import dbgp; print(dbgp.__file__)"
 # export PYTHONPATH="~/komodo/dbgp/:${PYTHONPATH}"
+alias vdebug='python3 -S ~/komodo/dbgp/py3_dbgp.py -d localhost:9000'
