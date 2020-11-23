@@ -332,6 +332,16 @@ install_komodo() {
     # Note: the source code of pydbgp contant keywords 'async', modify it to 'async_' accordingly
     python3 -S ~/komodo/dbgp/pydbgp -d localhost:9000 script.py
 
+    # Default commands:
+    # F05 - start debuger
+    # F02 - step over
+    # F03 - step in
+    # F04 - step out
+    # F07 - detach
+    # F06 - stop/close
+    # F09 - run to cursor
+    # F10 - set/unset breakpoint
+
     echo -e " <<< Komodo Installation Finished!"
 }
 
