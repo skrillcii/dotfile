@@ -269,7 +269,6 @@ install_ranger() {
     echo -e " <<< Ranger Installation Finished!"
 }
 
-
 install_java_11() {
     echo -e "\n >>> Java-11 Installation Started..."
 
@@ -278,6 +277,10 @@ install_java_11() {
     check_execution
 
     echo -e " <<< Java-11 Installation Finished!"
+}
+
+install_java_11() {
+
 }
 
 install_coc() {
