@@ -34,7 +34,7 @@ install_desktop_environment() {
     check_execution
 
     # Package install fcitx
-    sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc
+    sudo apt-get install -y fcitx-bin fcitx-chewing fcitx-mozc fcitx-googlepinyin
     check_execution
 
     # Package install lightdm
