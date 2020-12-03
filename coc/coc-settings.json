@@ -1,6 +1,7 @@
 {
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": ["--ignore=E501,E401,E402,E203,E221,F401,F403"],
     "python.linting.enabled": true,
 
     "snippets.userSnippetsDirectory": "~/.config/coc/ultisnips"

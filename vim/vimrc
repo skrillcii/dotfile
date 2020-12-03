@@ -435,6 +435,7 @@ let g:syntastic_tex_checkers=['lacheck', 'text/language_check']
 
 " Ignore syntax check of pep8
 let g:syntastic_python_flake8_args='--ignore=E501,E401,E402,E203,E221,F401,F403'
+let g:syntastic_python_flake8_args='--max-line-length=120'
 
 " Python3 syntax logic check with pyflakes
 let g:syntastic_python_pyflakes_exe='python3 -m pyflakes'
