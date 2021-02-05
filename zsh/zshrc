@@ -132,10 +132,10 @@ function vim() {
 }
 
 # Alias for wally
-function wally() {~/dotfiles/moonlander/wally}
+function wally() {~/dotfiles/zsa/wally}
 
 # Alias for wally
-function wally-cli() {~/dotfiles/moonlander/wally-cli}
+function wally-cli() {~/dotfiles/zsa/wally-cli}
 
 # Alias for portable sreenkey
 alias screenkey='~/.config/screenkey-1.2/screenkey'
