@@ -15,13 +15,13 @@ $ sudo cp /etc/default/grub /etc/default/grub.bak
 $ sudo vim /etc/default/grub
 ```
 
-3. Find the `$menuentry_id_option` for the submenu:
+3. Find the `$menuentry_id_option` for the submenu
 ```
 $ grep submenu /boot/grub/grub.cfg
 submenu 'Advanced options for Ubuntu' $menuentry_id_option 'gnulinux-advanced-732c32b4-4022-44c2-a64c-c5b48c470e46'
 ```
 
-4. Find the `$menuentry_id_option` for the kernel entry you want to use:
+4. Find the `$menuentry_id_option` for the kernel entry you want to use
 ```
 $ grep menuentry /boot/grub/grub.cfg
 if [ x"${feature_menuentry_id}" = xy ]; then
@@ -40,7 +40,7 @@ menuentry 'Windows Boot Manager (on /dev/sda1)' --class windows --class os $menu
 menuentry 'UEFI Firmware Settings' $menuentry_id_option 'uefi-firmware' {
 ```
 
-5. Replace `GRUB_DEFAULT=0` with the submenu's `$menuentry_id_option` from step 3, and the selected kernel's `$menuentry_id_option` from step 4 separated by `>`.
+5. Replace `GRUB_DEFAULT=0` with the submenu's `$menuentry_id_option` from step 3, and the selected kernel's `$menuentry_id_option` from step 4 separated by "`>`"
 ```
 GRUB_DEFAULT="gnulinux-advanced-732c32b4-4022-44c2-a64c-c5b48c470e46>gnulinux-5.4.0-42-generic-advanced-732c32b4-4022-44c2-a64c-c5b48c470e46"
 ```
@@ -64,4 +64,4 @@ GRUB_DEFAULT=saved
 ```
 
 ## References
-[Stackexchange](https://unix.stackexchange.com/questions/198003/set-default-kernel-in-grub)
+[StackExchange - set-default-kernel-in-grub](https://unix.stackexchange.com/questions/198003/set-default-kernel-in-grub)
