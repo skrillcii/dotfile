@@ -1,10 +1,8 @@
 # Set Default Kernel
-
 This is a note on how to set default kernel when desired.
 e.g. when updated kernel does not work well, you may want to revert to older ones.
 
 ## Instructions
-
 1. Good-old backup
 ```
 $ sudo cp /etc/default/grub /etc/default/grub.bak
@@ -54,7 +52,6 @@ $ sudo update-grup
 ```
 $ uname -a
 ```
-
 
 ## Additional Option:
 Save last entry option

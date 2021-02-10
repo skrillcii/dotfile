@@ -1,10 +1,8 @@
 # Upgrade or Remove Kernel
-
-This is a note on how to upgrade and remove kernels
+This is a note on how to upgrade and remove kernels.
 e.g. when there is security patch update, or boot partition space is running low.
 
 ## Instructions - To Remove
-
 1. Check the current kernel version
 ```
 $ uname -r
