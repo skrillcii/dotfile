@@ -14,4 +14,4 @@ $ sudo apt-get install \
     linux-hwe-tools-4.15.0-50
 ```
 
-For selecting the kernel version, please refer to `set_default_kernel.md`
+For selecting the kernel version, please refer to [set_default_kernel](set_default_kernel.md)
