@@ -1,8 +1,0 @@
-{
-    // Auto-format
-    "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"]
-
-    // Python settings
-    "python.linting.enabled": true,
-    "python.linting.pylintenabled": true,
-}
