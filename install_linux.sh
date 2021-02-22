@@ -31,6 +31,7 @@ install_desktop_environment() {
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
                             checkinstall redshift docker.io \
                             htop glances lm-sensors mesa-utils \
+                            net-tools nmap \
     check_execution
 
     # Package install fcitx
