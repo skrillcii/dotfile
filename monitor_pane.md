@@ -27,6 +27,11 @@ Turn on redshift
 $ redshift
 ```
 
+Turn on nautilus
+```
+$ nautilus --no-desktop
+```
+
 Watch cpu(s) core temperature
 ```
 $ watch -n 5 "sensors"
