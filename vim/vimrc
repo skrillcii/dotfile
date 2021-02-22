@@ -447,6 +447,12 @@ nmap <M-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <space>m <Plug>MarkdownPreviewToggle
 
+" Specify and open local port
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_open_ip = '127.0.0.1'
+let g:mkdp_port = 8888
+
 "==================================
 " Vimtex settings
 "==================================
