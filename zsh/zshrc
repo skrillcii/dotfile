@@ -140,6 +140,9 @@ function wally-cli() {~/dotfiles/zsa/wally-cli}
 # Alias for mop
 function mop() {~/go/bin/mop}
 
+# Alias for cointop
+function cointop() {~/go/bin/cointop}
+
 # Alias for portable sreenkey
 alias screenkey='~/.config/screenkey-1.2/screenkey'
 
