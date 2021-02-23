@@ -140,6 +140,9 @@ function wally-cli() {~/dotfiles/zsa/wally-cli}
 # Alias for mop
 function mop() {~/go/bin/mop}
 
+# Alias for ticker
+function ticker() {~/ticker/ticker}
+
 # Alias for cointop
 function cointop() {~/go/bin/cointop}
 

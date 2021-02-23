@@ -27,7 +27,7 @@ $ ~/go/bin/hello
 Hello, Go example!
 ```
 
-## Installing Mop
+## Installation
 Mop is implemented in Go and compiles down to a single executable file.
 Make sure your $GOPATH is set.
 ```
