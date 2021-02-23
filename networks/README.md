@@ -1,11 +1,13 @@
 # Network Tools and Commands
+This is a documentation on networking tools and commands
 
-## Useful commands
+## Prerequisite
 install nmap, net-tools
 ```
 sudo apt get install nmap net-tools
 ```
 
+## Useful commands
 check open ports
 ```
 sudo lsof -i -P -n | grep LISTEN
