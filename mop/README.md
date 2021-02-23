@@ -56,8 +56,12 @@ F       Unset a filtering expression.
 ?       Display help screen.
 esc     Quit mop.
 ```
+
 When prompted please enter comma-delimited list of stock tickers.
 The list and other settings are stored in the profile file (default: .moprc in your $HOME directory)
+```
+$ ln -s ~/dotfiles/mop/moprc ~/.moprc
+```
 
 # Reference
 * [How-to-install-go-on-ubuntu-20-04-focal-fossa-linux](https://linuxconfig.org/how-to-install-go-on-ubuntu-20-04-focal-fossa-linux)
