@@ -1,5 +1,4 @@
 # Mop
-[mop-tracker/mop](https://github.com/mop-tracker/mop)
 
 ## Prerequisite
 * Ubuntu 20.04
@@ -43,3 +42,7 @@ Run the compiled binary
 ```
 $ $GOPATH/bin/mop
 ```
+
+# Reference
+* [How-to-install-go-on-ubuntu-20-04-focal-fossa-linux](https://linuxconfig.org/how-to-install-go-on-ubuntu-20-04-focal-fossa-linux)
+* [GitHub - mop-tracker/mop](https://github.com/mop-tracker/mop)
