@@ -88,7 +88,7 @@ cache_dir = "/tmp"
 
 [favorites]
   columns = ["rank", "name", "symbol", "price", "1h_change", "24h_change", "7d_change", "24h_volume", "market_cap", "total_supply", "available_supply", "last_updated"]
-  names = ["Binance Coin", "Bitcoin", "Bitcoin Cash", "Dogecoin", "Ethereum", "Litecoin", "Stellar", "XRP"]
+  names = ["Binance Coin", "Bitcoin", "Bitcoin Cash", "Dogecoin", "Ethereum", "Litecoin", "Qtum", "Stellar", "XRP"]
   symbols = []
 
 [portfolio]
