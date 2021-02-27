@@ -288,6 +288,9 @@ install_coc() {
     echo -e "\n >>> Coc Installation Started..."
 
     # Package install dependcies
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Ensure nodejs with version 10+ #
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     sudo apt-get install -y nodejs npm
     check_execution
 
