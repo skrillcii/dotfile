@@ -281,6 +281,7 @@ install_coc
 install_zsh_gruvbox_theme
 
 echo -e "\n >>> Finished All Custom Installation!"
+echo $success Success $failure Failure
 
 # Reload shell
 $SHELL
