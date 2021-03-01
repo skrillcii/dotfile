@@ -183,8 +183,8 @@ install_vim_plugin_manager() {
     ln -s -f ~/dotfiles/vim/vimrc ~/.vimrc
     check_execution
 
-    # Install plugins
-    vim -E -s -u "~/.vimrc" +PlugInstall +qall
+    # Install plugins, ignore intermediate error and warnings
+    vim -E -s -u "~/.vimrc" +PlugInstall +qall || true
     check_execution
 
     echo -e " <<< Vim-plugin-manager Installation Finished!"
@@ -293,8 +293,7 @@ install_coc() {
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
     # Still need confirmation  #
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    # Install all configured plugins in vimrc by 'CocEnable' command
-    vim -c 'CocEnable'
+    vim -E -s -u "~/.vimrc" +CocInstall +qall || true
 
     # Vimplug install & update extensions and quit
     # vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
