@@ -218,7 +218,7 @@ install_pyenv() {
     check_execution
     ~/.pyenv/bin/pyenv global 3.8.6
     check_execution
-    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8 yapf ipdb pdbpp
+    ~/.pyenv/shims/pip3 install -U pip autopep8 pylint flake8 yapf ipdb pdbpp jedi
     check_execution
 
     echo -e " <<< Pyenv Installation Finished!"
@@ -280,10 +280,6 @@ install_java_11() {
     echo -e " <<< Java-11 Installation Finished!"
 }
 
-install_java_11() {
-
-}
-
 install_coc() {
     echo -e "\n >>> Coc Installation Started..."
 
@@ -297,11 +293,14 @@ install_coc() {
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
     # Still need confirmation  #
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Install all configured plugins in vimrc by 'CocEnable' command
+    vim -c 'CocEnable'
+
     # Vimplug install & update extensions and quit
-    vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
-                             coc-json coc-xml coc-yaml \
-                             coc-vimlsp coc-yank coc-snippets | q'
-    vim -c 'CocUpdateSync|q'
+    # vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
+    #                          coc-json coc-xml coc-yaml \
+    #                          coc-vimlsp coc-yank coc-snippets | q'
+    # vim -c 'CocUpdateSync|q'
 
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #

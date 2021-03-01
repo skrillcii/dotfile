@@ -187,7 +187,7 @@ install_pyenv() {
     check_execution
     ~/.pyenv/bin/pyenv global 3.8.6
     check_execution
-    ~/.pyenv/shims/pip3 install -U pip autopep8 flake8
+    ~/.pyenv/shims/pip3 install -U pip autopep8 pylint flake8 yapf ipdb pdbpp jedi
     check_execution
 
     echo -e " <<< Pyenv Installation Finished!"
@@ -210,18 +210,40 @@ install_coc() {
     sudo apt-get install -y nodejs npm
     check_execution
 
-    # \\\\\\\\\\\\\\\\ #
-    # Needs automation #
-    # \\\\\\\\\\\\\\\\ #
-    # Vimplug install extensions
-    # :CocInstall coc-python coc-yaml coc-vimlsp coc-java \
-    #             coc-snippets coc-html coc-css coc-json
+    # \\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Still need confirmation  #
+    # \\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Install all configured plugins in vimrc by 'CocEnable' command
+    vim -c 'CocEnable'
+
+    # Vimplug install & update extensions and quit
+    # vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
+    #                          coc-json coc-xml coc-yaml \
+    #                          coc-vimlsp coc-yank coc-snippets | q'
+    # vim -c 'CocUpdateSync|q'
+
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
+    # If coc-java has issue with jdt #
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
+    # cd ~/.config/coc/extensions/coc-java-data
+    # wget https://download.eclipse.org/jdtls/milestones/0.57.0/jdt-language-server-0.57.0-202006172108.tar.gz
+    # tar -xvf jdt-language-server-0.57.0-202006172108.tar.gz ./server/
+    # ln -s -f ./server ~/.config/coc/extensions/coc-java-data/server
+
+    # Create symbolic links
+    ln -s -f ~/dotfiles/coc/coc-settings.json ~/.vim/coc-settings.json
+    ln -s -f ~/dotfiles/coc/python.snippets ~/.config/coc/ultisnips/python.snippets
 
     echo -e " <<< Coc Installation Finished!"
 }
 
 install_zsh_gruvbox_theme() {
     echo -e "\n >>> Zsh-grubox-theme Installation Started..."
+
+    # Check directory exists
+    if [[ ! -e ~/.oh-my-zsh/custom/themes ]] ; then
+        mkdir -p ~/.oh-my-zsh/custom/themes
+    fi
 
     # Download gruvbox-theme
     curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme \
@@ -248,9 +270,9 @@ install_oh_my_zsh
 install_tmux_plugin_manager
 install_oh_my_tmux
 install_vim_plugin_manager
-install_pyenv
 install_fzf
 install_ranger
+install_pyenv
 install_java_11
 install_coc
 install_zsh_gruvbox_theme
