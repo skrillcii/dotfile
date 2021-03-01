@@ -4,6 +4,8 @@
 ##############
 # Fail Check #
 ##############
+success=0
+failure=0
 # REFERENCE: https://stackoverflow.com/questions/2870992/automatic-exit-from-bash-shell-script-on-error
 # -e exits on error, -u errors on undefined variables, and -o (for option) pipefail exits on command pipe failures. 
 # set -euxo pipefail
@@ -16,8 +18,10 @@
 check_execution() {
     if [ $? -eq 0 ]; then
         echo -e "\033[34mexecution checked\e[0m"
+        success=$((success+1))
     else
         echo -e "\033[31mexecution failed\e[0m"
+        failure=$((failure+1))
     fi
 
     # Or pipe the following command to the execution output
@@ -616,6 +620,7 @@ install_ffmpeg
 
 sudo apt-get autoremove -y
 echo -e "\n >>> Finished All Custom Installation!"
+echo -e " >>> $success Success $failure Failure"
 
 # Reload shell
 $SHELL
