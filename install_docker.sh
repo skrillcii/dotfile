@@ -220,10 +220,10 @@ install_coc() {
     # check_execution
 
     # Vimplug install & update extensions and quit
-    # vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
-    #                          coc-json coc-xml coc-yaml \
-    #                          coc-vimlsp coc-yank coc-snippets | q'
-    # vim -c 'CocUpdateSync|q'
+    vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
+                             coc-json coc-xml coc-yaml \
+                             coc-vimlsp coc-yank coc-snippets | q'
+    vim -c 'CocUpdateSync|q'
 
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #
