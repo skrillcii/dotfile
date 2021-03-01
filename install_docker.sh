@@ -228,6 +228,15 @@ install_coc() {
     #                          coc-vimlsp coc-yank coc-snippets | q'
     # vim -s -c 'CocUpdateSync | q'
 
+    # Install extensions
+    mkdir -p ~/.config/coc/extensions
+    cd ~/.config/coc/extensions
+    if [ ! -f package.json ]
+    then
+      echo '{"dependencies":{}}'> package.json
+    fi
+    npm install coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
@@ -280,7 +289,7 @@ install_fzf
 install_ranger
 install_pyenv
 install_java_11
-# install_coc
+install_coc
 install_zsh_gruvbox_theme
 
 echo -e "\n >>> Finished All Custom Installation!"
