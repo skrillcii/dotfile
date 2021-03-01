@@ -35,7 +35,7 @@ install_desktop_environment() {
     sudo apt-get install -y zsh tmux vim curl xclip vlc ffmpeg \
                             checkinstall redshift docker.io \
                             htop glances lm-sensors mesa-utils \
-                            net-tools nmap \
+                            net-tools nmap nodejs npm\
     check_execution
 
     # Package install fcitx
@@ -294,20 +294,16 @@ install_coc() {
     sudo apt-get install -y nodejs npm
     check_execution
 
-    # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    # Still need confirmation  #
-    # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    # Coc install extensions
-    # vim -E -s '+CocInstall coc-python coc-java coc-html coc-css coc-json' +qall || true
-    # check_execution
-    # vim -E -s '+CocInstall coc-xml coc-yaml coc-vimlsp coc-yank coc-snippets' +qall || true
-    # check_execution
-
-    # Coc install extensions
-    # vim -s -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
-    #                          coc-json coc-xml coc-yaml \
-    #                          coc-vimlsp coc-yank coc-snippets | q'
-    # vim -s -c 'CocUpdateSync | q'
+    # Install extensions
+    mkdir -p ~/.config/coc/extensions
+    cd ~/.config/coc/extensions
+    if [ ! -f package.json ]
+    then
+      echo '{"dependencies":{}}'> package.json
+    fi
+    npm install coc-python coc-java coc-html coc-css coc-json \
+                coc-xml coc-yaml coc-vimlsp coc-yank coc-snippets \
+                --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #

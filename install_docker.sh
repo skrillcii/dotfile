@@ -40,7 +40,7 @@ install_general() {
     echo -e "\n >>> General Installation Started..."
 
     # Package install general
-    sudo apt-get install -y xclip checkinstall cmake python3-dev 
+    sudo apt-get install -y xclip checkinstall cmake python3-dev nodejs npm
     check_execution
 
     echo -e " <<< General Installation Finished!"
@@ -210,23 +210,11 @@ install_coc() {
     echo -e "\n >>> Coc Installation Started..."
 
     # Package install dependcies
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
+    # Ensure nodejs with version 10+ #
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     sudo apt-get install -y nodejs npm
     check_execution
-
-    # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    # Still need confirmation  #
-    # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    # Coc install extensions
-    # vim -E +'CocInstall coc-python coc-java coc-html coc-css coc-json' +qall || true
-    # check_execution
-    # vim -E +'CocInstall coc-xml coc-yaml coc-vimlsp coc-yank coc-snippets' +qall || true
-    # check_execution
-
-    # Coc install extensions
-    # vim -s -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
-    #                          coc-json coc-xml coc-yaml \
-    #                          coc-vimlsp coc-yank coc-snippets | q'
-    # vim -s -c 'CocUpdateSync | q'
 
     # Install extensions
     mkdir -p ~/.config/coc/extensions
@@ -235,7 +223,9 @@ install_coc() {
     then
       echo '{"dependencies":{}}'> package.json
     fi
-    npm install coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+    npm install coc-python coc-java coc-html coc-css coc-json \
+                coc-xml coc-yaml coc-vimlsp coc-yank coc-snippets \
+                --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #
