@@ -213,9 +213,8 @@ install_coc() {
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
     # Still need confirmation  #
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    # Install all configured plugins in vimrc by 'CocEnable' command
-    vim -c 'CocEnable'
-    vim -E -s -u "~/.vimrc" +CocInstall +qall || true
+    # vim -E -s -u "~/.vimrc" +CocInstall +qall || true
+    # check_execution
 
     # Vimplug install & update extensions and quit
     # vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
@@ -274,7 +273,7 @@ install_vim_plugin_manager
 install_fzf
 install_ranger
 install_pyenv
-install_java_11
+# install_java_11
 install_coc
 install_zsh_gruvbox_theme
 

@@ -293,7 +293,8 @@ install_coc() {
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
     # Still need confirmation  #
     # \\\\\\\\\\\\\\\\\\\\\\\\ #
-    vim -E -s -u "~/.vimrc" +CocInstall +qall || true
+    # vim -E -s -u "~/.vimrc" +CocInstall +qall || true
+    # check_execution
 
     # Vimplug install & update extensions and quit
     # vim -c 'CocInstall -sync coc-python coc-java coc-html coc-css \
