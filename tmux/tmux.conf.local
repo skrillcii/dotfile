@@ -7,6 +7,7 @@
 ######################
 
 # Resurrect options
+set -g default-shell /usr/bin/zsh
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-strategy-vim 'session'
 
