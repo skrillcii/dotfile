@@ -304,6 +304,7 @@ install_coc() {
     npm install coc-python coc-java coc-html coc-css coc-json \
                 coc-xml coc-yaml coc-vimlsp coc-yank coc-snippets \
                 --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+    cd ~
 
     # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ #
     # If coc-java has issue with jdt #
@@ -620,6 +621,4 @@ install_ffmpeg
 sudo apt-get autoremove -y
 echo -e "\n >>> Finished All Custom Installation!"
 echo -e " >>> $success Success $failure Failure"
-
-# Reload shell
-$SHELL
+reset && source ~/.bashrc
