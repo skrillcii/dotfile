@@ -155,7 +155,7 @@ nnoremap <space>c :SyntasticToggleMode<CR>
 nnoremap <space>n :NERDTreeToggle<CR>
 nnoremap <space>u :UndotreeToggle<CR>
 nnoremap <space>b :Tagbar<CR>
-nnoremap <space>g :Gstatus<CR>
+nnoremap <space>g :Gstatus<CR>:20wincmd_<CR>
 nnoremap <space>p :Git push<CR>
 nnoremap <space>ll :Git pull<CR>
 nnoremap <space>r :QuickRun<CR>
